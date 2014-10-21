@@ -43,11 +43,11 @@ if (args.version) {
 			Compiler.compile(jsLocation, function(error, source) {
 				if (error) debug.error(error);
 				else debug("Compiled");
-				process.exit(0);
+                if (!args.static) process.exit(0);
 			});
 		} catch (e) {
 			debug.error(e);
-			process.exit(1);
+			if (!args.static) process.exit(1);
 		}
 		if (args.location) return;
 	}

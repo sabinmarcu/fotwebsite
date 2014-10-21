@@ -132,8 +132,8 @@ class Server
         @
 
     err: (err) ->
-        #notif.notify title: "Server Error", message: err.message or err
         debug "Server Error", err.message or err
+        debug "Stack : ", err.stack or err
         process.exit 1
 
 # Defining the ErrorReporting for the Server class
