@@ -1,0 +1,3 @@
+#### [DIVOZAROTTERDAM.NL](http://DIVOZAROTTERDAM.NL)
+
+This restaurant and bar offers an extensive drink selection, gourmet food and ice-cream that makes tastebuds dance. Perfect for a night out with friends or family, the spot is accented by old brick walls and comfortable chairs. The illusion you are in the comfort of your living room is only shattered by the fact that it is more comfortable—than mine anyway!

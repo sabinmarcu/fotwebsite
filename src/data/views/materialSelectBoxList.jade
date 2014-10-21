@@ -1,0 +1,13 @@
+material-radio-group.material-whiteframe-z1(ng-model="model" ng-class="{active: state == true, 'material-whiteframe-z2': scroll > 0}")
+    material-list(ng-style="getHeight()")
+        material-item.search(ng-style="{top: scroll}" ng-class="{'material-whiteframe-z1': scroll > 0}")
+            .material-title.content
+                material-input-group
+                    label(for="search") Search for an item
+                    material-input(ng-model="search" type="search" id="search" ng-if="prop | isUndefined")
+                    material-input(ng-model="search[prop]" type="search" id="search" ng-if="prop | isDefined")
+        material-item(ng-repeat="element in elements | filter:search")
+            .material-tile-content        
+                material-radio-button(value="{{element}}" ng-if="prop | isUndefined") {{element}}
+                material-radio-button(value="{{element[prop]}}" ng-if="prop | isDefined") {{element[prop]}}
+material-button.material-trigger(ng-click="toggle()") {{model}}

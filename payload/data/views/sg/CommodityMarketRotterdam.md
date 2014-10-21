@@ -1,0 +1,3 @@
+#### [GOO.GL/CHCHF3](http://GOO.GL/CHCHF3)
+
+If you need to buy something or sell something - as long as it’s legal - head to Commodity Market Rotterdam and find your match! It’s as easy as liking the Facebook group and posting or searching for an advertisement that suits your needs. And trust us - there is always someone who wants what you are selling. We also bet it is the most painless way for you to get furniture, knickknacks and random items for generally low, negotiable prices. And of course, you can find bikes here! The community is around fifteen- thousands at present and we urge you to join the ranks.

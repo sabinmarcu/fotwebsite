@@ -1,0 +1,47 @@
+nav
+    position fixed
+    top 0
+    left 0
+    right 0
+    height adminnavheight
+    background rgba(256, 256, 256, 0.4)
+    border-bottom solid 1px rgba(0, 0, 0, 0.4)
+    line-heigth adminnavheight
+    color white
+    font-size 14pt
+    text-align center
+    *
+        height adminnavheight
+        line-height adminnavheight
+    ul
+        position absolute
+        left 0
+        top 0
+        margin 0
+        padding 0
+        list-style none
+        font-size 12pt
+        &#logout
+            right 0
+            left auto
+            li
+                border-right none
+                border-left solid 1px rgba(0, 0, 0, 0.2)
+        li 
+            display inline-block
+            height adminnavheight
+            line-height adminnavheight
+            padding 0 10px
+            cursor pointer
+            transition background 0.3s ease-in-out
+            text-shadow 0 1px 1px rgba(0, 0, 0, 0.5)
+            float left
+            &:hover
+                background rgba(256, 256, 256, 0.4)
+            i.fa
+                margin 0 5px
+                &.fa-chevron-left
+                    margin-left 0
+                &.fa-chevron-right
+                    margin-right 0
+            border-right solid 1px rgba(0, 0, 0, 0.2)

@@ -1,0 +1,26 @@
+aside.register(ng-controller="Register" ng-show="location.path() === '/membership/register'" class="{{class}}")
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        material-button.big(href="/membership/login") Do you want to login?
+        ig(model="name" type="text") Name
+        ig(model="password" type="password") Password
+        ig(model="repassword" type="password") Retype Password
+        ig(model="email" type="text") EMail
+        ig(model="dob" type="date") Date of Birth
+        ig(model="number" type="number") Student Number
+        ig(model="nationality" type="select" elements="countries" prop="'name'") Country / Nationality
+        ig(model="phone" type="number") Phone Number
+        ig(model="address" type="text") Address
+        ig(model="major" type="text") Study Subject
+        ig(model="school" type="text") School
+        ig(model="facebook" type="text") Facebook ID
+        ig(model="foundoutabout" type="select" elements="foundoutabout") Where did you hear from us?
+        material-tabs(selected="tabSelected" align-tabs="bottom")
+            material-tab(label="Camera")
+                .video.big(ng-style="getVContainerStyle()")
+                    video#registerPreview
+            material-tab(label="Load Image")
+                .imageinput.big
+                    input#registerImageInput(type="file" read-file="image")
+                    img#registerPreview(ng-src="{{image}}")
+        material-button.material-button-raised.material-button-colored.big(ng-click="submit()") Submit

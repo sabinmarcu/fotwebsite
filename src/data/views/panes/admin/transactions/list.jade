@@ -1,0 +1,9 @@
+section(ng-class="isActive('list')")
+    material-content.loader(ng-class="{active: transactions.length == 0}")
+        .spinner
+    material-content.content(ng-class="{active: transactions.length > 0}")
+        material-list
+            material-item(ng-repeat="trans in transactions")
+                .material-tile-content
+                    h2 {{trans.id}}
+                    h3 {{trans.status}}

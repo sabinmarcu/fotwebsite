@@ -1,0 +1,2 @@
+Rotterdam is home to the second largest port in the world, accommodating thousands of workers. Rotterdam’s many harbor workers have caused the Rotterdammer to be known as someone who works extremely hard.“Hard voor weinig, nooit chagrijnig” is a typical saying
+which translates to “Working hard for little but never bitter.” Almost everyone in the country speaks English and Rotterdam is no exception to that. The city finds itself constantly focusing on internationalization, trying to lure multinational companies with its harbor.

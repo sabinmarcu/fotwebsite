@@ -1,0 +1,3 @@
+#### DENTAL CARE
+
+Dentists (tandarts) can be found through your insurance company, or by using the Netherlands Yellow Pages. When you first take out your policy make sure that it covers dental treatment, and if not, you will be able to add an extra dental component. Without this, your normal medical insurance will not cover dental treatment! If you are not insured for dental treatment, you can opt to pay for treatment yourself. You can search for a list of registered dentists at [www.zorgkaartnederland.nl](http://www.zorgkaartnederland.nl) (in Dutch).

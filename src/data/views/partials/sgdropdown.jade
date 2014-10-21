@@ -1,0 +1,3 @@
+span {{title}}
+ul(ng-if="next !== null")
+    li( ng-repeat="(title, next) in next" ng-if="title !== '_ss'" ng-include="'sgdropdown'" ng-style="getSgFont(title)" ng-class="{endpoint: next === null}" ng-click="select(title, next);$event.stopPropagation()")

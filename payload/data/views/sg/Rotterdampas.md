@@ -1,0 +1,3 @@
+#### [ROTTERDAMPAS.NL](http://ROTTERDAMPAS.NL)
+
+The Rotterdampas is an amazing discount card that not enough students have. Normally it costs €60, but it is a mere €12.50 for students. You can enjoy over 500 discounted activities per year, including several free ones. A few of the free activities are: laser gaming, a visit to the Euromast, a Spido boat tour, a yoga class, and free entry to several museums. This pass is definitely worth the investment. You Check [www.rotterdampas.nl](http://www.rotterdampas.nl) (only in Dutch) for other activities and for instructions on how to apply for a pass.

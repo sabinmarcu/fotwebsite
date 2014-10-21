@@ -1,0 +1,84 @@
+.big
+    display block
+    line-height adminlogininputheight !important
+    border-radius 0
+    background rgba(0, 0, 0, 0.1)
+    &.video, &.imageinput
+        width 100%
+        font-size 0
+        height auto
+        video, img
+            width 100%
+.face
+    border 1px solid #ddd
+    width 60px
+    height 60px
+    margin 16px
+material-input-group, *[layout], material-button.big
+    height adminlogininputheight !important
+    min-height adminlogininputheight !important
+    max-height adminlogininputheight !important
+    padding-top 0
+    margin-top 0
+    padding-bottom 0
+    margin-bottom 0
+    &.big
+        line-height adminlogininputheight !important
+        border-radius 0
+        background rgba(0, 0, 0, 0.1)
+material-input-group, *[layout] material-button
+    margin 0 15px
+    display block
+    input, label
+        width 100%
+aside.login, aside.register, aside.debug
+    display block
+    position fixed
+    width adminloginwidth
+    height adminloginheight
+    background white
+    box-shadow 3px 3px 7px rgba(0, 0, 0, 0.2)
+    top 25px
+    bottom 25px
+    left s("calc(%s - %s)", 50%, adminloginwidth / 2)
+    overflow visible
+    transition transform 1s ease-in-out, opacity 1s ease-in-out
+    &.inactive
+        transform rotateY(180deg)
+        opacity 0
+        &.register
+            transform rotateY(-180deg)
+    .content   
+        overflow hidden
+        width 100%
+        height 100%
+    aside
+        position fixed
+        top 25px
+        bottom 25px
+        left s("calc(%s - %s)", 50%, adminloginwidth / 2)
+        width adminloginwidth
+        height baseinputheight
+        line-height baseinputheight
+        background white
+        opacity 0
+        transform none
+        transition transform 0.5s ease-in-out, opacity 0.3s ease-in-out
+        text-indent 15px
+        color white
+        &.active
+            transition transform 0.3s ease-in-out, opacity 0.5s ease-in-out
+            transform translateY(-(baseinputheight))
+            opacity 1
+        &.success
+            background darken(green, 10)
+        &.error
+            background darken(red, 10)
+        &.info
+            background darken(brandbluecolor, 10)
+
+aside.register
+    height auto
+    .content
+        overflow auto
+

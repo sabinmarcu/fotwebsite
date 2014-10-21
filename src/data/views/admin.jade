@@ -1,0 +1,21 @@
+.content
+    != DepMan.render("login")   
+    != DepMan.render("register")
+    section.main(ng-show="comms.user")
+        aside(ng-class="{inactive: data.isContentActive}")
+            ul
+                li(ng-class="{active: adminIsActive('me')}")
+                    material-button(href="/membership/me") {{comms.user.name}}
+                li(ng-class="{active: adminIsActive(title)}" ng-if="comms.user.type == 2" ng-repeat="title in adminroutes.order")
+                    material-button(ng-href="{{adminroutes[title]}}") {{title}}
+        .container(ng-if="comms.user.type == 2")
+            section(admin-controller-from-string="'me'" ng-class="{active: adminIsActive('me')}" id="{{'me' | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
+                nav.phonemenu  
+                    li(ng-click="activateMenu()")
+                        i.fa.fa-reorder
+                div(admin-load-content-for="'me'")
+            section(ng-repeat="title in adminroutes.order" ng-if="!adminroutes.nocontroller[$index]" admin-controller-from-string='title' ng-class="{active: adminIsActive(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
+                nav.phonemenu  
+                    li(ng-click="activateMenu()")
+                        i.fa.fa-reorder
+                div(admin-load-content-for="title")

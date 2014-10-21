@@ -1,0 +1,1 @@
+You may find a lot of job positions online. However, you should understand that around 80% of the job opportunities are not posted publicly. Where are these job opportunities? How can you get access to it? You must guess it right – this is about networking, about promoting yourself online and offline.

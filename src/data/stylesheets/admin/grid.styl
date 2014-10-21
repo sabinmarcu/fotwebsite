@@ -1,0 +1,27 @@
+aside ul
+    background white
+.content section > div > section > div
+    width 100%
+    height 100%
+    & > section
+        background white
+        transform translateX(100%)
+        opacity 0
+        transition transform 0.5s ease-in-out, opacity 0.5s ease-in-out
+        height 0
+        overflow hidden
+        overflow-x auto
+        &.active
+            padding 15px
+            transform none
+            opacity 1
+            height auto
+            min-height calc(100% - 30px)
+        label.textarea
+            height ((baseinputheight - 12) * 3)
+            min-height ((baseinputheight - 12) * 3)
+        aside.debug
+            position absolute
+            top 0
+            left 0
+            right 0

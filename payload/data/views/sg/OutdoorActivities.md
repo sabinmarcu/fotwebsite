@@ -1,0 +1,7 @@
+#### FUN WITH THE SUN
+
+If you are looking for some place to have a sing-along with your friends, while maybe you strum away on your six strings. There are some parks you could visit such as Het Park, Kralingse Plas, and Vroesenpark. If your mouth is watering over some Barbercue, you’ll need to search for a Barbecue zone, you can’t just do it anywhere.
+
+Another option, if you’re looking to explore the other side of the city, is to hop on your bike to Delfshaven, a little borough of Rotterdam that houses numerous art schools and classic old buildings that survived WW2. If you have an extra euro or two, head to Café de Oude Sluis and join the locals for a beer. The old wooden bar sits tilting alongside a tiny canal, highlighted by a string of small homes and shops. Venturing to Delfshaven allows access to a small-town feel without venturing far from Rotterdam-proper. Oh—And there’s a big windmill there too!
+
+I should mention that if, on the very likely chance that rain and clouds join you on your excursion, you might consider heading to the Tea Lab near Blaak. There you can dry out with a hot cup of tea and some good music in a modern environment. This café also serves as a meeting- place for ‘Shut Up and Write, Rotterdam,’ a newly formed writers group and book club that welcomes everyone. If you prefer a live music experience to a contemplative one, head North to Café de Bel on Saturday night, meet your night owl friends and experience music from Jazz to rock’n’roll - with a whole lot of satisfaction and close-quarters in between.

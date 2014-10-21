@@ -1,0 +1,1 @@
+Everyone has their own music style and type of party they like to go to. Here, we aim to showcase some of the more popular places as well as some thatarelesspopularbutwehave good experiences with.

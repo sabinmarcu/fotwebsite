@@ -1,0 +1,5 @@
+nav#sg.material-whiteframe-z1(ng-style="getWidth()")
+    ul
+        li(ng-repeat="(title, next) in sections" ng-include="'sgdropdown'" ng-style="getSgFontAndWidths(title)"  ng-click="select(title, next);$event.stopPropagation()")
+section#sg
+    span(ng-repeat="(title, next) in sections" ng-include="'sgarticle'")

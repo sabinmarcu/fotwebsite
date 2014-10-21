@@ -1,0 +1,3 @@
+#### THe cultural hot spot
+
+This street is peppered with diversity. Pizzerias, cafés, bars and shoarma restaurants lay in wait to feed you. Witte de With houses Jaffa, the oldest shoarma restaurant in Rotterdam. This classic joint is open late, inviting late night party goers in for a Kapsalon, a typical Rotterdam feed-bag. If you’ve never heard of a Kapsalon, head over to Jaffa and try it! As mentioned earlier, _Café de Witte Aap_ is located here. It was awarded the best bar of the world by Lonely Planet in 2009. This café attracts a mix of artists, business men, students, journalists and otherwise. The café hosts art installations; good for a beer and a culture fix.

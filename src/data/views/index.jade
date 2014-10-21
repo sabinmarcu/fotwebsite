@@ -1,0 +1,27 @@
+div(ng-controller="Page" ng-class="{mobile: isMobile}")
+    section.main(ng-class="{active: location.path().match('/membership') === null}")
+        aside.material-whiteframe-z1(ng-class="{inactive: data.isContentActive}")
+            .logo
+                a(href="/")
+                    img.logo(src=DepMan.image( 'logo' ))
+                ul
+                    li(ng-repeat='title in routes.order')
+                        material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
+        .container
+            section(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
+                nav.phonemenu  
+                    li(ng-click="activateMenu()")
+                        i.fa.fa-reorder
+                div(load-content-for="title")
+
+    section.admin(ng-class="{active: location.path().match('/membership') !== null}")
+        nav
+            ul#back
+                li(ng-click="location.path('/')")
+                    i.fa.fa-chevron-left
+                    = AppInfo.displayname
+            ul#logout(ng-if="comms.user")
+                li(ng-click="activateMenu()") Welcome back, {{comms.user.name}}
+                li(ng-click="comms.logout()") Logout
+            span(ng-hide="isMobile && comms.user") Members Area
+        != DepMan.render("admin")

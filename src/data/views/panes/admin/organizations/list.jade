@@ -1,0 +1,11 @@
+section(ng-class="isActive('list')")
+    material-content.loader(ng-class="{active: organizations.length == 0}")
+        .spinner
+    material-content.content(ng-class="{active: organizations.length > 0}")
+        material-list
+            material-item(ng-repeat="org in organizations")
+                .material-tile-content
+                    a(href="/membership/organizations/edit/{{org._id}}")
+                        h2 {{org.name}}
+                        h3 {{org.facebook}}
+    material-button.big(href='/membership/organizations/add') Add an Organization

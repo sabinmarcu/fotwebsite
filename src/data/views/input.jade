@@ -1,0 +1,6 @@
+span(rel="{{description}}")
+    material-input-group(ng-if="type !== 'checkbox'" class="{{type}}")
+        label(for="{{uuid}}") {{description}}
+        material-input(id="{{uuid}}" type="{{type}}" ng-model="$parent.$parent.model" ng-if="type !== 'select'" value="{{$parent.$parent.model}}")
+        material-select-box(elements="$parent.$parent.elements" model="$parent.$parent.model" ng-if="type === 'select'" id="{{uuid}}" prop="prop")
+    material-checkbox(ng-if="type === 'checkbox'" ng-model="$parent.model") {{description}}

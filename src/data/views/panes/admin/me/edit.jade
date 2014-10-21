@@ -1,0 +1,17 @@
+section.active
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        ig(model="comms.user.name" type="text") Name
+        ig(model="comms.user.email" type="text") EMail
+        ig(model="comms.user.password" type="password") Password
+        ig(model="comms.user.dob" type="date") Date of Birth
+        ig(model="comms.user.number" type="text") Student Number
+        ig(model="comms.user.nationality" type="text") Nationality
+        ig(model="comms.user.phone" type="number") Phone Number
+        ig(model="comms.user.address" type="text") Address
+        ig(model="comms.user.major" type="text") Study Subject
+        ig(model="comms.user.school" type="text") School
+
+        material-button.big(ng-click="update()") Submit
+        hr
+        material-button.big.material-theme-light-blue(ng-click="reset()") Reset Password

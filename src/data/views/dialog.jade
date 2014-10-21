@@ -1,0 +1,4 @@
+material-dialog(aria-label="{{post.title}}")
+    .dialog-content(ng-bind-html="post.content | md2html | toTrusted  ")
+    .dialog-actions(layout="horizontal" layout-align="end")
+        material-button(ng-click="close()") Close

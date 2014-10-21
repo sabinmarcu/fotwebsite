@@ -1,0 +1,1 @@
+Living alone as a student means that you’ll need a steady finance background to power you through the years to come. There are some regulations that could benefit your study or even the quality of your life.

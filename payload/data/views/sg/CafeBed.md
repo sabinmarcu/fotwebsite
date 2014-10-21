@@ -1,0 +1,3 @@
+#### [BEDROTTERDAM.NL](http://BEDROTTERDAM.NL)
+
+Café BED is a staple in the Erasmus international community. It is home to our friends at ESN every Tuesday; if you want to meet other internationals, this is the place to go. Not only does the name allow you to ask someone “Do you want to go to BED with me?” with a straight face, going there on a Tuesday generally guarantees a fun night. The music at this location is a mix of the more danceable top 40 hits, slightly commercially-oriented house music and hip-hop. Go with friends, have a few drinks and you’re almost sure to have a good time.

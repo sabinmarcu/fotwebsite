@@ -1,0 +1,7 @@
+article.material-whiteframe-z1(ng-if="hasArticle(title)" ng-class="{inactive: isInactive(title)}" class="sgarticle" id="{{title.replace(' ', '')}}")
+    h1 {{title}}
+    div(ng-bind-html="renderArticle(title) | toTrusted")
+span(ng-if="next | isDefined")
+    span(ng-if="next._ss | isDefined")
+        span(ng-repeat="title in next._ss.split(',') track by $index" ng-if="title | isDefined" ng-init="next = null" ng-include="'sgarticle'")
+    span(ng-repeat="(title, next) in next" ng-include="'sgarticle'" ng-if="title !== '_ss'")

@@ -1,0 +1,1 @@
+Many new and veteran students still lack skills in the kitchen. The good news is, Rotterdam has an array of affordable restaurants with scrumptious food waiting for you! Below we explore some choice destinations for a great meal, but we encourage you to put on your walking shoes—or hop on your bike—and explore the extensive offerings around the city.

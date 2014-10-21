@@ -1,0 +1,10 @@
+"Posts": "/membership/posts"
+"Organizations": "/membership/organizations"
+"Transactions": "/membership/transactions"
+"Users": "/membership/users"
+order: [
+    "Users", "Transactions", "Posts", "Organizations"
+]
+nocontroller: [
+    false, false, false, false
+]

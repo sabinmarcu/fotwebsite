@@ -1,0 +1,1 @@
+Rotterdam is a relatively small city, so you will almost always be able to reach your destination by bicycle. However, this can take some getting used to for internationals. If you are not very confident biking, the different modes of transport available are trains, trams, buses, metros and taxis.

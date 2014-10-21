@@ -1,0 +1,8 @@
+Rotterdam is the second largest city of the Netherlands, with 619.879 (2013) inhabitants. It is also one of the most international cities in Europe due to its history as a port, and more recently as a student city. Of the 619.879 inhabitants currently living in Rotterdam, 58.668 are students, around 10%. 
+
+The exact number of international students in Rotterdam is hard to come by.
+The Erasmus University Rotterdam has 5,739 international students alone as of 2014, more than half of those from Europe and Russia, 29% are of Asian origin, 8% from Africa, 4% from North America and 3.5% from South America. Codarts has around 500 international students from 50 countries, and the Hogeschool Rotterdam educates students from 40 different countries. Willem de Kooning Academy has around 100 international exchange students per year, while the Hogeschool InHolland hosts around 450 internationals.
+
+There are currently 173 nationalities present in Rotterdam, the most prevalent non-Dutch groups being people of Surinamese (51,945 people), Turkish (45,457 people), Moroccan (37,138 people), Antillean (19,278 people), and Cape Verdean (15,023 people) backgrounds. Ahmed Aboutaleb causes Rotterdam to be the first large city in the Netherlands with a mayor of immigrant descent and Muslim faith.
+
+Furthermore, Rotterdam is the home of several international companies. Unilever, the third largest producer of consumer goods, has its headquarters in Rotterdam. The Big Four, the four largest audit firms in the world, PwC, DeLoitte, Ernst & Young, and KPMG, all have offices in the city as well. Rotterdam also features an array of logistics companies due to the fact that it is a port city.

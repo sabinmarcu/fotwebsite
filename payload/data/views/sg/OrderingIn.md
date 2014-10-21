@@ -1,0 +1,3 @@
+#### The lazy solution
+
+Rotterdam truly delivers in terms of delivery. We would recommend [www.thuisbezorgd.nl](http://www.thuisbezorgd.nl) where you’ll find numerous restaurants that will bring food to your doorstep. The site is in English and easy to navigate, so you never have to leave your room again! However, we encourage you to explore the city, even if you just walk to Beurs for some classic fast food from _McDonalds_, _Burger King_, and _KFC_.

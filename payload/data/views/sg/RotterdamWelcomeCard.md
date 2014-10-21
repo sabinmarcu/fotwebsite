@@ -1,0 +1,3 @@
+#### [ROTTERDAM.INFO](http://ROTTERDAM.INFO)
+
+The Rotterdam Welcome Card offers over 25% discounts at 50 great attractions and locations in Rotterdam; it even includes some travel discounts. This card is meant for people who just arrived and want to see as much of Rotterdam as possible in 1 to 3 days. It costs €10 for the first day, €13.50 for two days and €17.50 for 3 days. Google “Rotterdam Welcome Card” and you will find the necessary information in English.

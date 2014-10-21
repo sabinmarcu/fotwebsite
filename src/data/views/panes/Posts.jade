@@ -1,0 +1,21 @@
+material-content.loader(ng-class="{active: content.length == 0 || data.inactive}")
+    .spinner
+        
+material-content.content(ng-class="{active: content.length > 0 && !data.inactive}")
+    article(ng-repeat="post in content track by $index" class="post" id="article-{{$index}}" ng-class="{detailed: data.article == $index}")
+        figure(ng-click="clicked(post, $event)")
+            div.spinner
+            .focuspoint.posts(data-focus-x="0" data-focus-y="-0.2" id="fp-{{post._id}}")
+                img(ng-src="/api/post/image/{{post._id}}" id="image-{{post._id}}" ng-load="loadImage(post._id)")
+            div.shade
+        figcaption(ng-click="clicked(post, $event)")
+            .focuspoint.events(id="fpc-{{post._id}}" data-focus-x="0" data-focus-y="-0.2")
+                canvas(id="canvas-{{post._id}}")
+            .content
+                h2(ng-style="getFontSize($index, post, true)")
+                    {{post.type}}
+                    span(ng-if="post.from !== null && !isSmall($index)") {{post.from}}
+                h1(ng-style="getFontSize($index, post)") {{post.title}}
+
+    material-content.material-whiteframe-z1.pagination(ng-show="content.length > 0") 
+        material-button(ng-repeat="index in makeArray(data.numposts)" href="/posts/{{index}}" ng-class="{'material-button-raised': data.page == index}") {{index}}

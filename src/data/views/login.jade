@@ -1,0 +1,9 @@
+aside.login(ng-controller="Login" ng-show="location.path() === '/membership/login' && !comms.user" class="{{class}}")
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        ig(model="email" type="text") EMail Address
+        ig(model="password" type="password") Password
+        div(layout="horizontal" layout-align="center center")
+            ig(model="remember" type="checkbox" flex="75") Remember Me
+            material-button.material-button-raised.material-button-colored(ng-click="submit()" flex inline-block) Submit
+        material-button.big(href="/membership/register") Or you could register!

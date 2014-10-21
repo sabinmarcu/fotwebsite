@@ -1,0 +1,17 @@
+section(ng-class="isActive('edit')")
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        ig(model="currentpost.title" type="text") Title
+        ig(model="currentpost.type" type="text") Type
+        ig(model="currentpost.from" type="text") From
+        ig(model="currentpost.imageurl" type="text") Image URL
+        material-tabs(align-tabs="bottom")
+            material-tab(label="Content")
+                div(id="editor-{{currentpost._id}}" style="width: 100%; margin-bottom: 25px")
+                textarea(id="editor-{{currentpost._id}}-input" ng-model="currentpost.content" ng-hide="true")
+            material-tab(label="Redirect to a URL")
+                ig(model="currentpost.href" type="text") Location
+
+        material-button.big(ng-click="update()") Submit
+        hr
+        material-button.big.material-theme-red(ng-click="delete()") Remove

@@ -1,0 +1,1 @@
+With its large amount of nationalities, Rotterdam is one of the most – if not the most – culturally diverse cities in the Netherlands. Here, we will explore its diversity, recommend different cultural visits, and explicate some aspects of Rotterdam's nightlife

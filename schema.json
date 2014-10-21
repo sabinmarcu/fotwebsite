@@ -1,0 +1,231 @@
+{
+        "type":"object",
+        "$schema":"http://json-schema.org/draft-03/schema",
+        "id":"http://jsonschema.net",
+        "required":false,
+        "properties":{
+                "appId":{
+                        "type":"string",
+                        "id":"http://jsonschema.net/appId",
+                        "required":true
+                },
+                "appLogo":{
+                        "type":"string",
+                        "id":"http://jsonschema.net/appLogo",
+                        "required":false
+                },
+                "appTitle":{
+                        "type":"string",
+                        "id":"http://jsonschema.net/appTitle",
+                        "required":false
+                },
+                "appUrl":{
+                        "type":"string",
+                        "id":"http://jsonschema.net/appUrl",
+                        "required":true
+                },
+                "createdBy":{
+                        "type":"string",
+                        "id":"http://jsonschema.net/createdBy",
+                        "required":true
+                },
+                "id":{
+                        "type":"number",
+                        "description":"This is an output field only. It shouldn't be provided by clients",
+                        "id":"http://jsonschema.net/id",
+                        "required":false
+                },
+                "logs":{
+                        "type":"array",
+                        "description":"This is an output field only. It shouldn't be provided by clients",
+                        "id":"http://jsonschema.net/logs",
+                        "required":false,
+                        "items":{
+                                "type":"object",
+                                "id":"http://jsonschema.net/logs/0",
+                                "required":false,
+                                "properties":{
+                                        "date":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/logs/0/date",
+                                                "required":false
+                                        },
+                                        "id":{
+                                                "type":"number",
+                                                "id":"http://jsonschema.net/logs/0/id",
+                                                "required":false
+                                        },
+                                        "message":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/logs/0/message",
+                                                "required":false
+                                        },
+                                        "nodeState":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/logs/0/nodeState",
+                                                "required":false
+                                        },
+                                        "nodeType":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/logs/0/nodeType",
+                                                "required":false
+                                        }
+
+                                }
+
+                        }
+
+                },
+                "nodes":{
+                        "type":"array",
+                        "description":"nodes should be cross linked by the client",
+                        "id":"http://jsonschema.net/nodes",
+                        "required":true,
+                        "items":{
+                                "type":"object",
+                                "id":"http://jsonschema.net/nodes/0",
+                                "required":true,
+                                "properties":{
+                                        "description":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/nodes/0/description",
+                                                "required":false
+                                        },
+                                        "handler":{
+                                                "type":"string",
+                                                "description":"required for action nodes",
+                                                "id":"http://jsonschema.net/nodes/0/handler",
+                                                "required":false
+                                        },
+                                        "nextNodes":{
+                                                "type":"array",
+                                                "description":"required for all nodes except the end node",
+                                                "id":"http://jsonschema.net/nodes/0/nextNodes",
+                                                "required":false,
+                                                "items":{
+                                                        "type":"object",
+                                                        "id":"http://jsonschema.net/nodes/0/nextNodes/0",
+                                                        "required":false,
+                                                        "properties":{
+                                                                "id":{
+                                                                        "type":"number",
+                                                                        "id":"http://jsonschema.net/nodes/0/nextNodes/0/id",
+                                                                        "required":true
+                                                                },
+                                                                "nodeId":{
+                                                                        "type":"string",
+                                                                        "description":"This is an output field only. It shouldn't be provided by clients",
+                                                                        "id":"http://jsonschema.net/nodes/0/nextNodes/0/nodeId",
+                                                                        "required":false
+                                                                },
+                                                                "selector":{
+                                                                        "type":"string",
+                                                                        "description":"required for decision nodes",
+                                                                        "id":"http://jsonschema.net/nodes/0/nextNodes/0/selector",
+                                                                        "required":false
+                                                                }
+
+                                                        }
+
+                                                }
+
+                                        },
+                                        "nodeID":{
+                                                "type":"string",
+                                                "description":"This is an output field only. It shouldn't be provided by clients",
+                                                "id":"http://jsonschema.net/nodes/0/nodeID",
+                                                "required":false
+                                        },
+                                        "nodeId":{
+                                                "type":"number",
+                                                "id":"http://jsonschema.net/nodes/0/nodeId",
+                                                "required":true
+                                        },
+                                        "params":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/nodes/0/params",
+                                                "required":false
+                                        },
+                                        "payloadParams":{
+                                                "type":"array",
+                                                "description":"used for input nodes",
+                                                "id":"http://jsonschema.net/nodes/0/payloadParams",
+                                                "required":false,
+                                                "items":{
+                                                        "type":"string",
+                                                        "id":"http://jsonschema.net/nodes/0/payloadParams/0",
+                                                        "required":false
+                                                }
+
+                                        },
+                                        "summary":{
+                                                "type":"string",
+                                                "description":"used for input nodes when sending emails",
+                                                "id":"http://jsonschema.net/nodes/0/summary",
+                                                "required":false
+                                        },
+                                        "title":{
+                                                "type":"string",
+                                                "id":"http://jsonschema.net/nodes/0/title",
+                                                "required":false
+                                        },
+                                        "type":{
+                                                "type":"string",
+                                                "description":"one of union, decision, input, action, split, end, notify",
+                                                "id":"http://jsonschema.net/nodes/0/type",
+                                                "required":true
+                                        },
+                                        "user":{
+                                                "type":"string",
+                                                "description":"Should be an email address, used for input nodes to send an email",
+                                                "id":"http://jsonschema.net/nodes/0/user",
+                                                "required":false
+                                        }
+
+                                }
+
+                        }
+
+                },
+                "payload":{
+                        "type":"object",
+                        "description":"a collection of name value pairs",
+                        "id":"http://jsonschema.net/payload",
+                        "required":true,
+                        "properties":{
+                                "field":{
+                                        "type":"object",
+                                        "id":"http://jsonschema.net/payload/field",
+                                        "required":false
+                                }
+
+                        }
+
+                },
+                "startNodeID":{
+                        "type":"string",
+                        "description":"This is an output field only. It shouldn't be provided by clients",
+                        "id":"http://jsonschema.net/startNodeID",
+                        "required":false
+                },
+                "startNodeId":{
+                        "type":"number",
+                        "description":"a reference to the start node id",
+                        "id":"http://jsonschema.net/startNodeId",
+                        "required":true
+                },
+                "start":{
+                        "type":"boolean",
+                        "description":"a flag to indicate if the workflow should be started immediately",
+                        "id":"http://jsonschema.net/start",
+                        "required":false
+                },
+                "timestamp":{
+                        "type":"number",
+                        "description":"the timestamp when the workflow is created, if not provided will default to now",
+                        "id":"http://jsonschema.net/timestamp",
+                        "required":false
+                }
+
+        }
+}

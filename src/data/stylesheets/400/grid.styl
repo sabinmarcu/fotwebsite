@@ -1,0 +1,55 @@
+> aside
+    top 0
+    bottom 0
+    left 0
+    right 0
+    width auto
+    transition transform 0.5s ease-in-out
+    z-index 9
+    img
+        width asidewidth - 50
+    ul
+        position absolute
+        bottom 0
+        left 0
+        right 0
+        unit=100%
+        hw=asidewidth
+        max-height s('calc(%s - %s)', unit, hw)
+        overflow-x hidden
+        overflow-y auto
+        text-align center
+        li a
+            padding 10px 0
+            &.active
+                text-indent 0
+    &.inactive
+        transform translateX(-100%)
+> div > section
+    &.active
+        padding-top phonetopgap + 5
+        top 0
+        bottom 0
+        left 0
+        right 0
+        nav.phonemenu
+            position fixed
+            display block
+            top 0
+            left 0
+            right 0
+            height phonetopgap
+            max-height phonetopgap
+            background white
+            border-bottom solid 1px #999
+            z-index 8
+            li
+                display inline-block
+                hieght phonetopgap
+                max-hieght phonetopgap
+                line-hieght phonetopgap
+                float left
+                padding 0 5px
+                font-size phonetopgap - 10
+.static
+    padding 15px

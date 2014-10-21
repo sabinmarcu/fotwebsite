@@ -1,0 +1,2 @@
+Sometimes referred to as the Dutch New York, it’s easy to conclude that Rotterdam isn’t comparable to Amsterdam.
+It is known for its new and modern skyscrapers and has been branded the “moving city” because it builds so fast; a new central station, the Rotterdam, and the Markthal are a few of the many examples

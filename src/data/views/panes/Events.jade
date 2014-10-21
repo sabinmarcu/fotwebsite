@@ -1,0 +1,7 @@
+material-content.loader(ng-class="{active: content.length == 0 || data.inactive}")
+    .spinner
+        
+material-content.content(ng-class="{active: content.length > 0 && !data.inactive}")
+    material-tabs#events(selected="selectedIndex" align-tabs="bottom")
+        material-tab(ng-repeat="tab in tabs" label="{{tab.title}}" on-select="selectTab(this, tab)")
+            div(load-partial="tab.content")

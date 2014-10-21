@@ -1,0 +1,19 @@
+section(ng-class="isActive('edit')")
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        ig(model="currentpost.name" type="text") Name
+        ig(model="currentpost.email" type="text") EMail
+        ig(model="currentpost.dob" type="date") Date of Birth
+        ig(model="currentpost.number" type="text") Student Number
+        ig(model="currentpost.nationality" type="text") Nationality
+        ig(model="currentpost.phone" type="number") Phone Number
+        ig(model="currentpost.address" type="text") Address
+        ig(model="currentpost.major" type="text") Study Subject
+        ig(model="currentpost.school" type="text") School
+        ig(model="currentpost.activated" type="text") Activated Account (0= no, 1= yes)
+        ig(model="currentpost.type" type="text") Account Type (0= member, 1= isr active, 2= admin)
+
+        material-button.big(ng-click="update()") Submit
+        hr
+        material-button.big.material-theme-red(ng-click="delete()") Remove
+        material-button.big.material-theme-light-blue(ng-click="reset()") Reset Password

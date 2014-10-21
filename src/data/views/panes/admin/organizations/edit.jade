@@ -1,0 +1,9 @@
+section(ng-class="isActive('edit')")
+    aside(ng-class="{active: debug.active}" class="{{debug.type}}") {{debug.message}}
+    .content
+        ig(model="currentpost.name" type="text") Name
+        ig(model="currentpost.facebook" type="text") Facebook Page Identifier
+
+        material-button.big(ng-click="update()" style="margin-top: 25px") Submit
+        hr
+        material-button.big.material-theme-red(ng-click="delete()") Remove

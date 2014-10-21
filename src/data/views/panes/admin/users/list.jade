@@ -1,0 +1,13 @@
+section(ng-class="isActive('list')")
+    material-content.loader(ng-class="{active: users.length == 0}")
+        .spinner
+    material-content.content(ng-class="{active: users.length > 0}")
+        material-list
+            material-item(ng-repeat="user in users")
+                .material-tile-left
+                    img.face(ng-src="/api/user/image/{{user._id}}")
+                .material-tile-content
+                    a(href="/membership/users/edit/{{user._id}}")
+                        h2 {{user.name}}
+                        h3 {{user.email}}
+    material-button.big(href='/membership/users/add') Add a User

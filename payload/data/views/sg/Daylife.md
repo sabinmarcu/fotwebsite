@@ -1,0 +1,1 @@
+For those of you who come alive during the day, here are some ideas of how to spend one. Grab whatever food you have in your cupboards, pack it in your Albert Heijn bags and hop on your bike to Kralingse Plas, a beautiful park in the east of the city. The expanse surrounds an impressive lake, tall trees and numerous places to roll out a blanket for a picnic with friends.
