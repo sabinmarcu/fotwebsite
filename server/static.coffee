@@ -67,7 +67,7 @@ class Server
             App.use (require "body-parser").json()
             App.use (require "body-parser").urlencoded()
 
-            APp.Use (req, res, next) =>
+            App.use (req, res, next) =>
                 res.set "Cache-Control": "no-transform"
                 do next
 
