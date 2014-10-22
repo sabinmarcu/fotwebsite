@@ -24,6 +24,9 @@ class HomeController extends DepMan.controller "Base"
                         @data.active = 0
                         @data.state = 0
                         @toggle m.1
+                        setTimeout ~>
+                            $ "section\#Home" .scrollTo ($ "section\#Home article\##{m.1}" .offset!top)
+                        , 500
             @safeApply?!
 
         @root.$on "$locationChangeSuccess", urlHandler

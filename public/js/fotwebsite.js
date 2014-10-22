@@ -733,6 +733,9 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
               this$.data.active = 0;
               this$.data.state = 0;
               this$.toggle(m[1]);
+              setTimeout(function(){
+                return $("section#Home").scrollTo($("section#Home article#" + m[1]).offset().top);
+              }, 500);
             }
           }
         }
@@ -90266,7 +90269,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Oct 22 2014 04:32:51 GMT+0100 (BST)
+@Date Compiled    : Wed Oct 22 2014 05:05:09 GMT+0100 (BST)
 **/
 
     window.addEventListener('load', function(){ 
