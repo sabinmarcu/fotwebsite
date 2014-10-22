@@ -67,6 +67,10 @@ class Server
             App.use (require "body-parser").json()
             App.use (require "body-parser").urlencoded()
 
+            APp.Use (req, res, next) =>
+                res.set "Cache-Control": "no-transform"
+                do next
+
             # Hook models API endpoints
             try
                 debug "Hooking Models to API endpoints"

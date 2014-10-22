@@ -90057,7 +90057,7 @@ buf.push("<material-toast" + (jade.cls([type], [true])) + ">" + (null == (jade_i
 }}});
 window.AppInfo = {
   "name": "fotwebsite",
-  "displayname": "Fish on Toast",
+  "displayname": "Fish on Toast v2",
   "version": "0.0.1",
   "author": {
     "name": "Sabin Marcu",
@@ -90266,10 +90266,10 @@ Copyright (c) Sabin Marcu 2009-2013, Powered by the Arrowhead System (tm)
 You may not redistribute this software under any circumstance other than sharing the link to any online service supplied by myself, Sabin Marcu, or any market or application store it might be registered in without consulting with the author, or using the software in any commercial way.
 Other than that, feel free to enjoy the application!
 
-@Application Name : Fish on Toast
+@Application Name : Fish on Toast v2
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Oct 22 2014 05:05:09 GMT+0100 (BST)
+@Date Compiled    : Wed Oct 22 2014 14:04:16 GMT+0100 (BST)
 **/
 
     window.addEventListener('load', function(){ 
