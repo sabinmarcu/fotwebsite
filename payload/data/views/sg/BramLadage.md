@@ -1,3 +1,0 @@
-#### [LADAGE.NL](http://LADAGE.NL)
-
-This chain began serving the city of Rotterdam back in the 60’s. Bram Ladage is a classic Dutch treat, with argua-bly the fries in the Netherlands. They are not your common French fries, but rather fresh hand cut fries. Check out any of the 9 locations in the city for the best fries you can get. Oh, and if you want to taste a real Dutch delicacy, we recommend you to try their fresh private label kroket!

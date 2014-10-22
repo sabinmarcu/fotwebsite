@@ -134,7 +134,7 @@ class Server
     err: (err) ->
         debug "Server Error", err.message or err
         debug "Stack : ", err.stack or err
-        process.exit 1
+        if not process.comp_args.verbose then process.exit 1
 
 # Defining the ErrorReporting for the Server class
 class ServerErrorReporter extends IS.Object

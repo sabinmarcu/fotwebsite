@@ -1,5 +1,0 @@
-#### Anywhere
-
-Taxis are available 24 hours a day, seven days a week. This method of transport is most popular after a night of partying. Negotiation of prices is not possible; drivers will always use a meter. The largest taxi company is the Rotterdamse Taxi Centrale (RTC). The initial price is €2.85 and additional costs are €2.10 per kilometer. You can reserve a taxi at 010 462 60 60.
-
-Another unique transport option offered in Rotterdam is a water taxi. The HNY water taxis shuttle back and forth between Hotel New York, Veerhaven and Leuvehaven. No reservation is required and the waiting time is usually no longer than 10 minutes. Each water taxi accommodates up to eight people. Prices start at € 2.90 for an adult, but prices depend on the number of people on board and the distance travelled.

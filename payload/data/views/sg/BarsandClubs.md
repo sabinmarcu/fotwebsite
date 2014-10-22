@@ -1,1 +1,0 @@
-Now that we’ve covered the alcohol culture, and going out need-to-knows, here are a few good bars, clubs and general areas to explore if you get the chance. Never be afraid to try a place that’s not on this list, as fun is never far away in Rotterdam.

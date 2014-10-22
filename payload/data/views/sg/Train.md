@@ -1,3 +1,0 @@
-#### Across The Cities
-
-To travel outside of Rotterdam, taking a train is most advisable solution. The first trains leave around 5:30 AM and the last ones depart around midnight. The Netherlands does have a night network with trains leaving roughly once an hour between the bigger cities. You can use your OV-chip card to travel by train. The procedure, however, is slightly different than Metro or Tram. An easier option would be physical tickets. It can be obtained at the ticket booth by the station. Check [www.ns.nl](http://www.ns.nl/) for more info.

@@ -1,45 +1,106 @@
 > aside
     position fixed
-    top 25px
-    left 25px
-    width asidewidth
-    height auto
-    background white
-    // box-shadow 2px 2px 7px rgba(0, 0, 0, 0.3)
-    border-radius 4px
-    overflow hidden
-    text-align center
-    img
-        width asidewidth - 50px
-        padding 25px
-    &.inactive
-        z-index -1
-    ul
+    top 0
+    left 0
+    right 0
+    height asideheight
+    perspective 600
+
+    z-index 9
+
+    nav
+        position absolute
+        top asideheight
+        height asidenavheight
+        width asidenavwidth
+
+        unit=50%
+        hw=(asidenavwidth / 2)
+        left s('calc(%s - %s)', unit, hw)
+
+        overflow hidden
         margin 0
         padding 0
-        background rgba(0, 0, 0, 0.1)
-        list-style none
-        text-align left
-        li
-            display block
-            list-style none
-            material-button
-                display block
-                padding 5px 0 5px 10px
-                font-size 10pt
-                color black
-                text-shadow 0 1px 1px white
-                border-top solid 1px rgba(0, 0, 0, 0.2)
-                position relative
+
+        transform-origin top center
+        transition all 0.5s timing
+        transform rotateX(-50deg) translateY(-130%)
+        z-index 1
+
+        background white
+
+        wfz1()
+
+        ul 
+
+            display flex
+            flex-direction column
+            flex-wrap wrap
+            justify-content flex-center
+            align-items stretch
+            align-content stretch
+
+            overflow-x hidden
+            overflow-y hidden
+
+            margin 0
+            padding 0
+            
+            position absolute
+
+            mt=10px
+            ml=25px
+
+            top mt
+            bottom mt
+            right ml
+            left ml
+
+            li
+                display inline-block
+                // width 50%
+                margin 0
+                padding 0
                 text-align left
-                text-transform none
-                border-radius 0
-                &.active
-                    background rgba(0, 0, 0, 0.1)
-                &:hover, &:active
-                    background rgba(0, 0, 0, 0.2)
-                &:visited, &:link
-                    color inherit
-                    text-decoration none
-                a
-                    text-decoration none
+
+                material-button
+                    text-align left
+                    width 100%
+                    padding 5px 10px
+                    border-radius 0
+                    transition background 0.2s ease-in-out
+                    a 
+                        text-transform capitalize
+                        text-decoration none
+
+    h1
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        line-height asideheight
+        heght asideheight
+        padding 0
+        margin 0
+        font-size 18pt
+        text-align center
+        font-family "Open Sans Condensed", inherit
+        font-weight 100
+        transition all 0.2s timing
+        z-index 3
+        background cfotgreen
+        color white
+        wfz1()
+    ~ *
+        transition all 0.5s timing
+
+    &.active
+        h1
+            wfz2()
+            background cfotgreenlight
+        nav
+            transform none
+        ~ .shade
+            z-index 2
+            opacity 1

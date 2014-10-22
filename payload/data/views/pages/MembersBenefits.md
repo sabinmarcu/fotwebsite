@@ -1,3 +1,0 @@
-# MEMBERSHIP BENEFITS
-
-test

@@ -10,9 +10,12 @@ angular.module AppInfo.displayname .directive "loadContentFor", [ "$compile", ($
             name = ( scope.$eval attrs.loadContentFor ).replace /\ /g, ""
             name = name[0].toUpperCase! + name.slice 1
 
-            if routes.isStaticPage[routes.order.indexOf scope.$eval attrs.loadContentFor] then doc = "pages/#name"
+            if routes.isStaticPage[routes.order.indexOf scope.$eval attrs.loadContentFor] or attrs.isStatic? then doc = "pages/#name"
             else doc = "panes/#name"
-            ( $compile DepMan.render doc) scope, (elem, scope) -> element.html elem
+
+            log "Checking #{doc} (#{scope.$eval attrs.loadContentFor}, #{attrs.loadContentFor})"
+            if routes.implemented[routes.order.indexOf scope.$eval attrs.loadContentFor] or attrs.isImplemented?
+                ( $compile DepMan.render doc) scope, (elem, scope) -> element.html elem
     }    
 ]
 angular.module AppInfo.displayname .directive "adminLoadContentFor", [ "$compile", ($compile) ->

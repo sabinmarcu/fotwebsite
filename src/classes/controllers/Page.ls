@@ -16,11 +16,11 @@ class PageController extends DepMan.controller "Base"
         hammertime.on "swipeleft", ~> @scope.$emit "globalmenu:deactivated"
 
         urlHandler = ~> 
-            if not @comms.user? and @location.path!.match  /\/membership.*/ then @comms.checkLogin!
-            if not @comms.user? and @location.path!.match /\/membership.*/ and not @location.path!.match /\/membership\/(login|register)/
-                @comms.meta.prevURL = @location.path!
-                return @location.path "/membership/login"
-            if @location.path!match /\/membership\/?$/ or ((@location.path!match /\/membership\/login/) and @comms.user?) then @activateMenu!
+            # if not @comms.user? and @location.path!.match  /\/membership.*/ then @comms.checkLogin!
+            # if not @comms.user? and @location.path!.match /\/membership.*/ and not @location.path!.match /\/membership\/(login|register)/
+            #     @comms.meta.prevURL = @location.path!
+            #     return @location.path "/membership/login"
+            # if @location.path!match /\/membership\/?$/ or ((@location.path!match /\/membership\/login/) and @comms.user?) then @activateMenu!
 
         @root.$on "$locationChangeSuccess", urlHandler
         urlHandler!
@@ -30,7 +30,7 @@ class PageController extends DepMan.controller "Base"
 
     isActive: (title) ~> 
         if @routes[title]? 
-            if @routes[title].length is 2 and @routes[title].0 is @location.path! then true
+            if @routes[title].length is 3 and @routes[title].0 is @location.path! then true
             else if @routes[title].substr? then @location.path!match @routes[title]
             else
                 for route in @routes[title] then unless route is "/"
@@ -42,4 +42,10 @@ class PageController extends DepMan.controller "Base"
         else @location.path!match (new RegExp "#{@adminroutes[title]}/?.*") 
 
     isStatic: (title) ~> if @routes.isStaticPage[@routes.order.indexOf title] then true else false
+
+    getHeight: ~> if window.innerWidth < 700 then height: window.innerHeight - 45
+    hover: (type, ev) ~>
+        if type is \in then @data.isContentActive = true
+        if type is \out then @data.isContentActive = false
+        if type is \toggle then @data.isContentActive = not @data.isContentActive
     @hook ["$location", '$rootScope', 'Comms']

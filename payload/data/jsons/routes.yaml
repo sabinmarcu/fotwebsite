@@ -1,16 +1,18 @@
-"Home": ["/", "/page"]
+"Home": ["/", "/about", "/membership"]
 "Posts": "/posts"
 "Events": "/events"
 "About": "/about"
-"Memberships": "/membership"
-"Members Benefits": "/benefits"
+"Members Benefits": "/membership"
 "Student Guide": "/student-guide"
 order: [
-    "Home", "About", "Posts", "Events", "Student Guide", "Members Benefits", "Memberships"
+    "Home", "About", "Posts", "Events", "Student Guide", "Members Benefits"
 ]
 nocontroller: [
-    false, false, false, false, false, false, true
+    false, true, false, false, false, true
 ]
 isStaticPage: [
-    false, true, false, false, false, true, false
+    false, true, false, false, false, true
+]
+implemented: [
+	true, true, false, false, false, false
 ]

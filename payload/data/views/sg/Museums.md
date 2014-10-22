@@ -1,1 +1,0 @@
-Rotterdam is a hub of culture, with many museums worth exploring. You can learn about the city’s seafaring history at the Maritime Museum, and view original Van Gogh’s at Boijmans. Read on if you want to plan a museum trip!

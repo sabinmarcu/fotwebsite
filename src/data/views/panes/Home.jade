@@ -1,18 +1,17 @@
-material-content.loader(ng-class="{active: content.length == 2 || data.inactive}")
-    .spinner
-        
-material-content.content(ng-class="{active: content.length > 2 && !data.inactive}")
-    article(ng-repeat="post in content track by $index" class="post" id="article-{{$index}}" ng-class="{detailed: data.article == $index}")
-        figure( ng-click="clicked(post, $event)")
-            .focuspoint.home(id="fp-{{post._id}}" data-focus-x="0" data-focus-y="-0.2" ng-if="post.added | isDefined")
-                img(ng-src="/api/{{post._type}}/image/{{post._id}}" id="image-{{post._id}}" ng-load="loadImage(post._id)")
-            img(ng-src="{{post.image.length > 0 ? post.image : ('/images/' + post.shortlink + '.jpg')}}" ng-load="loadImage(post._id)" id="image-{{post._id}}" ng-if="post.added | isUndefined")
-            div.shade
-        figcaption( ng-click="clicked(post, $event)")
-            .focuspoint.events(id="fpc-{{post._id}}" data-focus-x="0" data-focus-y="-0.2")
-                canvas(id="canvas-{{post._id}}")
-            .content
-                h2(ng-style="getFontSize($index, post, true)")
-                    {{post.type}}
-                    span(ng-if="post.from !== null && !isSmall($index)") {{post.from}}
-                h1(ng-style="getFontSize($index, post)") {{post.title}}
+article.main.post(ng-style="getHeight()")
+    figure
+        .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
+            img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
+    a(href="http://facebook.com/fishontoast" target="_blank")
+        figcaption
+            h1 Next Event
+
+article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()")
+    .wrapper
+        h1 {{article.title}}
+        .brief(load-content-for="article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'" is-static is-implemented)
+        .content(load-content-for="article.id[0].toUpperCase() + article.id.substr(1)")
+
+        nav
+            material-button.right(ng-href="/{{article.id}}" ng-if="data.active === 0 || data.active !== article.id") Read More
+            material-button.right(ng-click="toggle(article.id)" ng-if="data.active !== 0 && data.active === article.id") Close

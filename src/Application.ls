@@ -40,6 +40,8 @@ class Application extends IS.Object
             DepMan.stylesheet \fullcalendar
             DepMan.stylesheet \angular-material
             DepMan.stylesheet \focuspoint
+            DepMan.google-font "Open Sans", [100, 300], ["latin"]
+            DepMan.google-font "Open Sans Condensed", [100, 300], ["latin"]
             @LifeCycle.resolve!
         document.head.append-child styles
     loadPayload: ~> 

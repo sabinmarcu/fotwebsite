@@ -108,7 +108,7 @@ class Compiler
                         })();
         """
         try
-            (require "fs").writeFileSync to.toString(), source, "utf8"
+            (require "fs").writeFileSync (path.resolve to.toString()), source, "utf8"
             debug "Wrote sources to file"
         catch e then return @throw ( CompilerErrorReporter.generate 3, CompilerErrorReporter.wrapCustomError e ), callback
         if callback? then callback null, source
@@ -125,7 +125,7 @@ class Compiler
             if err then return @throw ( CompilerErrorReporter.generate 4, CompilerErrorReporter.wrapCustomError err ), callback
             else 
                 try
-                    (require "fs").writeFileSync to.toString(), css, "utf8"
+                    (require "fs").writeFileSync (path.resolve to.toString()), css, "utf8"
                     debug "Wrote css to file"
                 catch e then return @throw ( CompilerErrorReporter.generate 3, CompilerErrorReporter.wrapCustomError e ), callback
                 if callback? then callback null, css

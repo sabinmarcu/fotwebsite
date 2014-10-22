@@ -1,3 +1,0 @@
-#### Orientation Year for Graduates
-
-If you have successfully finished your higher educational study programme (Bachelor’s or Master’s programme) in the Netherlands, you may apply for an orientation year for graduates. The residence permit is issued for a maximum period of 1 year counting from the date of your graduation. During your orientation year, you are entitled to work in the Netherlands without any restrictions.

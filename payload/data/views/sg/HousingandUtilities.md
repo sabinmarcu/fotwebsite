@@ -1,1 +1,0 @@
-This chapter provides advices on how to find student housing, solve utility or tax issues

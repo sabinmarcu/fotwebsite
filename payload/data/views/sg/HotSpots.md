@@ -1,1 +1,0 @@
-Rotterdam has many nice areas; here we highlight a few of the busiest and most popular locations.

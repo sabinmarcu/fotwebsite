@@ -1,1 +1,0 @@
-It can be a challenge sorting a new life in a new city, administrative matters in particular. Here you can find out the basic requirement of staying in Rotterdam, and other basic services that could make your life easier.

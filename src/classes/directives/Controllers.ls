@@ -10,7 +10,9 @@ angular.module AppInfo.displayname .directive "controllerFromString", ['$control
             else
                 name = ( scope.$eval attrs.controllerFromString ).replace /\ /g, ""
                 name = name[0].toUpperCase! + name.slice 1
-            element.data '$Controller', cont name, locals
+
+            if routes.implemented[routes.order.indexOf scope.$eval attrs.controllerFromString]
+                element.data '$Controller', cont name, locals
     }    
 ]
 angular.module AppInfo.displayname .directive "adminControllerFromString", ['$controller', (cont) ->

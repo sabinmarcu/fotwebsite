@@ -1,3 +1,0 @@
-#### [BIBLIOTHEEK.ROTTERDAM.NL](http://BIBLIOTHEEK.ROTTERDAM.NL)
-
-The Central Library is located at Blaak. The library is so massive that it has nearly a million of books and dvd’s to offer. On the 6th floor there is a open and quiet area where you could concentrate on your book. You can rent a meeting/private study room there for free if you have a library card. The library opens everyday except for Sunday. However, the opening hours differs from day to day. On the other hand, you could also apply for membership or library card for exclusive offers. Be informed that in order to take out book, you’ll need a library card. For more information about opening time and membership, please visit [www.bibliotheek.rotterdam.nl](http://www.bibliotheek.rotterdam.nl).
