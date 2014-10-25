@@ -90341,7 +90341,11 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast v2
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
+<<<<<<< HEAD
 @Date Compiled    : Fri Oct 24 2014 17:43:50 GMT+0100 (BST)
+=======
+@Date Compiled    : Wed Oct 22 2014 14:04:16 GMT+0100 (BST)
+>>>>>>> 86710de7f7a9de7028a23ee962eb480c3423d5e3
 **/
 
     window.addEventListener('load', function(){ 
