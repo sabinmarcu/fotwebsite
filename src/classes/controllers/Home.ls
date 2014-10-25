@@ -5,6 +5,8 @@ class HomeController extends DepMan.controller "Base"
             * title: "About Fish on Toast", id: "about"
             * title: "About Memberships", id: "membership"
 
+        @items = [null, "about", "membership"]
+
         for item in @data.asides
             let el = $ "\##{item.id}"
                 el.css "transition", "none"
@@ -20,23 +22,27 @@ class HomeController extends DepMan.controller "Base"
             else 
                 m = @location.path!.match /^\/(about|membership)\/?$/
                 if m? 
-                    if @data.active isnt m.1 
-                        @data.active = 0
-                        @data.state = 0
-                        @toggle m.1
-                        setTimeout ~>
-                            $ "section\#Home" .scrollTo ($ "section\#Home article\##{m.1}" .offset!top)
-                        , 500
+                    if @data.active isnt m.1 then @goto m.1
             @safeApply?!
 
         @root.$on "$locationChangeSuccess", urlHandler
         urlHandler!
+
+        @log "Hooking Hammer"
+        h = new Hammer (document.body)
+        h.on "swiperight", ~> @switchContent -1
+        h.on "swipeleft", ~> @switchContent 1
 
         super ...
 
     loadImage: (index) !~>
         @log "FocusPoint #{index}"
         $ "\#fp-#{index}" .focusPoint!
+
+    goto: (id) ~>
+        @data.active = 0
+        @data.state = 0
+        if id? then @toggle id
 
     toggle: (id) ~>
         if @data.active isnt 0 then 
@@ -59,5 +65,40 @@ class HomeController extends DepMan.controller "Base"
     getHeight: ~>
         if window.innerWidth < 700
             height: window.innerHeight - 45
+
+    wheel: (e) ~>
+        @log e.target, ($ e.target .hasClass "content") or (($ e.target .parents ".content" .length) > 0)
+        unless e.target.className.match /(content|brief)/i
+            if @throttle? then @throttle += 1
+            else @throttle = 1
+
+            if @timeout? then clearTimeout @timeout
+            else 
+                @log "throttle #{@throttle}"
+                # @switchContent e.originalEvent.deltaY / (Math.abs e.originalEvent.deltaY)
+
+            @timeout = setTimeout ~>
+                @log "End #{throttle}"
+                delete @timeout
+                delete @throttle
+            , 100
+
+    switchContent: (dir) ~>
+        @log "Checking Switch (#{dir}, #{typeof dir})"
+        if @data.active is 0
+            @log "I'm at home, so home + #{dir}"
+            if dir is 1 then @goto "about"
+            else @goto "membership"
+        else 
+            if @data.active is "about"
+                @log "I'm at about, so about + #{dir}"
+                if dir is 1 then @goto "membership"
+                else @goto null
+            else
+                @log "I'm at membership, so membership + #{dir}"
+                if dir is 1 then @goto null
+                else @goto "about"
+
+        @safeApply!
 
     @hook ["$location", "$rootScope", "Comms", "$materialDialog"]

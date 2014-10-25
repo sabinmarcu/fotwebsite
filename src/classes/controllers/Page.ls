@@ -3,7 +3,7 @@ class PageController extends DepMan.controller "Base"
     (@scope, @location, @root, @comms) ~>
         @routes = DepMan.json "routes"
         @adminroutes = DepMan.json "adminroutes"
-        @data = isContentActive: true
+        @data = isContentActive: false
         
         @scope.$on "globalmenu:activated", ~> @data.isContentActive = false; @safeApply!
         @scope.$on "globalmenu:deactivated", ~> @data.isContentActive = true; @safeApply!
@@ -12,8 +12,8 @@ class PageController extends DepMan.controller "Base"
 
         hammertime = new Hammer document.body
 
-        hammertime.on "swiperight", ~> @scope.$emit "globalmenu:activated"
-        hammertime.on "swipeleft", ~> @scope.$emit "globalmenu:deactivated"
+        hammertime.on "swipedown", ~> @scope.$emit "globalmenu:activated"
+        hammertime.on "swipeup", ~> @scope.$emit "globalmenu:deactivated"
 
         urlHandler = ~> 
             # if not @comms.user? and @location.path!.match  /\/membership.*/ then @comms.checkLogin!
@@ -45,7 +45,11 @@ class PageController extends DepMan.controller "Base"
 
     getHeight: ~> if window.innerWidth < 700 then height: window.innerHeight - 45
     hover: (type, ev) ~>
-        if type is \in then @data.isContentActive = true
-        if type is \out then @data.isContentActive = false
+        if type is \in then 
+            unless /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent) && !/firefox/i.test(navigator.userAgent)
+                @data.isContentActive = true
+        if type is \out then 
+            unless /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent) && !/firefox/i.test(navigator.userAgent)
+                @data.isContentActive = false
         if type is \toggle then @data.isContentActive = not @data.isContentActive
     @hook ["$location", '$rootScope', 'Comms']

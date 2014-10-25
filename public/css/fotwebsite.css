@@ -526,25 +526,22 @@ body #wrapper > div > section.admin .main > aside ~ * {
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 body #wrapper > div > section.main > aside.active h1,
-body #wrapper > div > section.admin .main > aside.active h1 {
+body #wrapper > div > section.admin .main > aside.active h1,
+body #wrapper > div > section.main > aside:hover h1,
+body #wrapper > div > section.admin .main > aside:hover h1 {
   -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
   box-shadow: 0 8px 17px rgba(0,0,0,0.2);
   background: #00897b;
 }
 body #wrapper > div > section.main > aside.active nav,
-body #wrapper > div > section.admin .main > aside.active nav {
+body #wrapper > div > section.admin .main > aside.active nav,
+body #wrapper > div > section.main > aside:hover nav,
+body #wrapper > div > section.admin .main > aside:hover nav {
   -webkit-transform: none;
   -moz-transform: none;
   -o-transform: none;
   -ms-transform: none;
   transform: none;
-}
-body #wrapper > div > section.main > aside.active ~ .shade,
-body #wrapper > div > section.admin .main > aside.active ~ .shade {
-  z-index: 2;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
 }
 body #wrapper > div > section.main > .container > section,
 body #wrapper > div > section.admin .main > .container > section {
@@ -553,21 +550,31 @@ body #wrapper > div > section.admin .main > .container > section {
   bottom: 0;
   left: 0;
   right: 0;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  -ms-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   text-align: center;
   overflow-y: auto;
   overflow-x: visible;
+  -webkit-transform: scale(0.01);
+  -moz-transform: scale(0.01);
+  -o-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  transform: scale(0.01);
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  -ms-perspective: 600px;
+  perspective: 600px;
 }
 body #wrapper > div > section.main > .container > section > *,
 body #wrapper > div > section.admin .main > .container > section > * {
   text-align: left;
+  z-index: 1;
 }
 body #wrapper > div > section.main > .container > section.active,
 body #wrapper > div > section.admin .main > .container > section.active {
@@ -579,18 +586,25 @@ body #wrapper > div > section.admin .main > .container > section.active {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+  z-index: 2;
 }
 body #wrapper > div > section.main > .container > section.active ~ section,
 body #wrapper > div > section.admin .main > .container > section.active ~ section {
-  -webkit-transform: translateY(200%);
-  -moz-transform: translateY(200%);
-  -o-transform: translateY(200%);
-  -ms-transform: translateY(200%);
-  transform: translateY(200%);
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -ms-transform: scale(2);
+  transform: scale(2);
+  z-index: -1;
 }
 body #wrapper > div > section.main > .container > section nav.phonemenu,
 body #wrapper > div > section.admin .main > .container > section nav.phonemenu {
   display: none;
+}
+body #wrapper > div > section.main > .container > section > div,
+body #wrapper > div > section.admin .main > .container > section > div {
+  width: 100%;
+  height: 100%;
 }
 body #wrapper > div > section.main > .shade,
 body #wrapper > div > section.admin .main > .shade {
@@ -718,6 +732,181 @@ body #wrapper > div > section.admin .main section#Home article:not(.main):nth-ch
   bottom: 50%;
   border-bottom: solid 1px #757575;
 }
+body #wrapper > div > section.main .grid,
+body #wrapper > div > section.admin .main .grid {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+body #wrapper > div > section.main .grid,
+body #wrapper > div > section.admin .main .grid,
+body #wrapper > div > section.main .grid.horizontal,
+body #wrapper > div > section.admin .main .grid.horizontal {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-flow: column wrap;
+  -ms-flex-flow: column wrap;
+  flex-flow: column wrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+body #wrapper > div > section.main .grid .next,
+body #wrapper > div > section.admin .main .grid .next {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  position: relative;
+}
+body #wrapper > div > section.main .grid .next > .wrapper,
+body #wrapper > div > section.admin .main .grid .next > .wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+body #wrapper > div > section.main .grid.vertical,
+body #wrapper > div > section.admin .main .grid.vertical {
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body #wrapper > div > section.main .grid article:not(.post),
+body #wrapper > div > section.admin .main .grid article:not(.post) {
+  height: 100% !important;
+  min-height: 100% !important;
+  width: 300px;
+  min-width: 300px;
+  float: left;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  position: relative;
+}
+body #wrapper > div > section.main .grid article:not(.post).active + *,
+body #wrapper > div > section.admin .main .grid article:not(.post).active + * {
+  z-index: 0;
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: auto;
+  height: auto;
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper .content,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper .content {
+  z-index: -1;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate,
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.active,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active {
+  position: fixed;
+  z-index: 9;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate .content,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate .content,
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.active .content,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active .content {
+  z-index: 1;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate .brief,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate .brief,
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.active .brief,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active .brief {
+  z-index: -1;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body #wrapper > div > section.main .grid article:not(.post) .wrapper.active,
+body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active {
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  -webkit-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+body #wrapper > div > section.main .grid article:not(.post) h1,
+body #wrapper > div > section.admin .main .grid article:not(.post) h1,
+body #wrapper > div > section.main .grid article:not(.post) nav,
+body #wrapper > div > section.admin .main .grid article:not(.post) nav {
+  border-right: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+}
+body #wrapper > div > section.main .grid.row2 article:not(.post),
+body #wrapper > div > section.admin .main .grid.row2 article:not(.post) {
+  height: 50% !important;
+  min-height: 50% !important;
+}
+body #wrapper > div > section.main .grid.row3 article:not(.post),
+body #wrapper > div > section.admin .main .grid.row3 article:not(.post) {
+  height: 33% !important;
+  min-height: 33% !important;
+}
+body #wrapper > div > section.main .grid.row4 article:not(.post),
+body #wrapper > div > section.admin .main .grid.row4 article:not(.post) {
+  height: 25% !important;
+  min-height: 25% !important;
+}
+body #wrapper > div > section.main .grid.noflow,
+body #wrapper > div > section.admin .main .grid.noflow {
+  overflow: hidden;
+}
+body #wrapper > div > section.main .grid.nogrow > article,
+body #wrapper > div > section.admin .main .grid.nogrow > article {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -o-box-flex: 0;
+  -ms-box-flex: 0;
+  box-flex: 0;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+}
 body #wrapper > div > section.main article:not(.post):first-child,
 body #wrapper > div > section.admin .main article:not(.post):first-child {
   border-top: none;
@@ -761,6 +950,7 @@ body #wrapper > div > section.admin .main article:not(.post) .wrapper h1 {
   top: 0;
   left: 0;
   right: 0;
+  background: #fff;
   border-bottom: solid 1px #eee;
 }
 body #wrapper > div > section.main article:not(.post) .wrapper .content,
@@ -1068,20 +1258,108 @@ body #wrapper > div > section.admin .main section#sg article.inactive {
   }
 }
 @media (max-width: 700px) {
+  body #wrapper > div > section.main section#Home,
+  body #wrapper > div > section.admin .main section#Home {
+    -webkit-perspective: 600;
+    -moz-perspective: 600;
+    -ms-perspective: 600;
+    perspective: 600;
+    overflow: hidden;
+  }
   body #wrapper > div > section.main section#Home > div,
   body #wrapper > div > section.admin .main section#Home > div {
-    overflow-x: hidden;
-    overflow-y: auto;
+    width: 100%;
+    height: 100%;
   }
   body #wrapper > div > section.main section#Home > div article,
   body #wrapper > div > section.admin .main section#Home > div article {
-    position: static;
-    display: block;
+    position: fixed;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: -1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    overflow: hidden;
+  }
+  body #wrapper > div > section.main section#Home > div article.active,
+  body #wrapper > div > section.admin .main section#Home > div article.active {
+    z-index: 1;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+  body #wrapper > div > section.main section#Home > div article.active + article,
+  body #wrapper > div > section.admin .main section#Home > div article.active + article {
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
   }
   body #wrapper > div > section.main > aside nav,
   body #wrapper > div > section.admin .main > aside nav {
     width: 100%;
     left: 0;
+  }
+  body #wrapper > div > section.main > aside:hover h1,
+  body #wrapper > div > section.admin .main > aside:hover h1 {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    background: #00796b;
+  }
+  body #wrapper > div > section.main > aside:hover nav,
+  body #wrapper > div > section.admin .main > aside:hover nav {
+    -webkit-transform: rotateX(-50deg) translateY(-130%);
+    -moz-transform: rotateX(-50deg) translateY(-130%);
+    -o-transform: rotateX(-50deg) translateY(-130%);
+    -ms-transform: rotateX(-50deg) translateY(-130%);
+    transform: rotateX(-50deg) translateY(-130%);
+  }
+  body #wrapper > div > section.main > aside:hover ~ .shade,
+  body #wrapper > div > section.admin .main > aside:hover ~ .shade {
+    z-index: -1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  body #wrapper > div > section.main > aside.active h1,
+  body #wrapper > div > section.admin .main > aside.active h1 {
+    -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+    background: #00897b;
+  }
+  body #wrapper > div > section.main > aside.active nav,
+  body #wrapper > div > section.admin .main > aside.active nav {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+  body #wrapper > div > section.main > aside.active ~ .shade,
+  body #wrapper > div > section.admin .main > aside.active ~ .shade {
+    z-index: 2;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
   }
   body #wrapper > div > section.main #Posts > div > material-content.loader,
   body #wrapper > div > section.admin .main #Posts > div > material-content.loader {
@@ -1145,20 +1423,108 @@ body #wrapper > div > section.admin .main section#sg article.inactive {
   }
 }
 @media (max-width: 700px) and (orientation: portrait), (max-width: 1400px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2), (max-width: 1400px) and (orientation: portrait) and (min--moz-device-pixel-ratio: 2), (max-width: 1400px) and (orientation: portrait) and (-o-min-device-pixel-ratio: 2/1), (max-width: 1400px) and (orientation: portrait) and (min-resolution: 2dppx), (max-width: 1400px) and (orientation: portrait) and (min-resolution: 192dpi), (max-width: 1400px) and (orientation: portrait) and (min-device-pixel-ratio: 2), (max-height: 700px) and (orientation: landscape), (max-height: 1400px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), (max-height: 1400px) and (orientation: landscape) and (min--moz-device-pixel-ratio: 2), (max-height: 1400px) and (orientation: landscape) and (-o-min-device-pixel-ratio: 2/1), (max-height: 1400px) and (orientation: landscape) and (min-resolution: 2dppx), (max-height: 1400px) and (orientation: landscape) and (min-resolution: 192dpi), (max-height: 1400px) and (orientation: landscape) and (min-device-pixel-ratio: 2) {
+  body #wrapper > div.mobile > section.main section#Home,
+  body #wrapper > div.mobile > section.admin .main section#Home {
+    -webkit-perspective: 600;
+    -moz-perspective: 600;
+    -ms-perspective: 600;
+    perspective: 600;
+    overflow: hidden;
+  }
   body #wrapper > div.mobile > section.main section#Home > div,
   body #wrapper > div.mobile > section.admin .main section#Home > div {
-    overflow-x: hidden;
-    overflow-y: auto;
+    width: 100%;
+    height: 100%;
   }
   body #wrapper > div.mobile > section.main section#Home > div article,
   body #wrapper > div.mobile > section.admin .main section#Home > div article {
-    position: static;
-    display: block;
+    position: fixed;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: -1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    overflow: hidden;
+  }
+  body #wrapper > div.mobile > section.main section#Home > div article.active,
+  body #wrapper > div.mobile > section.admin .main section#Home > div article.active {
+    z-index: 1;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+  body #wrapper > div.mobile > section.main section#Home > div article.active + article,
+  body #wrapper > div.mobile > section.admin .main section#Home > div article.active + article {
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
   }
   body #wrapper > div.mobile > section.main > aside nav,
   body #wrapper > div.mobile > section.admin .main > aside nav {
     width: 100%;
     left: 0;
+  }
+  body #wrapper > div.mobile > section.main > aside:hover h1,
+  body #wrapper > div.mobile > section.admin .main > aside:hover h1 {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    background: #00796b;
+  }
+  body #wrapper > div.mobile > section.main > aside:hover nav,
+  body #wrapper > div.mobile > section.admin .main > aside:hover nav {
+    -webkit-transform: rotateX(-50deg) translateY(-130%);
+    -moz-transform: rotateX(-50deg) translateY(-130%);
+    -o-transform: rotateX(-50deg) translateY(-130%);
+    -ms-transform: rotateX(-50deg) translateY(-130%);
+    transform: rotateX(-50deg) translateY(-130%);
+  }
+  body #wrapper > div.mobile > section.main > aside:hover ~ .shade,
+  body #wrapper > div.mobile > section.admin .main > aside:hover ~ .shade {
+    z-index: -1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  body #wrapper > div.mobile > section.main > aside.active h1,
+  body #wrapper > div.mobile > section.admin .main > aside.active h1 {
+    -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+    background: #00897b;
+  }
+  body #wrapper > div.mobile > section.main > aside.active nav,
+  body #wrapper > div.mobile > section.admin .main > aside.active nav {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+  body #wrapper > div.mobile > section.main > aside.active ~ .shade,
+  body #wrapper > div.mobile > section.admin .main > aside.active ~ .shade {
+    z-index: 2;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
   }
   body #wrapper > div.mobile > section.main #Posts > div > material-content.loader,
   body #wrapper > div.mobile > section.admin .main #Posts > div > material-content.loader {
@@ -1250,6 +1616,9 @@ body #wrapper .spinner {
   -ms-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
+body #wrapper .noborder {
+  border: none;
+}
 body #wrapper h1,
 body #wrapper h2,
 body #wrapper h3,
@@ -1275,6 +1644,15 @@ body #wrapper h5 {
 }
 body #wrapper h6 {
   font-weight: 100;
+}
+body #wrapper .material-button-fab {
+  background: #fff;
+}
+body #wrapper .material-button-fab i {
+  font-size: 2em;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 @-moz-keyframes spinner {
   0% {

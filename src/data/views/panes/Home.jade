@@ -1,4 +1,4 @@
-article.main.post(ng-style="getHeight()")
+article.main.post(ng-style="getHeight()" ng-class="{active: data.active === 0}" ng-wheel="wheel($event)" hm-swipe="swipe")
     figure
         .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
             img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
@@ -6,7 +6,7 @@ article.main.post(ng-style="getHeight()")
         figcaption
             h1 Next Event
 
-article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()")
+article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()" ng-wheel="wheel($event)")
     .wrapper
         h1 {{article.title}}
         .brief(load-content-for="article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'" is-static is-implemented)

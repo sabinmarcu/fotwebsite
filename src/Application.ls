@@ -68,11 +68,14 @@ class Application extends IS.Object
         window <<< DepMan.lib \fullcalendar
         window <<< DepMan.lib \gcal
         window <<< DepMan.lib \calendar
+        window <<< DepMan.lib \randColor
 
         window.Hammer = DepMan.lib "hammer"
         window.Debug = DepMan.lib \debug
 
         window.Debug.disable \*
+
+        window <<< DepMan.lib "angular.hammer"
 
         DepMan.extLink "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
         @LifeCycle.resolve!
@@ -85,7 +88,7 @@ class Application extends IS.Object
         @LifeCycle.resolve!
 
     bootStrapAngular: ~>
-        app = angular.module AppInfo.displayname, ["ngRoute", "ngAnimate", "ngMaterial", "ui.calendar"] .config ["$locationProvider", (location) ->
+        app = angular.module AppInfo.displayname, ["ngRoute", "ngAnimate", "ngMaterial", "ui.calendar", "hmTouchEvents"] .config ["$locationProvider", (location) ->
             location.html5Mode true
         ]
         app.run ["$templateCache", (templates) !->

@@ -1,5 +1,82 @@
 @import "home"
 
+.grid
+    display flex
+    height 100%
+    width 100%
+    &, &.horizontal
+        flex-flow column wrap
+        overflow-x auto
+        overflow-y hidden
+    .next
+        flex-grow 1
+        position relative
+        > .wrapper
+            absfill()
+    &.vertical
+        flex-flow row wrap
+        overflow-x hidden
+        overflow-y auto
+    article:not(.post)
+        height 100% !important
+        min-height 100% !important
+        width articlewidth
+        min-width articlewidth
+        float left
+        flex-grow 1
+        position relative
+        &.active + *
+            z-index 0
+        .wrapper
+            position absolute
+            top 0
+            bottom 0
+            left 0
+            right 0
+            z-index 1
+            width auto 
+            height auto
+            .content
+                z-index -1
+                opacity 0
+            &.animate, &.active
+                position fixed
+                z-index 9
+                wfz1()
+                .content
+                    z-index 1
+                    opacity 1
+                .brief
+                    z-index -1
+                    opacity 0
+            &.active
+                top 0 !important
+                bottom 0 !important
+                left 0 !important
+                right 0 !important
+                width auto !important
+                height auto !important
+                transition all 1s timing
+                
+                
+        h1, nav
+            border-right solid 1px clightgray
+            border-bottom solid 1px clightgray
+            
+    &.row2 article:not(.post)
+        height 50% !important
+        min-height 50% !important
+    &.row3 article:not(.post)
+        height 33% !important
+        min-height 33% !important
+    &.row4 article:not(.post)
+        height 25% !important
+        min-height 25% !important
+    &.noflow
+        overflow hidden
+    &.nogrow > article
+        flex-grow 0
+
 article
     &:not(.post)
         &:first-child
@@ -32,6 +109,7 @@ article
                 top 0
                 left 0
                 right 0
+                background white
                 border-bottom solid 1px clightgray
 
             .content, .brief

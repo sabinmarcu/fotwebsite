@@ -1,0 +1,1 @@
+window.randColor = function() { return (~~(Math.random()*(1<<24))).toString(16); }
