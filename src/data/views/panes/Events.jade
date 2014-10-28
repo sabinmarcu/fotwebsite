@@ -1,7 +1,7 @@
 material-button.material-button-fab.material-button-fab-bottom-right.right(ng-click="toggleLayout()")
     i.fa(ng-class="{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}")
 
-.grid.noflow.nogrow.vertical
+.grid.nogrow.vertical
     article.material-whiteframe-z1.noborder(id="article-1" ng-class="{active: data.active == 1}")
         .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
             h1 Event

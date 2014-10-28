@@ -1654,6 +1654,10 @@ body #wrapper .material-button-fab i {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
+body #wrapper .full {
+  width: 100%;
+  height: 100%;
+}
 @-moz-keyframes spinner {
   0% {
     -webkit-transform: rotate(0deg);
