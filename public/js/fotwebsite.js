@@ -92,8 +92,12 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       return this$;
     } function ctor$(){} ctor$.prototype = prototype;
     prototype.checkDevMode = function(){
+      var scr;
       if (window.isDev != null) {
         document.title = "Testing " + window.AppInfo.displayname + "!";
+        scr = document.createElement("script");
+        scr.src = "http://" + (location.host || 'localhost').split(':')[0] + ":35729/livereload.js?snipver=1";
+        document.head.appendChild(scr);
         Debug.enable('app:*');
       }
       return this.LifeCycle.resolve();
@@ -356,14 +360,19 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.root = root;
       this$.comms = comms;
       this$.getRandomColor = bind$(this$, 'getRandomColor', prototype);
+      this$.scroll = bind$(this$, 'scroll', prototype);
       this$.toggleArticle = bind$(this$, 'toggleArticle', prototype);
       this$.toggleLayout = bind$(this$, 'toggleLayout', prototype);
       this$.data = {
-        actve: 0,
+        active: 0,
         vertical: true,
         content: replicate(15, 0).map(function(item, index){
           return index + 2;
-        })
+        }),
+        scroll: {
+          top: 0,
+          left: 0
+        }
       };
       this$.colors = replicate(20, 0).map(function(){
         return this$.getRandomColor();
@@ -395,45 +404,26 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       return DBStorage.set("events.layout", this.data.vertical + "");
     };
     prototype.toggleArticle = function(id){
-      var p, i, this$ = this;
-      if (!this.data.active) {
-        p = $("#article-" + id);
-        i = p.find(" > .wrapper");
-        i.addClass("animate");
-        (function(o, w, h){
-          i.css({
-            top: o.top - 45,
-            left: o.left,
-            bottom: window.innerHeight - o.top - h,
-            right: window.innerWidth - o.left - w
-          });
-        }.call(this, p.offset(), p.width(), p.height()));
-        setTimeout(function(){
-          i.attr("style", "background: " + i.css('background') + "; transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);").removeClass("animate");
-          this$.data.active = id;
-          return this$.safeApply();
-        }, 50);
+      if (this.data.active) {
+        this.data.active = 0;
+        (function(j){
+          j.animate({
+            scrollTop: this.data.scrollSave.top
+          }, '1000', 'swing');
+          j.animate({
+            scrollLeft: this.data.scrollSave.left
+          }, '1000', 'swing');
+          delete this.data.scrollSave;
+        }.call(this, $("#Events .grid.row2")));
       } else {
-        p = $("#article-" + id);
-        i = p.find(" > .wrapper");
-        i.addClass("animate");
-        (function(o, w, h){
-          i.css({
-            top: o.top - 45,
-            left: o.left,
-            bottom: window.innerHeight - o.top - h,
-            right: window.innerWidth - o.left - w
-          });
-        }.call(this, p.offset(), p.width(), p.height()));
-        i.css("transition", "all 1s cubic-bezier(0.215, 0.61, 0.355, 1)");
-        setTimeout(function(){
-          this$.data.active = 0;
-          this$.safeApply();
-          return setTimeout(function(){
-            return i.attr("style", "background: " + i.css('background') + ";").removeClass("animate");
-          }, 750);
-        }, 50);
+        this.data.scrollSave = angular.copy(this.data.scroll);
+        this.data.active = id;
       }
+      this.safeApply();
+    };
+    prototype.scroll = function(e){
+      this.data.scroll.top = e.originalEvent.target.scrollTop;
+      this.data.scroll.left = e.originalEvent.target.scrollLeft;
     };
     prototype.getRandomColor = function(){
       return typeof window.randColor === 'function' ? window.randColor() : void 8;
@@ -994,10 +984,29 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       hammertime.on("swipeup", function(){
         return this$.scope.$emit("globalmenu:deactivated");
       });
-      urlHandler = function(){};
+      urlHandler = function(){
+        this$.data.isContentActive = false;
+        return typeof this$.safeApply === 'function' ? this$.safeApply() : void 8;
+      };
       this$.root.$on("$locationChangeSuccess", urlHandler);
       urlHandler();
       this$.scope.isMobile = Tester.mobile;
+      window.addEventListener("click", function(it){
+        var j, c1, c2, c3;
+        if (this$.data.isContentActive) {
+          j = $(it.target);
+          c1 = it.target.id === "sitemenu" || j.parents("#sitemenu").length > 0;
+          c2 = it.target.tagName.toLowerCase() === "material-button" || j.parents("material-button").length > 0;
+          c3 = it.target.tagName.toLowerCase() === "h1" || j.parents("h1").length > 0;
+          this$.log("Clicked", it.target, c1, c2, c3);
+          if (c1 && (c2 || c3)) {
+            this$.log("Safe");
+          } else {
+            this$.data.isContentActive = false;
+            this$.safeApply();
+          }
+        }
+      });
       PageController.superclass.apply(this$, arguments);
       return this$;
     } function ctor$(){} ctor$.prototype = prototype;
@@ -85480,7 +85489,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<material-button ng-click=\"toggleLayout()\" class=\"material-button-fab material-button-fab-bottom-right right\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div class=\"grid nogrow\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"material-whiteframe-z1 noborder\"><div ng-class=\"{active: data.active == 1}\" style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><div class=\"next full\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true}\" class=\"grid row2\"><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div ng-class=\"{active: data.active == index}\" style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
+buf.push("<material-button ng-click=\"toggleLayout()\" ng-class=\"{hidden: data.active !== 0}\" class=\"material-button-fab material-button-fab-bottom-right right eventsfab\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div ng-if=\"!isMobile\" ng-class=\"{active: data.active == 1}\" class=\"grid nogrow vertical\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"material-whiteframe-z1 noborder event\"><div ng-class=\"{active: data.active == 1}\" style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true, active: data.active !== 0}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div ng-class=\"{active: data.active == index}\" style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div><div ng-if=\"isMobile\" ng-class=\"{active: data.active !== 0}\" class=\"grid\"><div ng-class=\"{'vertical': data.vertical == true}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"event\"><div style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div>");;return buf.join("");
 }}, "data/views/panes/Home": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90341,7 +90350,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Sat Oct 25 2014 03:31:20 GMT+0100 (BST)
+@Date Compiled    : Fri Oct 31 2014 03:16:40 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

@@ -8,6 +8,9 @@ class Application extends IS.Object
     checkDevMode: ~>
         if window.isDev?
             document.title = "Testing #{window.AppInfo.displayname}!"
+            scr = document.createElement "script"
+            scr.src = "http://#{(location.host or 'localhost').split ':' .0}:35729/livereload.js?snipver=1"
+            document.head.appendChild scr
             Debug.enable \app:*
         @LifeCycle.resolve!
     loadDepMan: ~> window.DepMan = new (require "classes/helpers/DepMan"); @LifeCycle.resolve!

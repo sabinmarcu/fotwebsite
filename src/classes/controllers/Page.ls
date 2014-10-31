@@ -21,11 +21,22 @@ class PageController extends DepMan.controller "Base"
             #     @comms.meta.prevURL = @location.path!
             #     return @location.path "/membership/login"
             # if @location.path!match /\/membership\/?$/ or ((@location.path!match /\/membership\/login/) and @comms.user?) then @activateMenu!
+            @data.isContentActive = false; @safeApply?!
 
         @root.$on "$locationChangeSuccess", urlHandler
         urlHandler!
         
         @scope.isMobile = Tester.mobile
+
+        window.addEventListener "click", !~> 
+            if @data.isContentActive
+                j = $ it.target
+                c1 = it.target.id is "sitemenu" or j.parents "\#sitemenu" .length > 0
+                c2 = it.target.tagName.toLowerCase! is "material-button" or j.parents "material-button" .length > 0
+                c3 = it.target.tagName.toLowerCase! is "h1" or j.parents "h1" .length > 0
+                @log "Clicked", it.target, c1, c2, c3
+                if c1 and (c2 or c3) then @log "Safe"
+                else @data.isContentActive = false; @safeApply!
         super ...
 
     isActive: (title) ~> 
