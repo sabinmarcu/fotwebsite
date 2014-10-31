@@ -1,8 +1,8 @@
 material-button.material-button-fab.material-button-fab-bottom-right.right(ng-click="toggleLayout()")
     i.fa(ng-class="{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}")
 
-.grid.nogrow.vertical
-    article.material-whiteframe-z1.noborder(id="article-1" ng-class="{active: data.active == 1}")
+.grid.nogrow.vertical(ng-if="!isMobile")
+    article.material-whiteframe-z1.noborder.event(id="article-1" ng-class="{active: data.active == 1}")
         .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
             h1 Event
             .brief Brief Content
@@ -24,3 +24,48 @@ material-button.material-button-fab.material-button-fab-bottom-right.right(ng-cl
                         nav
                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active != index") Read More
                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close
+
+//- .grid.nogrow.horizontal(ng-if="isMobile")
+//-     article.material-whiteframe-z1.noborder(id="article-1" ng-class="{active: data.active == 1}")
+//-         .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
+//-             h1 Event
+//-             .brief Brief Content
+//-             .content Big Content
+
+//-             nav
+//-                 material-button.right(ng-click="toggleArticle(1)" ng-if="data.active != 1") Read More
+//-                 material-button.right(ng-click="toggleArticle(1)" ng-if="data.active == 1") Close
+
+//-     .next
+//-         .wrapper
+//-             .grid.row2(ng-class="{'vertical': data.vertical == true}")
+//-                 article.event(ng-repeat="index in data.content" id="article-{{index}}" ng-class="{active: data.active == index}" )
+//-                     .wrapper(ng-class="{active: data.active == index}" style="background: #{{colors[index]}};")
+//-                         h1 Event {{index}}
+//-                         .brief Brief Content
+//-                         .content Big Content
+
+//-                         nav
+//-                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active != index") Read More
+//-                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close
+
+.grid(ng-if="isMobile")
+    .grid.row2(ng-class="{'vertical': data.vertical == true}")
+        article.event(id="article-1" ng-class="{active: data.active == 1}")
+            .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
+                h1 Event
+                .brief Brief Content
+                .content Big Content
+
+                nav
+                    material-button.right(ng-click="toggleArticle(1)" ng-if="data.active != 1") Read More
+                    material-button.right(ng-click="toggleArticle(1)" ng-if="data.active == 1") Close
+        article.event(ng-repeat="index in data.content" id="article-{{index}}" ng-class="{active: data.active == index}" )
+            .wrapper(ng-class="{active: data.active == index}" style="background: #{{colors[index]}};")
+                h1 Event {{index}}
+                .brief Brief Content
+                .content Big Content
+
+                nav
+                    material-button.right(ng-click="toggleArticle(index)" ng-if="data.active != index") Read More
+                    material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close

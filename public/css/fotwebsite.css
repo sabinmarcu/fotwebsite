@@ -792,10 +792,22 @@ body #wrapper > div > section.admin .main .grid.vertical {
   overflow-x: hidden;
   overflow-y: auto;
 }
-body #wrapper > div > section.main .grid article:not(.post),
-body #wrapper > div > section.admin .main .grid article:not(.post) {
+body #wrapper > div > section.main .grid.vertical article:not(.post),
+body #wrapper > div > section.admin .main .grid.vertical article:not(.post) {
   height: 100% !important;
   min-height: 100% !important;
+  width: 300px !important;
+  min-width: 300px !important;
+}
+body #wrapper > div > section.main .grid.horizontal article:not(.post),
+body #wrapper > div > section.admin .main .grid.horizontal article:not(.post) {
+  height: 300px !important;
+  min-height: 300px !important;
+  width: 100% !important;
+  min-width: 100% !important;
+}
+body #wrapper > div > section.main .grid article:not(.post),
+body #wrapper > div > section.admin .main .grid article:not(.post) {
   width: 300px;
   min-width: 300px;
   float: left;

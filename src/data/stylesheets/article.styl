@@ -17,9 +17,17 @@
         flex-flow row wrap
         overflow-x hidden
         overflow-y auto
+        article:not(.post)
+            height 100% !important
+            min-height 100% !important
+            width articlewidth !important
+            min-width articlewidth !important
+    &.horizontal article:not(.post)
+        height articlewidth !important
+        min-height articlewidth !important
+        width 100% !important
+        min-width 100% !important
     article:not(.post)
-        height 100% !important
-        min-height 100% !important
         width articlewidth
         min-width articlewidth
         float left
