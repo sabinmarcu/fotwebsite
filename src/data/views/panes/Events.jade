@@ -2,7 +2,7 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
     i.fa(ng-class="{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}")
 
 .grid.nogrow.vertical(ng-if="!isMobile" ng-class="{active: data.active == 1}")
-    article.material-whiteframe-z1.noborder.event(id="article-1" ng-class="{active: data.active == 1}")
+    article.event(id="article-1" ng-class="{active: data.active == 1, 'material-whiteframe-z1': data.scroll.top != 0 || data.scroll.left != 0}")
         .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
             h1 Event
             .brief Brief Content

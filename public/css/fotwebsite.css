@@ -638,99 +638,21 @@ body #wrapper > div > section.admin .main > .shade .darkness {
   filter: alpha(opacity=70);
   z-index: 1;
 }
-body #wrapper > div > section.main section#Home article,
-body #wrapper > div > section.admin .main section#Home article {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+body #wrapper > div > section.main section#Home .grid.nogrow > article.post,
+body #wrapper > div > section.admin .main section#Home .grid.nogrow > article.post {
+  width: 70% !important;
 }
-body #wrapper > div > section.main section#Home article.main,
-body #wrapper > div > section.admin .main section#Home article.main {
-  right: 30%;
+body #wrapper > div > section.main section#Home .grid.nogrow .grid.row2 > article,
+body #wrapper > div > section.admin .main section#Home .grid.nogrow .grid.row2 > article {
+  width: auto !important;
 }
-body #wrapper > div > section.main section#Home article:not(.main),
-body #wrapper > div > section.admin .main section#Home article:not(.main) {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  background: #fff;
-  left: 70%;
+body #wrapper > div > section.main section#Home .grid.nogrow.active article,
+body #wrapper > div > section.admin .main section#Home .grid.nogrow.active article {
+  width: 0 !important;
 }
-body #wrapper > div > section.main section#Home article:not(.main).active,
-body #wrapper > div > section.admin .main section#Home article:not(.main).active {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  top: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9;
-  -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
-  box-shadow: 0 8px 17px rgba(0,0,0,0.2);
-}
-body #wrapper > div > section.main section#Home article:not(.main).active h1,
-body #wrapper > div > section.admin .main section#Home article:not(.main).active h1 {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  height: 90px;
-  line-height: 90px;
-  font-size: 3em;
-}
-body #wrapper > div > section.main section#Home article:not(.main).active .content,
-body #wrapper > div > section.admin .main section#Home article:not(.main).active .content {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  top: 90px;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  z-index: 1;
-}
-body #wrapper > div > section.main section#Home article:not(.main).active .brief,
-body #wrapper > div > section.admin .main section#Home article:not(.main).active .brief {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  z-index: -1;
-}
-body #wrapper > div > section.main section#Home article:not(.main) .content,
-body #wrapper > div > section.admin .main section#Home article:not(.main) .content {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  z-index: -1;
-}
-body #wrapper > div > section.main section#Home article:not(.main):last-of-type,
-body #wrapper > div > section.admin .main section#Home article:not(.main):last-of-type {
-  top: 50%;
-}
-body #wrapper > div > section.main section#Home article:not(.main):nth-child(2),
-body #wrapper > div > section.admin .main section#Home article:not(.main):nth-child(2) {
-  bottom: 50%;
-  border-bottom: solid 1px #757575;
+body #wrapper > div > section.main section#Home .grid.nogrow.active article.active,
+body #wrapper > div > section.admin .main section#Home .grid.nogrow.active article.active {
+  width: 100% !important;
 }
 body #wrapper > div > section.main .eventsfab,
 body #wrapper > div > section.admin .main .eventsfab {
@@ -807,22 +729,22 @@ body #wrapper > div > section.admin .main .grid.vertical {
   overflow-x: hidden;
   overflow-y: auto;
 }
-body #wrapper > div > section.main .grid.vertical article:not(.post),
-body #wrapper > div > section.admin .main .grid.vertical article:not(.post) {
+body #wrapper > div > section.main .grid.vertical article,
+body #wrapper > div > section.admin .main .grid.vertical article {
   height: 100% !important;
   min-height: 100% !important;
   width: 300px !important;
   min-width: 300px !important;
 }
-body #wrapper > div > section.main .grid.horizontal article:not(.post),
-body #wrapper > div > section.admin .main .grid.horizontal article:not(.post) {
+body #wrapper > div > section.main .grid.horizontal article,
+body #wrapper > div > section.admin .main .grid.horizontal article {
   height: 300px !important;
   min-height: 300px !important;
   width: 100% !important;
   min-width: 100% !important;
 }
-body #wrapper > div > section.main .grid article:not(.post),
-body #wrapper > div > section.admin .main .grid article:not(.post) {
+body #wrapper > div > section.main .grid article,
+body #wrapper > div > section.admin .main .grid article {
   width: 300px;
   min-width: 300px;
   float: left;
@@ -841,85 +763,34 @@ body #wrapper > div > section.admin .main .grid article:not(.post) {
   transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   overflow: hidden;
 }
-body #wrapper > div > section.main .grid article:not(.post) .content,
-body #wrapper > div > section.admin .main .grid article:not(.post) .content {
+body #wrapper > div > section.main .grid article .content,
+body #wrapper > div > section.admin .main .grid article .content {
   z-index: -1;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+  border-right: solid 1px #eee;
 }
-body #wrapper > div > section.main .grid article:not(.post) h1,
-body #wrapper > div > section.admin .main .grid article:not(.post) h1,
-body #wrapper > div > section.main .grid article:not(.post) nav,
-body #wrapper > div > section.admin .main .grid article:not(.post) nav {
+body #wrapper > div > section.main .grid article h1,
+body #wrapper > div > section.admin .main .grid article h1,
+body #wrapper > div > section.main .grid article nav,
+body #wrapper > div > section.admin .main .grid article nav {
   border-right: solid 1px #eee;
   border-bottom: solid 1px #eee;
 }
-body #wrapper > div > section.main .grid.row2 article:not(.post),
-body #wrapper > div > section.admin .main .grid.row2 article:not(.post) {
-  height: 50% !important;
-  min-height: 50% !important;
-}
-body #wrapper > div > section.main .grid.row3 article:not(.post),
-body #wrapper > div > section.admin .main .grid.row3 article:not(.post) {
-  height: 33% !important;
-  min-height: 33% !important;
-}
-body #wrapper > div > section.main .grid.row4 article:not(.post),
-body #wrapper > div > section.admin .main .grid.row4 article:not(.post) {
-  height: 25% !important;
-  min-height: 25% !important;
-}
-body #wrapper > div > section.main .grid.noflow,
-body #wrapper > div > section.admin .main .grid.noflow {
-  overflow: hidden;
-}
-body #wrapper > div > section.main .grid.nogrow > article,
-body #wrapper > div > section.admin .main .grid.nogrow > article {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -o-box-flex: 0;
-  -ms-box-flex: 0;
-  box-flex: 0;
-  -webkit-flex-grow: 0;
-  flex-grow: 0;
-}
-body #wrapper > div > section.main .grid.active article:not(.post),
-body #wrapper > div > section.admin .main .grid.active article:not(.post) {
-  width: 0 !important;
-  height: 0 !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-}
-body #wrapper > div > section.main .grid.active article:not(.post).active,
-body #wrapper > div > section.admin .main .grid.active article:not(.post).active {
-  width: calc(100% - 0px) !important;
-  height: calc(100% - 0px) !important;
-  min-width: calc(100% - 0px) !important;
-  min-height: calc(100% - 0px) !important;
-  margin: 0px;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-body #wrapper > div > section.main article:not(.post):first-child,
-body #wrapper > div > section.admin .main article:not(.post):first-child {
+body #wrapper > div > section.main .grid article:first-child,
+body #wrapper > div > section.admin .main .grid article:first-child {
   border-top: none;
 }
-body #wrapper > div > section.main article:not(.post) .wrapper,
-body #wrapper > div > section.admin .main article:not(.post) .wrapper {
+body #wrapper > div > section.main .grid article .wrapper,
+body #wrapper > div > section.admin .main .grid article .wrapper {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 5px 10px;
 }
-body #wrapper > div > section.main article:not(.post) .wrapper nav,
-body #wrapper > div > section.admin .main article:not(.post) .wrapper nav {
+body #wrapper > div > section.main .grid article .wrapper nav,
+body #wrapper > div > section.admin .main .grid article .wrapper nav {
   -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -934,8 +805,8 @@ body #wrapper > div > section.admin .main article:not(.post) .wrapper nav {
   height: 45px;
   border-bottom: solid 1px #eee;
 }
-body #wrapper > div > section.main article:not(.post) .wrapper h1,
-body #wrapper > div > section.admin .main article:not(.post) .wrapper h1 {
+body #wrapper > div > section.main .grid article .wrapper h1,
+body #wrapper > div > section.admin .main .grid article .wrapper h1 {
   -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -953,10 +824,10 @@ body #wrapper > div > section.admin .main article:not(.post) .wrapper h1 {
   background: #fff;
   border-bottom: solid 1px #eee;
 }
-body #wrapper > div > section.main article:not(.post) .wrapper .content,
-body #wrapper > div > section.admin .main article:not(.post) .wrapper .content,
-body #wrapper > div > section.main article:not(.post) .wrapper .brief,
-body #wrapper > div > section.admin .main article:not(.post) .wrapper .brief {
+body #wrapper > div > section.main .grid article .wrapper .content,
+body #wrapper > div > section.admin .main .grid article .wrapper .content,
+body #wrapper > div > section.main .grid article .wrapper .brief,
+body #wrapper > div > section.admin .main .grid article .wrapper .brief {
   position: absolute;
   top: 45px;
   bottom: 45px;
@@ -973,14 +844,14 @@ body #wrapper > div > section.admin .main article:not(.post) .wrapper .brief {
   max-width: 1000px;
   margin: 0 auto;
 }
-body #wrapper > div > section.main article.post,
-body #wrapper > div > section.admin .main article.post {
+body #wrapper > div > section.main .grid article.post,
+body #wrapper > div > section.admin .main .grid article.post {
   overflow: hidden;
 }
-body #wrapper > div > section.main article.post figure,
-body #wrapper > div > section.admin .main article.post figure,
-body #wrapper > div > section.main article.post figcaption,
-body #wrapper > div > section.admin .main article.post figcaption {
+body #wrapper > div > section.main .grid article.post figure,
+body #wrapper > div > section.admin .main .grid article.post figure,
+body #wrapper > div > section.main .grid article.post figcaption,
+body #wrapper > div > section.admin .main .grid article.post figcaption {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -989,18 +860,18 @@ body #wrapper > div > section.admin .main article.post figcaption {
   margin: 0;
   padding: 0;
 }
-body #wrapper > div > section.main article.post figure,
-body #wrapper > div > section.admin .main article.post figure {
+body #wrapper > div > section.main .grid article.post figure,
+body #wrapper > div > section.admin .main .grid article.post figure {
   z-index: 1;
   background: #000;
 }
-body #wrapper > div > section.main article.post figure .focuspoint,
-body #wrapper > div > section.admin .main article.post figure .focuspoint {
+body #wrapper > div > section.main .grid article.post figure .focuspoint,
+body #wrapper > div > section.admin .main .grid article.post figure .focuspoint {
   width: 100%;
   height: 100%;
 }
-body #wrapper > div > section.main article.post figure .focuspoint img,
-body #wrapper > div > section.admin .main article.post figure .focuspoint img {
+body #wrapper > div > section.main .grid article.post figure .focuspoint img,
+body #wrapper > div > section.admin .main .grid article.post figure .focuspoint img {
   width: auto;
   height: 100%;
   min-height: 100%;
@@ -1011,14 +882,66 @@ body #wrapper > div > section.admin .main article.post figure .focuspoint img {
   -ms-transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-body #wrapper > div > section.main article.post figcaption,
-body #wrapper > div > section.admin .main article.post figcaption {
+body #wrapper > div > section.main .grid article.post figcaption,
+body #wrapper > div > section.admin .main .grid article.post figcaption {
   z-index: 2;
   top: auto;
   height: 75px;
   padding: 5px 15px;
   background: rgba(0,0,0,0.6);
   color: #fff;
+}
+body #wrapper > div > section.main .grid.row2 article,
+body #wrapper > div > section.admin .main .grid.row2 article {
+  height: 50% !important;
+  min-height: 50% !important;
+}
+body #wrapper > div > section.main .grid.row3 article,
+body #wrapper > div > section.admin .main .grid.row3 article {
+  height: 33% !important;
+  min-height: 33% !important;
+}
+body #wrapper > div > section.main .grid.row4 article,
+body #wrapper > div > section.admin .main .grid.row4 article {
+  height: 25% !important;
+  min-height: 25% !important;
+}
+body #wrapper > div > section.main .grid.noflow,
+body #wrapper > div > section.admin .main .grid.noflow {
+  overflow: hidden;
+}
+body #wrapper > div > section.main .grid.nogrow > article,
+body #wrapper > div > section.admin .main .grid.nogrow > article {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -o-box-flex: 0;
+  -ms-box-flex: 0;
+  box-flex: 0;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+}
+body #wrapper > div > section.main .grid.active article,
+body #wrapper > div > section.admin .main .grid.active article {
+  width: 0 !important;
+  height: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body #wrapper > div > section.main .grid.active article.active,
+body #wrapper > div > section.admin .main .grid.active article.active {
+  width: calc(100% - 0px) !important;
+  height: calc(100% - 0px) !important;
+  min-width: calc(100% - 0px) !important;
+  min-height: calc(100% - 0px) !important;
+  margin: 0px;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 body #wrapper > div > section.main nav#sg,
 body #wrapper > div > section.admin .main nav#sg {
@@ -1234,85 +1157,65 @@ body #wrapper > div > section.admin .main section#sg article.inactive {
   body #wrapper > div > section.admin .main #Posts > div > material-content.loader {
     left: 166.66666666666666px;
   }
-  body #wrapper > div > section.main section#Home article.main,
-  body #wrapper > div > section.admin .main section#Home article.main {
-    right: 0;
-    bottom: 30%;
+  body #wrapper > div > section.main section#Home .grid.nogrow > article.post,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow > article.post {
+    height: 70% !important;
+    width: auto !important;
   }
-  body #wrapper > div > section.main section#Home article:not(.main),
-  body #wrapper > div > section.admin .main section#Home article:not(.main) {
-    bottom: 0 !important;
-    top: 70% !important;
-    left: 0;
-    right: 0;
+  body #wrapper > div > section.main section#Home .grid.nogrow .grid.row2 > article,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow .grid.row2 > article {
+    width: 50% !important;
+    min-width: 50% !important;
+    height: 100% !important;
   }
-  body #wrapper > div > section.main section#Home article:not(.main):nth-of-type(2),
-  body #wrapper > div > section.admin .main section#Home article:not(.main):nth-of-type(2) {
-    right: 50%;
-    border-bottom: none;
-    border-right: solid 1px #757575;
+  body #wrapper > div > section.main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div > section.main section#Home .grid.nogrow.active .grid.row2 > article,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article {
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
   }
-  body #wrapper > div > section.main section#Home article:not(.main):last-of-type,
-  body #wrapper > div > section.admin .main section#Home article:not(.main):last-of-type {
-    left: 50%;
+  body #wrapper > div > section.main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div > section.main section#Home .grid.nogrow.active .grid.row2 > article.active,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article.active {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
   }
 }
 @media (max-width: 700px) {
-  body #wrapper > div > section.main section#Home,
-  body #wrapper > div > section.admin .main section#Home {
-    -webkit-perspective: 600;
-    -moz-perspective: 600;
-    -ms-perspective: 600;
-    perspective: 600;
-    overflow: hidden;
+  body #wrapper > div > section.main section#Home .grid.nogrow > article.post,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow > article.post {
+    height: 100% !important;
+    width: 100% !important;
   }
-  body #wrapper > div > section.main section#Home > div,
-  body #wrapper > div > section.admin .main section#Home > div {
-    width: 100%;
-    height: 100%;
+  body #wrapper > div > section.main section#Home .grid.nogrow .grid.row2 > article,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow .grid.row2 > article {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
   }
-  body #wrapper > div > section.main section#Home > div article,
-  body #wrapper > div > section.admin .main section#Home > div article {
-    position: fixed;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: -1;
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -o-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-    -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    overflow: hidden;
+  body #wrapper > div > section.main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div > section.main section#Home .grid.nogrow.active .grid.row2 > article,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article {
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
   }
-  body #wrapper > div > section.main section#Home > div article.active,
-  body #wrapper > div > section.admin .main section#Home > div article.active {
-    z-index: 1;
-    opacity: 1;
-    -ms-filter: none;
-    filter: none;
-    -webkit-transform: none;
-    -moz-transform: none;
-    -o-transform: none;
-    -ms-transform: none;
-    transform: none;
-  }
-  body #wrapper > div > section.main section#Home > div article.active + article,
-  body #wrapper > div > section.admin .main section#Home > div article.active + article {
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -o-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
+  body #wrapper > div > section.main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div > section.main section#Home .grid.nogrow.active .grid.row2 > article.active,
+  body #wrapper > div > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article.active {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
   }
   body #wrapper > div > section.main > aside nav,
   body #wrapper > div > section.admin .main > aside nav {
@@ -1399,85 +1302,65 @@ body #wrapper > div > section.admin .main section#sg article.inactive {
   body #wrapper > div.mobile > section.admin .main #Posts > div > material-content.loader {
     left: 166.66666666666666px;
   }
-  body #wrapper > div.mobile > section.main section#Home article.main,
-  body #wrapper > div.mobile > section.admin .main section#Home article.main {
-    right: 0;
-    bottom: 30%;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow > article.post,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow > article.post {
+    height: 70% !important;
+    width: auto !important;
   }
-  body #wrapper > div.mobile > section.main section#Home article:not(.main),
-  body #wrapper > div.mobile > section.admin .main section#Home article:not(.main) {
-    bottom: 0 !important;
-    top: 70% !important;
-    left: 0;
-    right: 0;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow .grid.row2 > article,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow .grid.row2 > article {
+    width: 50% !important;
+    min-width: 50% !important;
+    height: 100% !important;
   }
-  body #wrapper > div.mobile > section.main section#Home article:not(.main):nth-of-type(2),
-  body #wrapper > div.mobile > section.admin .main section#Home article:not(.main):nth-of-type(2) {
-    right: 50%;
-    border-bottom: none;
-    border-right: solid 1px #757575;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active .grid.row2 > article,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article {
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
   }
-  body #wrapper > div.mobile > section.main section#Home article:not(.main):last-of-type,
-  body #wrapper > div.mobile > section.admin .main section#Home article:not(.main):last-of-type {
-    left: 50%;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active .grid.row2 > article.active,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article.active {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
   }
 }
 @media (max-width: 700px) and (orientation: portrait), (max-width: 1400px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2), (max-width: 1400px) and (orientation: portrait) and (min--moz-device-pixel-ratio: 2), (max-width: 1400px) and (orientation: portrait) and (-o-min-device-pixel-ratio: 2/1), (max-width: 1400px) and (orientation: portrait) and (min-resolution: 2dppx), (max-width: 1400px) and (orientation: portrait) and (min-resolution: 192dpi), (max-width: 1400px) and (orientation: portrait) and (min-device-pixel-ratio: 2), (max-height: 700px) and (orientation: landscape), (max-height: 1400px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), (max-height: 1400px) and (orientation: landscape) and (min--moz-device-pixel-ratio: 2), (max-height: 1400px) and (orientation: landscape) and (-o-min-device-pixel-ratio: 2/1), (max-height: 1400px) and (orientation: landscape) and (min-resolution: 2dppx), (max-height: 1400px) and (orientation: landscape) and (min-resolution: 192dpi), (max-height: 1400px) and (orientation: landscape) and (min-device-pixel-ratio: 2) {
-  body #wrapper > div.mobile > section.main section#Home,
-  body #wrapper > div.mobile > section.admin .main section#Home {
-    -webkit-perspective: 600;
-    -moz-perspective: 600;
-    -ms-perspective: 600;
-    perspective: 600;
-    overflow: hidden;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow > article.post,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow > article.post {
+    height: 100% !important;
+    width: 100% !important;
   }
-  body #wrapper > div.mobile > section.main section#Home > div,
-  body #wrapper > div.mobile > section.admin .main section#Home > div {
-    width: 100%;
-    height: 100%;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow .grid.row2 > article,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow .grid.row2 > article {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
   }
-  body #wrapper > div.mobile > section.main section#Home > div article,
-  body #wrapper > div.mobile > section.admin .main section#Home > div article {
-    position: fixed;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: -1;
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -o-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-    -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    overflow: hidden;
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active > article.post,
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active .grid.row2 > article,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article {
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
   }
-  body #wrapper > div.mobile > section.main section#Home > div article.active,
-  body #wrapper > div.mobile > section.admin .main section#Home > div article.active {
-    z-index: 1;
-    opacity: 1;
-    -ms-filter: none;
-    filter: none;
-    -webkit-transform: none;
-    -moz-transform: none;
-    -o-transform: none;
-    -ms-transform: none;
-    transform: none;
-  }
-  body #wrapper > div.mobile > section.main section#Home > div article.active + article,
-  body #wrapper > div.mobile > section.admin .main section#Home > div article.active + article {
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -o-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active > article.post.active,
+  body #wrapper > div.mobile > section.main section#Home .grid.nogrow.active .grid.row2 > article.active,
+  body #wrapper > div.mobile > section.admin .main section#Home .grid.nogrow.active .grid.row2 > article.active {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
   }
   body #wrapper > div.mobile > section.main > aside nav,
   body #wrapper > div.mobile > section.admin .main > aside nav {

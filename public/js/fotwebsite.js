@@ -451,21 +451,19 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
   HomeController = (function(superclass){
     var prototype = extend$((import$(HomeController, superclass).displayName = 'HomeController', HomeController), superclass).prototype, constructor = HomeController;
     function HomeController(scope, location, root, comms, dialog){
-      var i$, ref$, len$, item, urlHandler, h, this$ = this instanceof ctor$ ? this : new ctor$;
+      var i$, ref$, len$, item, urlHandler, this$ = this instanceof ctor$ ? this : new ctor$;
       this$.scope = scope;
       this$.location = location;
       this$.root = root;
       this$.comms = comms;
       this$.dialog = dialog;
       this$.switchContent = bind$(this$, 'switchContent', prototype);
-      this$.wheel = bind$(this$, 'wheel', prototype);
-      this$.getHeight = bind$(this$, 'getHeight', prototype);
       this$.toggle = bind$(this$, 'toggle', prototype);
       this$.goto = bind$(this$, 'goto', prototype);
       this$.loadImage = bind$(this$, 'loadImage', prototype);
       this$.data = {
         active: 0,
-        state: 0,
+        width: window.innerWidth,
         asides: [
           {
             title: "About Fish on Toast",
@@ -499,13 +497,20 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       };
       this$.root.$on("$locationChangeSuccess", urlHandler);
       urlHandler();
-      this$.log("Hooking Hammer");
-      h = new Hammer(document.body);
-      h.on("swiperight", function(){
-        return this$.switchContent(-1);
-      });
-      h.on("swipeleft", function(){
-        return this$.switchContent(1);
+      setTimeout(function(){
+        var h;
+        this$.log("Hooking Hammer");
+        h = new Hammer($("#Home")[0]);
+        h.on("swiperight", function(){
+          return this$.switchContent(-1);
+        });
+        return h.on("swipeleft", function(){
+          return this$.switchContent(1);
+        });
+      }, 1000);
+      window.addEventListener("resize", function(){
+        this$.data.width = window.innerWidth;
+        return this$.scope.safeApply();
       });
       HomeController.superclass.apply(this$, arguments);
       return this$;
@@ -525,57 +530,22 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this.data.state = 0;
       if (id != null) {
         return this.toggle(id);
+      } else {
+        return this.location.path("/");
       }
     };
     prototype.toggle = function(id){
       var this$ = this;
       if (this.data.active !== 0) {
-        this.log("Going into state 2 (active is " + this.data.active + ")");
-        $("#" + id).removeClass("active");
-        this.data.state = 2;
+        this.data.state = 0;
+        this.data.active = 0;
         return this.safeApply(function(){
-          return setTimeout(function(){
-            this$.log("Going into state 0");
-            this$.data.state = 0;
-            this$.data.active = 0;
-            return this$.safeApply(function(){
-              return this$.location.path("/");
-            });
-          }, 500);
+          return this$.location.path("/");
         });
       } else {
-        this.log("Going into state 1");
         this.data.state = 1;
-        return this.data.active = id;
-      }
-    };
-    prototype.getHeight = function(){
-      if (window.innerWidth < 700) {
-        return {
-          height: window.innerHeight - 45
-        };
-      }
-    };
-    prototype.wheel = function(e){
-      var this$ = this;
-      this.log(e.target, $(e.target).hasClass("content")) || $(e.target).parents(".content").length > 0;
-      if (!e.target.className.match(/(content|brief)/i)) {
-        if (this.throttle != null) {
-          this.throttle += 1;
-        } else {
-          this.throttle = 1;
-        }
-        if (this.timeout != null) {
-          clearTimeout(this.timeout);
-        } else {
-          this.log("throttle " + this.throttle);
-        }
-        return this.timeout = setTimeout(function(){
-          var ref$;
-          this$.log("End " + throttle);
-          delete this$.timeout;
-          return ref$ = this$.throttle, delete this$.throttle, ref$;
-        }, 100);
+        this.data.active = id;
+        return this.location.path("/" + id);
       }
     };
     prototype.switchContent = function(dir){
@@ -84645,7 +84615,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (AppInfo, DepMan) {
-buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\"><section ng-class=\"{active: location.path().match('/admin') === null}\" ng-scroll=\"scroll($event)\" class=\"main\"><aside ng-mouseover=\"hover('in', $event)\" ng-mouseout=\"hover('out', $event)\" ng-class=\"{active: data.isContentActive}\"><nav ng-style=\"getHeight()\"><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li></ul></nav><h1 ng-click=\"hover('toggle')\">" + (jade.escape(null == (jade_interp = AppInfo.displayname) ? "" : jade_interp)) + "</h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div><div class=\"shade\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/><div class=\"darkness\"></div></div></section></div>");}.call(this,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined));;return buf.join("");
+buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\"><section ng-class=\"{active: location.path().match('/admin') === null}\" ng-scroll=\"scroll($event)\" class=\"main\"><aside id=\"sitemenu\" ng-mouseover=\"hover('in', $event)\" ng-mouseout=\"hover('out', $event)\" ng-class=\"{active: data.isContentActive}\"><nav ng-style=\"getHeight()\"><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li></ul></nav><h1 ng-click=\"hover('toggle')\">" + (jade.escape(null == (jade_interp = AppInfo.displayname) ? "" : jade_interp)) + "</h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div><div class=\"shade\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/><div class=\"darkness\"></div></div></section></div>");}.call(this,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined));;return buf.join("");
 }}, "data/views/input": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -85489,7 +85459,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<material-button ng-click=\"toggleLayout()\" ng-class=\"{hidden: data.active !== 0}\" class=\"material-button-fab material-button-fab-bottom-right right eventsfab\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div ng-if=\"!isMobile\" ng-class=\"{active: data.active == 1}\" class=\"grid nogrow vertical\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"material-whiteframe-z1 noborder event\"><div ng-class=\"{active: data.active == 1}\" style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true, active: data.active !== 0}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div ng-class=\"{active: data.active == index}\" style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div><div ng-if=\"isMobile\" ng-class=\"{active: data.active !== 0}\" class=\"grid\"><div ng-class=\"{'vertical': data.vertical == true}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"event\"><div style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div>");;return buf.join("");
+buf.push("<material-button ng-click=\"toggleLayout()\" ng-class=\"{hidden: data.active !== 0}\" class=\"material-button-fab material-button-fab-bottom-right right eventsfab\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div ng-if=\"!isMobile\" ng-class=\"{active: data.active == 1}\" class=\"grid nogrow vertical\"><article id=\"article-1\" ng-class=\"{active: data.active == 1, 'material-whiteframe-z1': data.scroll.top != 0 || data.scroll.left != 0}\" class=\"event\"><div ng-class=\"{active: data.active == 1}\" style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true, active: data.active !== 0}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div ng-class=\"{active: data.active == index}\" style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div><div ng-if=\"isMobile\" ng-class=\"{active: data.active !== 0}\" class=\"grid\"><div ng-class=\"{'vertical': data.vertical == true}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article id=\"article-1\" ng-class=\"{active: data.active == 1}\" class=\"event\"><div style=\"background: #{{colors[0]}};\" class=\"wrapper\"><h1>Event</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\">Close</material-button></nav></div></article><article ng-repeat=\"index in data.content\" id=\"article-{{index}}\" ng-class=\"{active: data.active == index}\" class=\"event\"><div style=\"background: #{{colors[index]}};\" class=\"wrapper\"><h1>Event {{index}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active != index\" class=\"right\">Read More</material-button><material-button ng-click=\"toggleArticle(index)\" ng-if=\"data.active == index\" class=\"right\">Close</material-button></nav></div></article></div></div>");;return buf.join("");
 }}, "data/views/panes/Home": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -85700,7 +85670,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<article ng-style=\"getHeight()\" ng-class=\"{active: data.active === 0}\" ng-wheel=\"wheel($event)\" hm-swipe=\"swipe\" class=\"main post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"http://facebook.com/fishontoast\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><article ng-repeat=\"article in data.asides\" id=\"{{article.id}}\" ng-class=\"{active: data.active == article.id}\" ng-style=\"getHeight()\" ng-wheel=\"wheel($event)\"><div class=\"wrapper\"><h1>{{article.title}}</h1><div load-content-for=\"article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'\" is-static=\"is-static\" is-implemented=\"is-implemented\" class=\"brief\"></div><div load-content-for=\"article.id[0].toUpperCase() + article.id.substr(1)\" class=\"content\"></div><nav><material-button ng-href=\"/{{article.id}}\" ng-if=\"data.active === 0 || data.active !== article.id\" class=\"right\">Read More</material-button><material-button ng-click=\"toggle(article.id)\" ng-if=\"data.active !== 0 &amp;&amp; data.active === article.id\" class=\"right\">Close</material-button></nav></div></article>");;return buf.join("");
+buf.push("<div ng-class=\"{vertical: data.width &gt; 1000, horizontal: data.width &lt; 1000, active: data.active !== 0}\" class=\"grid nogrow\"><article id=\"event\" ng-class=\"{active: data.active == 'event'}\" class=\"post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"http://facebook.com/fishontoast\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{horizontal: data.width &gt; 1000, vertical: data.width &lt; 1000}\" class=\"grid row2\"><article ng-repeat=\"index in data.asides\" id=\"article-{{index.id}}\" ng-class=\"{active: data.active == index.id}\"><div ng-class=\"{active: data.active == index.id}\" class=\"wrapper\"><h1>Event {{index.title}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"goto(index.id)\" ng-if=\"data.active != index.id\" class=\"right\">Read More</material-button><material-button ng-click=\"goto()\" ng-if=\"data.active == index.id\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
 }}, "data/views/panes/Posts": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90350,7 +90320,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Fri Oct 31 2014 03:16:40 GMT+0000 (GMT)
+@Date Compiled    : Fri Oct 31 2014 04:00:20 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

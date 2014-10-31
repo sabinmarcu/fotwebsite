@@ -1,7 +1,7 @@
 class HomeController extends DepMan.controller "Base"
     (@scope, @location, @root, @comms, @dialog) ~>
 
-        @data = active: 0, state: 0, asides:
+        @data = active: 0, width: window.innerWidth, asides:
             * title: "About Fish on Toast", id: "about"
             * title: "About Memberships", id: "membership"
 
@@ -28,10 +28,14 @@ class HomeController extends DepMan.controller "Base"
         @root.$on "$locationChangeSuccess", urlHandler
         urlHandler!
 
-        @log "Hooking Hammer"
-        h = new Hammer (document.body)
-        h.on "swiperight", ~> @switchContent -1
-        h.on "swipeleft", ~> @switchContent 1
+        setTimeout ~>
+            @log "Hooking Hammer"
+            h = new Hammer ($ "\#Home" .0)
+            h.on "swiperight", ~> @switchContent -1
+            h.on "swipeleft", ~> @switchContent 1
+        , 1000
+
+        window.addEventListener "resize", ~> @data.width = window.innerWidth; @scope.safeApply!
 
         super ...
 
@@ -43,45 +47,18 @@ class HomeController extends DepMan.controller "Base"
         @data.active = 0
         @data.state = 0
         if id? then @toggle id
+        else @location.path "/"
 
     toggle: (id) ~>
         if @data.active isnt 0 then 
-            @log "Going into state 2 (active is #{@data.active})"
-            $ "\##{id}" .removeClass "active"
-            @data.state = 2
+            @data.state = 0
+            @data.active = 0
             @safeApply ~>
-                setTimeout ~>
-                    @log "Going into state 0"
-                    @data.state = 0
-                    @data.active = 0
-                    @safeApply ~>
-                        @location.path "/"
-                , 500
+                @location.path "/"
         else 
-            @log "Going into state 1"
             @data.state = 1
             @data.active = id
-
-    getHeight: ~>
-        if window.innerWidth < 700
-            height: window.innerHeight - 45
-
-    wheel: (e) ~>
-        @log e.target, ($ e.target .hasClass "content") or (($ e.target .parents ".content" .length) > 0)
-        unless e.target.className.match /(content|brief)/i
-            if @throttle? then @throttle += 1
-            else @throttle = 1
-
-            if @timeout? then clearTimeout @timeout
-            else 
-                @log "throttle #{@throttle}"
-                # @switchContent e.originalEvent.deltaY / (Math.abs e.originalEvent.deltaY)
-
-            @timeout = setTimeout ~>
-                @log "End #{throttle}"
-                delete @timeout
-                delete @throttle
-            , 100
+            @location.path "/#{id}"
 
     switchContent: (dir) ~>
         @log "Checking Switch (#{dir}, #{typeof dir})"
@@ -98,7 +75,7 @@ class HomeController extends DepMan.controller "Base"
                 @log "I'm at membership, so membership + #{dir}"
                 if dir is 1 then @goto null
                 else @goto "about"
-
         @safeApply!
+
 
     @hook ["$location", "$rootScope", "Comms", "$materialDialog"]

@@ -1,6 +1,6 @@
 div(ng-controller="Page" ng-class="{mobile: isMobile}")
     section.main(ng-class="{active: location.path().match('/admin') === null}" ng-scroll="scroll($event)")
-        aside(ng-mouseover="hover('in', $event)" ng-mouseout="hover('out', $event)" ng-class="{active: data.isContentActive}")
+        aside#sitemenu(ng-mouseover="hover('in', $event)" ng-mouseout="hover('out', $event)" ng-class="{active: data.isContentActive}")
                 nav(ng-style="getHeight()")
                     ul
                         li(ng-repeat='title in routes.order')

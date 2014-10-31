@@ -23,18 +23,18 @@
         flex-flow row wrap
         overflow-x hidden
         overflow-y auto
-        article:not(.post)
+        article
             height 100% !important
             min-height 100% !important
             width articlewidth !important
             min-width articlewidth !important
-    &.horizontal article:not(.post)
+    &.horizontal article
         height articlewidth !important
         min-height articlewidth !important
         width 100% !important
         min-width 100% !important
         
-    article:not(.post)
+    article
         width articlewidth
         min-width articlewidth
         float left
@@ -45,46 +45,15 @@
         .content
             z-index -1
             opacity 0
-                
+            border-right solid 1px clightgray
                 
         h1, nav
             border-right solid 1px clightgray
             border-bottom solid 1px clightgray
             
-    &.row2 article:not(.post)
-        height 50% !important
-        min-height 50% !important
-    &.row3 article:not(.post)
-        height 33% !important
-        min-height 33% !important
-    &.row4 article:not(.post)
-        height 25% !important
-        min-height 25% !important
-    &.noflow
-        overflow hidden
-    &.nogrow > article
-        flex-grow 0
-    &.active article:not(.post)
-        width 0 !important
-        height 0 !important
-        min-width 0 !important
-        min-height 0 !important
-        opacity 0
-        &.active 
-            v1=100%
-            v2=articlemargin * 2
-            width s("calc(%s - %s)", v1, v2) !important
-            height s("calc(%s - %s)", v1, v2) !important
-            min-width s("calc(%s - %s)", v1, v2) !important
-            min-height s("calc(%s - %s)", v1, v2) !important
-            margin articlemargin
-            opacity 1
-            wfz1()
-
-article
-    &:not(.post)
         &:first-child
             border-top none
+            
         .wrapper
             position relative
             width 100%
@@ -128,34 +97,65 @@ article
                 transition all 0.5s timing
                 max-width 1000px
                 margin 0 auto
-    &.post
-        overflow hidden
-        figure, figcaption
-            position absolute
-            top 0
-            bottom 0
-            left 0
-            right 0
-            margin 0
-            padding 0
+                  
+        &.post
+            overflow hidden
+            figure, figcaption
+                position absolute
+                top 0
+                bottom 0
+                left 0
+                right 0
+                margin 0
+                padding 0
 
-        figure
-            z-index 1
-            background black
-            .focuspoint
-                width 100%
-                height 100%
-                img
-                    width auto
+            figure
+                z-index 1
+                background black
+                .focuspoint
+                    width 100%
                     height 100%
-                    min-height 100%
-                    max-height 100%
-                    transition all 0.3s timing
+                    img
+                        width auto
+                        height 100%
+                        min-height 100%
+                        max-height 100%
+                        transition all 0.3s timing
 
-        figcaption
-            z-index 2
-            top auto
-            height articlefigcaptionheight
-            padding 5px 15px
-            background rgba(0, 0, 0, 0.6)
-            color white
+            figcaption
+                z-index 2
+                top auto
+                height articlefigcaptionheight
+                padding 5px 15px
+                background rgba(0, 0, 0, 0.6)
+                color white
+            
+    &.row2 article
+        height 50% !important
+        min-height 50% !important
+    &.row3 article
+        height 33% !important
+        min-height 33% !important
+    &.row4 article
+        height 25% !important
+        min-height 25% !important
+    &.noflow
+        overflow hidden
+    &.nogrow > article
+        flex-grow 0
+    &.active article
+        width 0 !important
+        height 0 !important
+        min-width 0 !important
+        min-height 0 !important
+        opacity 0
+        &.active 
+            v1=100%
+            v2=articlemargin * 2
+            width s("calc(%s - %s)", v1, v2) !important
+            height s("calc(%s - %s)", v1, v2) !important
+            min-width s("calc(%s - %s)", v1, v2) !important
+            min-height s("calc(%s - %s)", v1, v2) !important
+            margin articlemargin
+            opacity 1
+            wfz1()

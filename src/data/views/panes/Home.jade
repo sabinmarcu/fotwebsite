@@ -1,17 +1,38 @@
-article.main.post(ng-style="getHeight()" ng-class="{active: data.active === 0}" ng-wheel="wheel($event)" hm-swipe="swipe")
-    figure
-        .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
-            img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
-    a(href="http://facebook.com/fishontoast" target="_blank")
-        figcaption
-            h1 Next Event
+//- article.main.post(ng-style="getHeight()" ng-class="{active: data.active === 0}" ng-wheel="wheel($event)" hm-swipe="swipe")
+//-     figure
+//-         .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
+//-             img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
+//-     a(href="http://facebook.com/fishontoast" target="_blank")
+//-         figcaption
+//-             h1 Next Event
 
-article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()" ng-wheel="wheel($event)")
-    .wrapper
-        h1 {{article.title}}
-        .brief(load-content-for="article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'" is-static is-implemented)
-        .content(load-content-for="article.id[0].toUpperCase() + article.id.substr(1)")
+//- article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()" ng-wheel="wheel($event)")
+//-     .wrapper
+//-         h1 {{article.title}}
+//-         .brief(load-content-for="article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'" is-static is-implemented)
+//-         .content(load-content-for="article.id[0].toUpperCase() + article.id.substr(1)")
 
-        nav
-            material-button.right(ng-href="/{{article.id}}" ng-if="data.active === 0 || data.active !== article.id") Read More
-            material-button.right(ng-click="toggle(article.id)" ng-if="data.active !== 0 && data.active === article.id") Close
+//-         nav
+//-             material-button.right(ng-href="/{{article.id}}" ng-if="data.active === 0 || data.active !== article.id") Read More
+//-             material-button.right(ng-click="toggle(article.id)" ng-if="data.active !== 0 && data.active === article.id") Close
+
+.grid.nogrow(ng-class="{vertical: data.width > 1000, horizontal: data.width < 1000, active: data.active !== 0}")
+    article.post(id="event" ng-class="{active: data.active == 'event'}")
+        figure
+            .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
+                img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
+        a(href="http://facebook.com/fishontoast" target="_blank")
+            figcaption
+                h1 Next Event
+    .next
+        .wrapper
+            .grid.row2(ng-class="{horizontal: data.width > 1000, vertical: data.width < 1000}")
+                article(ng-repeat="index in data.asides" id="article-{{index.id}}" ng-class="{active: data.active == index.id}" )
+                    .wrapper(ng-class="{active: data.active == index.id}")
+                        h1 Event {{index.title}}
+                        .brief Brief Content
+                        .content Big Content
+
+                        nav
+                            material-button.right(ng-click="goto(index.id)" ng-if="data.active != index.id") Read More
+                            material-button.right(ng-click="goto()" ng-if="data.active == index.id") Close
