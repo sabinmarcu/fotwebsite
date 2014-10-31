@@ -14,7 +14,7 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
 
     .next
         .wrapper
-            .grid.row2(ng-class="{'vertical': data.vertical == true, active: data.active !== 0}")
+            .grid.row2(ng-class="{'vertical': data.vertical == true, active: data.active !== 0}" ng-scroll="scroll($event)")
                 article.event(ng-repeat="index in data.content" id="article-{{index}}" ng-class="{active: data.active == index}" )
                     .wrapper(ng-class="{active: data.active == index}" style="background: #{{colors[index]}};")
                         h1 Event {{index}}
@@ -50,7 +50,7 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
 //-                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close
 
 .grid(ng-if="isMobile" ng-class="{active: data.active !== 0}")
-    .grid.row2(ng-class="{'vertical': data.vertical == true}")
+    .grid.row2(ng-class="{'vertical': data.vertical == true}" ng-scroll="scroll($event)")
         article.event(id="article-1" ng-class="{active: data.active == 1}")
             .wrapper( style="background: #{{colors[0]}};")
                 h1 Event

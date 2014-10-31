@@ -890,6 +890,9 @@ body #wrapper > div > section.admin .main .grid.active article:not(.post) {
   height: 0 !important;
   min-width: 0 !important;
   min-height: 0 !important;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 body #wrapper > div > section.main .grid.active article:not(.post).active,
 body #wrapper > div > section.admin .main .grid.active article:not(.post).active {
@@ -898,6 +901,9 @@ body #wrapper > div > section.admin .main .grid.active article:not(.post).active
   min-width: calc(100% - 0px) !important;
   min-height: calc(100% - 0px) !important;
   margin: 0px;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }

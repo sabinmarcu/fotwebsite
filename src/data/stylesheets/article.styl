@@ -69,6 +69,7 @@
         height 0 !important
         min-width 0 !important
         min-height 0 !important
+        opacity 0
         &.active 
             v1=100%
             v2=articlemargin * 2
@@ -77,6 +78,7 @@
             min-width s("calc(%s - %s)", v1, v2) !important
             min-height s("calc(%s - %s)", v1, v2) !important
             margin articlemargin
+            opacity 1
             wfz1()
 
 article
