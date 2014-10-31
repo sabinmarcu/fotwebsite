@@ -732,6 +732,21 @@ body #wrapper > div > section.admin .main section#Home article:not(.main):nth-ch
   bottom: 50%;
   border-bottom: solid 1px #757575;
 }
+body #wrapper > div > section.main .eventsfab,
+body #wrapper > div > section.admin .main .eventsfab {
+  -webkit-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+body #wrapper > div > section.main .eventsfab.hidden,
+body #wrapper > div > section.admin .main .eventsfab.hidden {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  z-index: -1;
+}
 body #wrapper > div > section.main .grid,
 body #wrapper > div > section.admin .main .grid {
   display: -webkit-box;
@@ -819,69 +834,19 @@ body #wrapper > div > section.admin .main .grid article:not(.post) {
   -webkit-flex-grow: 1;
   flex-grow: 1;
   position: relative;
-}
-body #wrapper > div > section.main .grid article:not(.post).active + *,
-body #wrapper > div > section.admin .main .grid article:not(.post).active + * {
-  z-index: 0;
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  width: auto;
-  height: auto;
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper .content,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper .content {
-  z-index: -1;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate,
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.active,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active {
-  position: fixed;
-  z-index: 9;
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate .content,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate .content,
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.active .content,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active .content {
-  z-index: 1;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.animate .brief,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.animate .brief,
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.active .brief,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active .brief {
-  z-index: -1;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-}
-body #wrapper > div > section.main .grid article:not(.post) .wrapper.active,
-body #wrapper > div > section.admin .main .grid article:not(.post) .wrapper.active {
-  top: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: auto !important;
-  height: auto !important;
   -webkit-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   -ms-transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  overflow: hidden;
+}
+body #wrapper > div > section.main .grid article:not(.post) .content,
+body #wrapper > div > section.admin .main .grid article:not(.post) .content {
+  z-index: -1;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 body #wrapper > div > section.main .grid article:not(.post) h1,
 body #wrapper > div > section.admin .main .grid article:not(.post) h1,
@@ -918,6 +883,23 @@ body #wrapper > div > section.admin .main .grid.nogrow > article {
   box-flex: 0;
   -webkit-flex-grow: 0;
   flex-grow: 0;
+}
+body #wrapper > div > section.main .grid.active article:not(.post),
+body #wrapper > div > section.admin .main .grid.active article:not(.post) {
+  width: 0 !important;
+  height: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+body #wrapper > div > section.main .grid.active article:not(.post).active,
+body #wrapper > div > section.admin .main .grid.active article:not(.post).active {
+  width: calc(100% - 0px) !important;
+  height: calc(100% - 0px) !important;
+  min-width: calc(100% - 0px) !important;
+  min-height: calc(100% - 0px) !important;
+  margin: 0px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 body #wrapper > div > section.main article:not(.post):first-child,
 body #wrapper > div > section.admin .main article:not(.post):first-child {

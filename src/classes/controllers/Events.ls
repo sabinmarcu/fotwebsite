@@ -3,7 +3,7 @@
 class EventsController extends DepMan.controller "Base"
     (@scope, @location, @root, @comms) ~>
 
-        @data = actve: 0, vertical: true, content: (replicate 15, 0).map (item, index) -> index + 2
+        @data = active: 0, vertical: true, content: (replicate 15, 0).map (item, index) -> index + 2
         @colors = (replicate 20, 0).map ~> @getRandomColor!
         @isMobile = Tester.mobile
         @comms.hook "post:event:all", @loadPostsHook

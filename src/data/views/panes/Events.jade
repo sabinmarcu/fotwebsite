@@ -1,7 +1,7 @@
-material-button.material-button-fab.material-button-fab-bottom-right.right(ng-click="toggleLayout()")
+material-button.material-button-fab.material-button-fab-bottom-right.right.eventsfab(ng-click="toggleLayout()" ng-class="{hidden: data.active !== 0}")
     i.fa(ng-class="{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}")
 
-.grid.nogrow.vertical(ng-if="!isMobile")
+.grid.nogrow.vertical(ng-if="!isMobile" ng-class="{active: data.active == 1}")
     article.material-whiteframe-z1.noborder.event(id="article-1" ng-class="{active: data.active == 1}")
         .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
             h1 Event
@@ -14,7 +14,7 @@ material-button.material-button-fab.material-button-fab-bottom-right.right(ng-cl
 
     .next
         .wrapper
-            .grid.row2(ng-class="{'vertical': data.vertical == true}")
+            .grid.row2(ng-class="{'vertical': data.vertical == true, active: data.active !== 0}")
                 article.event(ng-repeat="index in data.content" id="article-{{index}}" ng-class="{active: data.active == index}" )
                     .wrapper(ng-class="{active: data.active == index}" style="background: #{{colors[index]}};")
                         h1 Event {{index}}
@@ -49,10 +49,10 @@ material-button.material-button-fab.material-button-fab-bottom-right.right(ng-cl
 //-                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active != index") Read More
 //-                             material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close
 
-.grid(ng-if="isMobile")
+.grid(ng-if="isMobile" ng-class="{active: data.active !== 0}")
     .grid.row2(ng-class="{'vertical': data.vertical == true}")
         article.event(id="article-1" ng-class="{active: data.active == 1}")
-            .wrapper(ng-class="{active: data.active == 1}"  style="background: #{{colors[0]}};")
+            .wrapper( style="background: #{{colors[0]}};")
                 h1 Event
                 .brief Brief Content
                 .content Big Content
@@ -61,7 +61,7 @@ material-button.material-button-fab.material-button-fab-bottom-right.right(ng-cl
                     material-button.right(ng-click="toggleArticle(1)" ng-if="data.active != 1") Read More
                     material-button.right(ng-click="toggleArticle(1)" ng-if="data.active == 1") Close
         article.event(ng-repeat="index in data.content" id="article-{{index}}" ng-class="{active: data.active == index}" )
-            .wrapper(ng-class="{active: data.active == index}" style="background: #{{colors[index]}};")
+            .wrapper(style="background: #{{colors[index]}};")
                 h1 Event {{index}}
                 .brief Brief Content
                 .content Big Content
