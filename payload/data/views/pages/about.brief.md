@@ -1,1 +1,1 @@
-Brief for About
+Fish On Toast was set up in 2002 and since then has been working to nurture and develop the next generation of entrepreneurs by encouraging a culture of innovation, inspiration and collaboration. We pride ourselves on having one of the most ambitious, motivated and creative people as our members.

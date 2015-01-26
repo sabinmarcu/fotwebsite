@@ -1,1 +1,1 @@
-Membership Brief
+All Fish on Toast members will have exclusive access to exciting events that are ongoing throughout term-time semesters on Thursday evenings. Events are often led by famous speakers that have been successful in starting and growing their own company. Events may also include business challenges for members to demonstrate their creativity and business acumen, and to further develop their skills. 
