@@ -4,9 +4,9 @@
 "About": "/about"
 "Members Benefits": "/membership"
 "Student Guide": "/student-guide"
-"Test Thingy": "/test"
+"Partners": "/partners"
 order: [
-    "Home", "About", "Test Thingy", "Posts", "Events", "Student Guide", "Members Benefits"
+    "Home", "About", "Partners", "Posts", "Events", "Student Guide", "Members Benefits"
 ]
 nocontroller: [
     false, true, false, false, false, false, true

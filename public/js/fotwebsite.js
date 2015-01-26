@@ -90158,10 +90158,8 @@ window.AppInfo = {
   }
 }
 ;
-window.SrcInfo = {0: '',
-1: 'Application',
-'classes': {0: '',
-1: 'BaseAngularHook',
+window.SrcInfo = {0: 'Application',
+'classes': {0: 'BaseAngularHook',
 'controllers': {0: 'Base',
 1: 'Events',
 2: 'Home',
@@ -90228,12 +90226,10 @@ window.SrcInfo = {0: '',
  length: 25},
 'models': {0: 'JSONModel',
  length: 1},
+ length: 1},
+'data': {'images': {0: 'logo',
+1: 'ro',
  length: 2},
-'data': {0: '',
-'images': {0: '',
-1: 'logo',
-2: 'ro',
- length: 3},
 'jsons': {0: 'adminroutes',
  length: 1},
 'stylesheets': {'400': {0: 'admin',
@@ -90311,8 +90307,8 @@ window.SrcInfo = {0: '',
 6: 'register',
 7: 'toast',
  length: 8},
- length: 1},
- length: 2};/** COPYRIGHT
+ length: 0},
+ length: 1};/** COPYRIGHT
 Copyright (c) Sabin Marcu 2009-2013, Powered by the Arrowhead System (tm)
 You may not redistribute this software under any circumstance other than sharing the link to any online service supplied by myself, Sabin Marcu, or any market or application store it might be registered in without consulting with the author, or using the software in any commercial way.
 Other than that, feel free to enjoy the application!
@@ -90320,7 +90316,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Jan 21 2015 13:23:25 GMT+0000 (GMT)
+@Date Compiled    : Mon Jan 26 2015 15:35:01 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
