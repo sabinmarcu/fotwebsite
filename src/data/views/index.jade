@@ -6,9 +6,6 @@ div(ng-controller="Page" ng-class="{mobile: isMobile}" when-ready="isReady(); tr
                         li(ng-repeat='title in routes.order')
                             material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
                         li(ng-repeat='title in routes.order')
-                            material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
-                        li(ng-repeat='title in routes.order')
-                            material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
                 h1(ng-click="hover('toggle')")=AppInfo.displayname
         .container
             section(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
