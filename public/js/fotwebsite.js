@@ -83,25 +83,16 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.fixMobile = bind$(this$, 'fixMobile', prototype);
       this$.loadDepMan = bind$(this$, 'loadDepMan', prototype);
       this$.checkDevMode = bind$(this$, 'checkDevMode', prototype);
-      this$.progress = bind$(this$, 'progress', prototype);
       document.title = AppInfo.displayname;
       this$.LifeCycle = new IS.Promise();
-      this$.LifeCycle.then(this$.fixMobile, function(){}, this$.progress).then(this$.loadDepMan, function(){}, this$.progress).then(this$.getStyles, function(){}, this$.progress).then(this$.loadPayload).then(this$.loadLibs, function(){}, this$.progress).then(this$.loadEssentials, function(){}, this$.progress).then(this$.bootStrapAngular, function(){}, this$.progress).then(this$.renderPage, function(){}, this$.progress).then(this$.checkDevMode, function(){}, this$.progress).then(this$.completeLoad, function(){}, this$.progress);
+      this$.LifeCycle.then(this$.fixMobile).then(this$.loadDepMan).then(this$.getStyles).then(this$.loadPayload).then(this$.loadLibs).then(this$.loadEssentials).then(this$.bootStrapAngular).then(this$.renderPage).then(this$.checkDevMode).then(this$.completeLoad);
       window.Tester = new (require("classes/helpers/Tester"))(function(){
         return this$.LifeCycle.resolve();
       });
       return this$;
     } function ctor$(){} ctor$.prototype = prototype;
-    prototype.progress = function(it){
-      var p;
-      p = document.querySelector(".seoflier .percent");
-      if (p != null) {
-        return p.innerHTML = it;
-      }
-    };
     prototype.checkDevMode = function(){
       var scr;
-      this.LifeCycle.progress(90);
       if (window.isDev != null) {
         document.title = "Testing " + window.AppInfo.displayname + "!";
         scr = document.createElement("script");
@@ -113,7 +104,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.loadDepMan = function(){
       window.DepMan = new (require("classes/helpers/DepMan"));
-      this.LifeCycle.progress(20);
       return this.LifeCycle.resolve();
     };
     prototype.fixMobile = function(){
@@ -134,12 +124,10 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       meta.setAttribute('rel', 'icon');
       meta.setAttribute('href', 'icon.ico');
       document.head.appendChild(meta);
-      this.LifeCycle.progress(10);
       return this.LifeCycle.resolve();
     };
     prototype.loadEssentials = function(){
       var base, this$ = this;
-      this.LifeCycle.progress(60);
       base = document.createElement("base");
       base.setAttribute("href", "/");
       document.head.appendChild(base);
@@ -150,7 +138,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     prototype.getStyles = function(){
       var styles, this$ = this;
       styles = this.getStylesFunc();
-      this.LifeCycle.progress(30);
       styles.addEventListener("load", function(){
         DepMan.stylesheet('fullcalendar');
         DepMan.stylesheet('angular-material');
@@ -163,13 +150,11 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.loadPayload = function(){
       var this$ = this;
-      this.LifeCycle.progress(40);
       return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
         return this$.LifeCycle.resolve();
       }));
     };
     prototype.loadLibs = function(){
-      this.LifeCycle.progress(50);
       window.jQuery = window.$ = DepMan.lib('jquery');
       import$(window, DepMan.lib('fb'));
       import$(window, DepMan.lib('angular'));
@@ -199,7 +184,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.renderPage = function(){
       var wrapper;
-      this.LifeCycle.progress(80);
       wrapper = document.createElement("div");
       wrapper.setAttribute("id", "wrapper");
       wrapper.innerHTML = DepMan.render("index");
@@ -208,7 +192,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.bootStrapAngular = function(){
       var app, i$, ref$, len$, i;
-      this.LifeCycle.progress(70);
       app = angular.module(AppInfo.displayname, ["ngRoute", "ngAnimate", "ngMaterial", "ui.calendar", "hmTouchEvents"]).config([
         "$locationProvider", function(location){
           return location.html5Mode(true);
@@ -255,7 +238,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       }
     };
     prototype.completeLoad = function(){
-      this.LifeCycle.progress(100);
       window.FB.init({
         appId: '353273218168906',
         xfbml: false,
@@ -943,7 +925,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.location = location;
       this$.root = root;
       this$.comms = comms;
-      this$.isReady = bind$(this$, 'isReady', prototype);
       this$.hover = bind$(this$, 'hover', prototype);
       this$.getHeight = bind$(this$, 'getHeight', prototype);
       this$.isStatic = bind$(this$, 'isStatic', prototype);
@@ -1054,9 +1035,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       if (type === 'toggle') {
         return this.data.isContentActive = !this.data.isContentActive;
       }
-    };
-    prototype.isReady = function(){
-      $(".seoflier").addClass("inactive");
     };
     PageController.hook(["$location", '$rootScope', 'Comms']);
     return PageController;
@@ -2809,90 +2787,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     }
   ]);
 }).call(this);
-}, "classes/directives/whenReady": function(exports, require, module) {/*
- * The whenReady directive allows you to execute the content of a when-ready
- * attribute after the element is ready (i.e. when it's done loading all sub directives and DOM
- * content). See: http://stackoverflow.com/questions/14968690/sending-event-when-angular-js-finished-loading
- *
- * Execute multiple expressions in the when-ready attribute by delimiting them
- * with a semi-colon. when-ready="doThis(); doThat()"
- *
- * Optional: If the value of a wait-for-interpolation attribute on the
- * element evaluates to true, then the expressions in when-ready will be
- * evaluated after all text nodes in the element have been interpolated (i.e.
- * {{placeholders}} have been replaced with actual values).
- *
- * Optional: Use a ready-check attribute to write an expression that
- * specifies what condition is true at any given moment in time when the
- * element is ready. The expression will be evaluated repeatedly until the
- * condition is finally true. The expression is executed with
- * requestAnimationFrame so that it fires at a moment when it is least likely
- * to block rendering of the page.
- *
- * If wait-for-interpolation and ready-check are both supplied, then the
- * when-ready expressions will fire after interpolation is done *and* after
- * the ready-check condition evaluates to true.
- *
- * Caveats: if other directives exists on the same element as this directive
- * and destroy the element thus preventing other directives from loading, using
- * this directive won't work. The optimal way to use this is to put this
- * directive on an outer element.
- */
-angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', function($interpolate) {
-  return {
-    restrict: 'A',
-    priority: Number.MIN_SAFE_INTEGER, // execute last, after all other directives if any.
-    link: function($scope, $element, $attributes) {
-      var expressions = $attributes.whenReady.split(';');
-      var waitForInterpolation = false;
-      var hasReadyCheckExpression = false;
-
-      function evalExpressions(expressions) {
-        expressions.forEach(function(expression) {
-          $scope.$eval(expression);
-        });
-      }
-
-      if ($attributes.whenReady.trim().length === 0) { return; }
-
-    if ($attributes.waitForInterpolation && $scope.$eval($attributes.waitForInterpolation)) {
-        waitForInterpolation = true;
-    }
-
-      if ($attributes.readyCheck) {
-        hasReadyCheckExpression = true;
-      }
-
-      if (waitForInterpolation || hasReadyCheckExpression) {
-        requestAnimationFrame(function checkIfReady() {
-          var isInterpolated = false;
-          var isReadyCheckTrue = false;
-
-          if (waitForInterpolation && $element.text().indexOf($interpolate.startSymbol()) >= 0) { // if the text still has {{placeholders}}
-            isInterpolated = false;
-          }
-          else {
-            isInterpolated = true;
-          }
-
-          if (hasReadyCheckExpression && !$scope.$eval($attributes.readyCheck)) { // if the ready check expression returns false
-            isReadyCheckTrue = false;
-          }
-          else {
-            isReadyCheckTrue = true;
-          }
-
-          if (isInterpolated && isReadyCheckTrue) { evalExpressions(expressions); }
-          else { requestAnimationFrame(checkIfReady); }
-
-        });
-      }
-      else {
-        evalExpressions(expressions);
-      }
-    }
-  };
-}]);
 }, "classes/helpers/DepMan": function(exports, require, module) {(function(){
   var DepMan, join$ = [].join, slice$ = [].slice;
   DepMan = (function(superclass){
@@ -84721,7 +84615,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (AppInfo, DepMan) {
-buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\" when-ready=\"isReady(); true\"><section ng-class=\"{active: location.path().match('/admin') === null}\" ng-scroll=\"scroll($event)\" class=\"main\"><aside id=\"sitemenu\" ng-mouseover=\"hover('in', $event)\" ng-mouseout=\"hover('out', $event)\" ng-class=\"{active: data.isContentActive}\"><nav ng-style=\"getHeight()\"><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li></ul></nav><h1 ng-click=\"hover('toggle')\">" + (jade.escape(null == (jade_interp = AppInfo.displayname) ? "" : jade_interp)) + "</h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div><div class=\"shade\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/><div class=\"darkness\"></div></div></section></div>");}.call(this,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined));;return buf.join("");
+buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\"><section ng-class=\"{active: location.path().match('/admin') === null}\" ng-scroll=\"scroll($event)\" class=\"main\"><aside id=\"sitemenu\" ng-mouseover=\"hover('in', $event)\" ng-mouseout=\"hover('out', $event)\" ng-class=\"{active: data.isContentActive}\"><nav ng-style=\"getHeight()\"><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li></ul></nav><h1 ng-click=\"hover('toggle')\">" + (jade.escape(null == (jade_interp = AppInfo.displayname) ? "" : jade_interp)) + "</h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div><div class=\"shade\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/><div class=\"darkness\"></div></div></section></div>");}.call(this,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined));;return buf.join("");
 }}, "data/views/input": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90264,10 +90158,8 @@ window.AppInfo = {
   }
 }
 ;
-window.SrcInfo = {0: '',
-1: 'Application',
-'classes': {0: '',
-1: 'BaseAngularHook',
+window.SrcInfo = {0: 'Application',
+'classes': {0: 'BaseAngularHook',
 'controllers': {0: 'Base',
 1: 'Events',
 2: 'Home',
@@ -90297,8 +90189,7 @@ window.SrcInfo = {0: '',
 11: 'onEnter',
 12: 'readFile',
 13: 'toTrustedFilter',
-14: 'whenReady',
- length: 15},
+ length: 14},
 'helpers': {0: 'DepMan',
 1: 'Storage',
 2: 'Tester',
@@ -90335,12 +90226,10 @@ window.SrcInfo = {0: '',
  length: 25},
 'models': {0: 'JSONModel',
  length: 1},
+ length: 1},
+'data': {'images': {0: 'logo',
+1: 'ro',
  length: 2},
-'data': {0: '',
-'images': {0: '',
-1: 'logo',
-2: 'ro',
- length: 3},
 'jsons': {0: 'adminroutes',
  length: 1},
 'stylesheets': {'400': {0: 'admin',
@@ -90418,8 +90307,8 @@ window.SrcInfo = {0: '',
 6: 'register',
 7: 'toast',
  length: 8},
- length: 1},
- length: 2};/** COPYRIGHT
+ length: 0},
+ length: 1};/** COPYRIGHT
 Copyright (c) Sabin Marcu 2009-2013, Powered by the Arrowhead System (tm)
 You may not redistribute this software under any circumstance other than sharing the link to any online service supplied by myself, Sabin Marcu, or any market or application store it might be registered in without consulting with the author, or using the software in any commercial way.
 Other than that, feel free to enjoy the application!
@@ -90427,7 +90316,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Mon Jan 26 2015 15:49:03 GMT+0000 (GMT)
+@Date Compiled    : Mon Jan 26 2015 15:43:21 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
