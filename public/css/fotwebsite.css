@@ -862,6 +862,7 @@ body #wrapper > div > section.admin .main .grid article .wrapper .brief {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+  z-index: -1;
 }
 body #wrapper > div > section.main .grid article .wrapper .content.brief,
 body #wrapper > div > section.admin .main .grid article .wrapper .content.brief,
@@ -870,6 +871,7 @@ body #wrapper > div > section.admin .main .grid article .wrapper .brief.brief {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+  z-index: 1;
 }
 body #wrapper > div > section.main .grid article.post,
 body #wrapper > div > section.admin .main .grid article.post {
@@ -975,12 +977,14 @@ body #wrapper > div > section.admin .main .grid.active article.active .content {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+  z-index: 1;
 }
 body #wrapper > div > section.main .grid.active article.active .brief,
 body #wrapper > div > section.admin .main .grid.active article.active .brief {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+  z-index: -1;
 }
 body #wrapper > div > section.main nav#sg,
 body #wrapper > div > section.admin .main nav#sg {
