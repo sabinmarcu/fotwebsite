@@ -63,4 +63,6 @@ class PageController extends DepMan.controller "Base"
             unless /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent) && !/firefox/i.test(navigator.userAgent)
                 @data.isContentActive = false
         if type is \toggle then @data.isContentActive = not @data.isContentActive
+
+    isReady: !~> $ ".seoflier" .addClass "inactive"
     @hook ["$location", '$rootScope', 'Comms']
