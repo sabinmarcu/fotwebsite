@@ -1,0 +1,32 @@
+{
+    "production": {
+        "merchantId": "220223192630001",
+        "customerLanguage": "en",
+        "keyVersion": "1",
+        "currencyCode": "978",
+        "amount": "1000",
+        "normalReturnUrl"       : "api/payment/return",
+        "automaticResponseUrl"  : "api/payment/response"
+    },
+
+    "test": {
+        "merchantId": "002020000000001"
+    },
+
+    "interfaceVersion": "HP_1.0",
+
+    "bankUrls": {
+        "production": "https://payment-webinit.omnikassa.rabobank.nl/paymentServlet",
+        "test": "https://payment-webinit.simu.omnikassa.rabobank.nl/paymentServlet"
+    },
+
+    "urls": {
+        "test": "http://localhost:8000/",
+        "production": "http://isr.lytic.co.uk/"
+    },
+
+    "keys": {
+        "test": "002020000000001_KEY1",
+        "production": "GFW3XC9-o-mxkwvtpcJBQIDoXDlpII_Kyp44axNa9vY"
+    }
+}

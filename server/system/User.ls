@@ -1,9 +1,16 @@
 require! <[mongoose crypto node-uuid mongoose-unique-validator isf]>
 
+mailer = require "./Mailer"
+templates = require "./EmailTemplate"
+
 {keys, replicate, lists-to-obj, map} = require "prelude-ls"
 debug = (require \debug)(\app:User)
 debug.error = (require \debug)(\app:User:Error)
 debug.error.log = console.error.bind console
+
+randomString = -> pos = 'QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm'; [pos.charAt(Math.floor(Math.random()*pos.length)) for i in [0 til it]].join ""
+
+
 
 class User extends require "./BaseModel"
 
@@ -26,6 +33,7 @@ class User extends require "./BaseModel"
         activated: String
         authtoken: String
         facebook: String
+        account_number: Number
 
     @methods = 
         login: ->
@@ -68,7 +76,7 @@ class User extends require "./BaseModel"
 
                     if data.password
                         debug "Must modify password"
-                        data.salt = node-uuid.v1!
+                        data.salt = randomString 25
 
                         debug "Hashing password with salt", data.password, data.salt
                         data.password = crypto.create-hash "sha256" .update "#{data.password}#{data.salt}" .digest "base64"
@@ -83,26 +91,25 @@ class User extends require "./BaseModel"
                     User.model.find {"_id": data._id}, ko, (err, dbdata) ~>
                         if err then promise.reject err 
                         else
-                            if data.type isnt dbdata.type
-                                @log "Permission Changed. Must EMail"
+                            if data.type isnt dbdata.0.type
+                                @log "Permission Changed (#{data.type}, #{dbdata.0.type})"
                                 User.model.find {"type": 2}, (err, admins) ~>
                                     if err then debug.error "Problem at retrieving all admins to notify"
                                     else
-                                        mailer = require "./Mailer"
                                         for admin in admins
                                             @log "Sending email to #{admin.name} (#{admin.email})"
-                                            mailer.send "sabin@lytic.co.uk", admin.email, "Changed Permission for #{data.name}", "Permission for user #{data.name} (#{data.email}) has been changed."
+                                            mailer.send "sabin@lytic.co.uk", admin.email, "Changed Permission for #{data.name}", templates.compile "permission-change", name: data.name, email: data.email
 
 
                             @log "Updating"
-                            User.model.update "_id": data._id, data, (err, data) ~>
+                            User.model.update "_id": data._id, data, (err, d) ~>
                                 @log "Done updating", err
                                 if err then promise.reject err
                                 else promise.resolve data
                 else 
                     @log "Must register a new user"
                     @load data
-                    @salt = node-uuid.v1!
+                    @salt = randomString 25
 
                     @log "Hashing password with salt", @password, @salt
                     @password = crypto.create-hash "sha256" .update "#{@password}#{@salt}" .digest "base64"
@@ -116,8 +123,7 @@ class User extends require "./BaseModel"
                         if err then promise.reject err
                         else
                             @log "Sending email"
-                            mailer = require "./Mailer"
-                            mailer.send "sabin@lytic.co.uk", @email, "Welcome to ISR", null, "<h1>Contenet Goes Here</h1>"
+                            mailer.send "sabin@lytic.co.uk", @email, "Welcome to ISR", null, templates.compile "welcome-email", website: "localhost", name: @name, id: @_id
 
                             @log "Sending result"
                             promise.resolve @
@@ -131,11 +137,14 @@ class User extends require "./BaseModel"
             @model.find {_id: req.params.id}, {image: "true"}, (err, data) ~>
                 if err or not data.0.image? then res.send "Does not exist", {"Content-Type": "text/plain"}, 404
                 else 
-                    ct = data.0.image.match /:([a-z\/]+);/ .1
-                    b = new Buffer(data.0.image.match /,([a-zA-Z0-9+/]+={0,2})$/ .1, "base64")
-                    @log "Will send pic", ct, b
-                    res.set "Content-Type": ct
-                    res.end b, \binary
+                    try
+                        ct = data.0.image.match /:([a-z\/]+);/ .1
+                        b = new Buffer(data.0.image.match /,([a-zA-Z0-9+/]+={0,2})$/ .1, "base64")
+                        @log "Will send pic", ct, b
+                        res.set "Content-Type": ct
+                        res.end b, \binary
+                    catch e
+                        res.send "There was a problem retrieving the image", {"Content-Type": "text/plain"}, 501
 
     @api = 
         "login": (sock, router, connection, data, fromStorage = false) ~>
@@ -199,20 +208,57 @@ class User extends require "./BaseModel"
 
             promise.then success, error, progress .resolve post
 
-        "resetUserPassword": (sock, router, connection, user) ~>
-
+        "resetUserPassword": (sock, router, connection, email) ~>
 
             @log "Going to reset password"
+            @model.find "email": email, (err, user) ~>
+                if error then sock.emit "login:resetted", err
+                else
+                    if user.length is 1
+                        t = user.0
+                        ks = keys @props
+                        user = {}
+
+                        @log t, ks, user
+                        for k, v of t
+                            if k in ks then user[k] = v
+
+                        user._id = t._id
+                        promise = (new @model!).register!
+
+                        user.password = tempPass = randomString 10
+
+                        @log "Created a new password, #{user.password}"
+
+                        success = ~>
+                            try
+                                sock.emit "login:resetted", null, true
+                                mailer.send "sabin@lytic.co.uk", it.email, "Password Reset", null, templates.compile "password-reset", name: user.name, pass: tempPass
+                            catch error
+                                @error error
+                        error = ~> sock.emit "login:resetted", it
+                        progress = ~> sock.emit "login:resetted:progress", it
+
+                        @log user
+                        promise.then success, error, progress .resolve user
+                    else sock.emit "login:resetted", null, false
+
+
+        "resetAdminPassword": (sock, router, connection, user) ~>
+
+
+            @log "Going to reset password (from admin panel)"
 
             try
                 promise = (new @model!).register!
 
-                user.password = "   "
+                user.password = tempPass = randomString 10
 
-                @log "Created a new password"
+                @log "Created a new password, #{user.password}"
                 success = ~>
                     try
                         sock.emit "admin:user:resetted", null, true
+                        mailer.send "sabin@lytic.co.uk", it.email, "Password Reset", null, templates.compile "password-reset", name: user.name, pass: tempPass
                     catch error
                         @error error
                 error = ~> sock.emit "admin:user:resetted", it
@@ -227,10 +273,14 @@ class User extends require "./BaseModel"
             if post then q = "_id": post
             else q = {}
 
-            k = ((keys @props) * ',' - 'image,') / ','
+            @log "Started user Query"
+
+            k = (keys @props); k.splice (k.indexOf "image"), 1
             ko = lists-to-obj k, (replicate k.length, true)
 
+            @log "Querying the database", q, ko, k
             @model.find q, ko .sort "name": 1 .exec (err, data) ~>
+                @log "Query successful", err, data
                 if err then sock.emit "admin:user:all", err
                 else sock.emit "admin:user:all", null, data
 

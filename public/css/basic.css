@@ -1,0 +1,148 @@
+body, html {
+    background: #ddd;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.seoflier{
+    position: fixed;
+    height: 50%;
+    width: 100%;
+    top: 25%;
+    font-family: "Open Sans", "Roboto", "Noto", "Helvetica", "Arial", sans-serif;
+}
+
+.seowrapper {
+    width: 75%;
+    height: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    position: relative;
+}
+
+.seowrapper header, .seowrapper footer, .seowrapper article{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.seowrapper header {
+    padding: 0 0 0 25px;
+    overflow: hidden;
+    font-size: 24pt;
+    border-bottom: solid 1px #ddd;
+    line-height: 70px;
+    font-weight: 100;
+    bottom: auto;
+    background: white;
+    height: 70px;
+}
+.seowrapper article {
+    top: 71px;
+    bottom: 41px;
+    font-size: 10pt;
+    color: #999;
+    padding: 25px;
+}
+
+.seowrapper footer {
+    padding: 0 0 0 25px;
+    overflow: hidden;
+    font-size: 14pt;
+    border-top: solid 1px #ddd;
+    line-height: 40px;
+    font-weight: 100;
+    top: auto;
+    opacity: 0.7;
+    background: white;
+    height: 40px;
+}
+
+ @keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-ms-keyframes spinner {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+.seowrapper .spinner {
+    content: "";
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    border: solid 4px rgba(66,156,214,0.4);
+    border-top: solid 4px rgba(66,156,214,0.8);
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+
+    opacity: 0.3;
+    -webkit-filter: blur(5px);
+    -o-filter: blur(5px);
+    filter: blur(5px);
+
+    -webkit-animation: spinner 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-animation: spinner 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-animation: spinner 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    -ms-animation: spinner 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation: spinner 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    -webkit-transition: all 0.1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-transition: all 0.1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition: all 0.1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -ms-transition: all 0.1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+@media (max-width: 700px) and (orientation: portrait), (max-height: 700px) and (orientation: landscape) {
+    .seoflier{
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+    .seotitle,
+    .seowrapper {
+        width: 100%;
+    }
+}

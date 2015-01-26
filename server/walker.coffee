@@ -13,21 +13,24 @@ class Walker
             else string += "#{items++}: '#{value}',\n"
         "{#{string} length: #{items}}"
 
-    @generate: ->
+    @generate: (path = "../src", deext = true, gen = true) ->
         @files = {}
-        path = (require "path").resolve "#{__dirname}/../src"
-        @walkDir path, @files
-        @generateOutput @files
 
-    @walkDir: (dir, into) ->
+        path = (require "path").resolve "#{__dirname}/#{path}"
+        @walkDir path, @files, deext
+
+        if gen then @generateOutput @files
+        else @files
+
+    @walkDir: (dir, into, deext) ->
         if fs.lstatSync(dir).isDirectory()
             files = fs.readdirSync dir
             for file in files
                 if fs.lstatSync("#{dir}/#{file}").isDirectory()
                     into[file] = {}
-                    Walker.walkDir "#{dir}/#{file}", into[file]
+                    Walker.walkDir "#{dir}/#{file}", into[file], deext
                 else
-                    if (file.indexOf ".") >= 0 then name = file.substr 0, file.lastIndexOf "."
+                    if deext and (file.indexOf ".") >= 0 then name = file.substr 0, file.lastIndexOf "."
                     else name = file
                     into[name] = name
 

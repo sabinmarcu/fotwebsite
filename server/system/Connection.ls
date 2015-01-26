@@ -30,7 +30,7 @@ class Connection
 
     echoHook: (data) ~> debug data
     
-    getCombinedPostsHook: ~>
+    getCombinedPostsHook: (lim) ~>
 
         k = ((keys models.Post._parent.props) * ',' - 'image,') / ','
         ko1 = lists-to-obj k, (replicate k.length, true)
@@ -38,23 +38,24 @@ class Connection
         k = ((keys models.Event._parent.props) * ',' - 'image,') / ','
         ko2 = lists-to-obj k, (replicate k.length, true)
 
-        getPosts = (cb) -> models.Post.find {}, ko1 .sort "added": -1 .limit parseInt(PAGELIMIT / 2) .skip it * parseInt(PAGELIMIT / 2), .exec (err, data) -> cb err, data
-        getEvents = (cb) -> models.Event.find "start": {"$gte": new Date!}, ko2 .sort "added": -1 .limit parseInt(PAGELIMIT / 2) .skip it * parseInt(PAGELIMIT / 2), .exec (err, data) -> cb err, data
-        debug "Getting posts (combined) from #it"
+        LIMIT = (PAGELIMIT - lim)
+        getPosts = (cb) -> models.Post.find {}, ko1 .sort "added": -1 .limit LIMIT, .exec (err, data) -> cb err, data
+        getEvents = (cb) -> models.Event.find "start": {"$gte": new Date!}, ko2 .sort "added": -1 .limit LIMIT, .exec (err, data) -> cb err, data
+        debug "Getting posts (combined) from #{lim}"
         async.parallel [getPosts, getEvents], (err, data) ~>
-            debug "Got posts (combined) from #it", data[0].length, data[1].length
+            debug "Got posts (combined) from #{lim}", data[0].length, data[1].length
 
             map (~> it._type = "post"), data[0]
             map (~> it._type = "event"), data[1]
 
             if err then @sock.emit "post:combined:all", err
             else async.sortBy data[0] ++ data[1], ((item, cb) -> cb null, item.added), (err, data) ~>
-                debug "Joined posts (combined) for #it", data.length
+                debug "Joined posts (combined) for #{lim}", data.length
                 if err then @sock.emit "post:combined:all", err
                 else
-                    data = data.filter (value, index) -> if index < 16 then value else undefined
+                    data = data.filter (value, index) -> if index < LIMIT then value else undefined
                     data = data.reverse!
-                    debug "Sending posts (combined) for #it", data.length
+                    debug "Sending posts (combined) for #{lim}", data.length
                     @sock.emit "post:combined:all", null, ([0] ++ data)
 
 isf.DefineProperty "Connection", ~> debug "Getting Connection"; Connection

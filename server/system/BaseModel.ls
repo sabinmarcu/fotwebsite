@@ -45,6 +45,7 @@ class BaseModel
             for route, handler of @staticpostapi
                 let r = route, h = handler
                     server.post r, h
+                    
     @loadConnection = (connection, router, socket) ->   
         if @api?
             for ev, handler of @api 

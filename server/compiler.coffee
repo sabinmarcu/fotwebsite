@@ -1,17 +1,20 @@
 # Including some base necessities and creating the compilation package (anonymously)
 require "isf"
-stitch   = require "stitchw"
-stylus   = require "stylus"
-nib      = require "nib"
-path     = require 'path'
-fs       = require "fs"
-base     = path.resolve "@{__dirname}/../src/data/stylesheets"
-json     = require path.resolve "@{__dirname}/../package.json"
-debug    = (require "debug")("app:Compiler")
-pack     = stitch.createPackage
+stitch      = require "stitchw"
+stylus      = require "stylus"
+nib         = require "nib"
+path        = require 'path'
+fs          = require "fs"
+base        = path.resolve "@{__dirname}/../src/data/stylesheets"
+json        = require path.resolve "@{__dirname}/../package.json"
+debug       = (require "debug")("app:Compiler")
+pack        = stitch.createPackage
     "dependencies": ["./node_modules/isf/lib/isf.min.js"]
     "paths": ["./src"]
-auxpack  = stitch.createPackage
+configpack  = stitch.createPackage
+    "dependenceis": []
+    "paths": ["./config"]
+auxpack     = stitch.createPackage
     "dependenceis": []
     "paths": ["./payload"]
 
@@ -80,6 +83,17 @@ class Compiler
                 if callback? then callback null, source
         catch e then return @throw e, callback
 
+    @compileConfig: (to = "./public/js/#{json.name}.config.js", callback = null) ->
+        try 
+            configpack.compile (err, source) =>
+                if err then return @throw ( CompilerErrorReporter.generate 2, CompilerErrorReporter.wrapCustomError err ), callback
+                try
+                    (require "fs").writeFileSync to.toString(), source, "utf8"
+                    debug "Wrote sources to file"
+                catch e then return @throw ( CompilerErrorReporter.generate 3, CompilerErrorReporter.wrapCustomError e ), callback
+                if callback? then callback null, source
+        catch e then return @throw e, callback
+
     @addSource: (source) -> @sources.push source
     @sendSource: (to, source, callback) ->
         source = """
@@ -108,7 +122,7 @@ class Compiler
                         })();
         """
         try
-            (require "fs").writeFileSync (path.resolve to.toString()), source, "utf8"
+            (require "fs").writeFileSync to.toString(), source, "utf8"
             debug "Wrote sources to file"
         catch e then return @throw ( CompilerErrorReporter.generate 3, CompilerErrorReporter.wrapCustomError e ), callback
         if callback? then callback null, source
@@ -125,7 +139,7 @@ class Compiler
             if err then return @throw ( CompilerErrorReporter.generate 4, CompilerErrorReporter.wrapCustomError err ), callback
             else 
                 try
-                    (require "fs").writeFileSync (path.resolve to.toString()), css, "utf8"
+                    (require "fs").writeFileSync to.toString(), css, "utf8"
                     debug "Wrote css to file"
                 catch e then return @throw ( CompilerErrorReporter.generate 3, CompilerErrorReporter.wrapCustomError e ), callback
                 if callback? then callback null, css

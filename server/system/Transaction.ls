@@ -5,38 +5,15 @@ debug.error = (require \debug)(\app:Transaction:Error)
 debug.error.log = console.error.bind console
 
 template = jade.compile (fs.readFileSync "#{__dirname}/data/paymentform.jade", "utf-8")
+templates = require "./EmailTemplate"
 User = require "./User" .User
+Seq = require "./Seq" .Seq
 
 class Transaction extends require "./BaseModel"
 
     @initLogs!
 
-    @config = 
-        production:
-            merchantId: '220223192630001'
-            customerLanguage: 'en'
-            keyVersion: '1'
-            currencyCode: '978'
-            amount: '1000'
-            normalReturnUrl: 'api/payment/return'
-            automaticResponseUrl: 'api/payment/response'
-
-        test: 
-            merchantId: '002020000000001'
-
-        interfaceVersion: 'HP_1.0'
-
-        bankUrls:
-            production: 'https://payment-webinit.omnikassa.rabobank.nl/paymentServlet' # Change to normal payments
-            test: 'https://payment-webinit.simu.omnikassa.rabobank.nl/paymentServlet' # Change to normal payments
-
-        urls: 
-            test: "http://localhost:8000/"
-            production: "http://isr.lytic.co.uk/"
-
-        keys: 
-            test: '002020000000001_KEY1'
-            production: 'GFW3XC9-o-mxkwvtpcJBQIDoXDlpII_Kyp44axNa9vY'
+    @config = require "./data/config.json"
 
     @props = 
         id: {type: String, unique: true}
@@ -66,13 +43,14 @@ class Transaction extends require "./BaseModel"
         export: ->
 
             @log "Exporting"
-            data = {} <<< Transaction.config.production
 
-            if process.comp_args.compile then data <<< Transaction.config.test
-
-            @log "Adding details (orderid: #{@id}) (merchantId: #{data.merchantId})"
+            data = {}
             data.orderId = @id
             data.transactionReference = crypto.create-hash "md5" .update "#{@id}#{(new Date()).getTime!}" .digest "hex"
+
+            data <<< Transaction.config.production
+
+            if process.comp_args.compile then data <<< Transaction.config.test
 
             @log "New orderId is #{data.orderId}"
 
@@ -88,7 +66,9 @@ class Transaction extends require "./BaseModel"
             d.normalReturnUrl = "#{root}#{d.normalReturnUrl}"
             d.automaticResponseUrl = "#{root}#{d.automaticResponseUrl}"
 
-            s = ["#{k}=#{v}" for k, v of d].join "|"
+            @log d
+
+            ["#{k}=#{v}" for k, v of d].join "|"
 
         getHash: (data) -> 
             key = if process.comp_args.compile then Transaction.config.keys.test else Transaction.config.keys.production
@@ -104,7 +84,49 @@ class Transaction extends require "./BaseModel"
                     if err then @error err
                     else 
                         trans.0.status = "completed"
-                        @model.update "id": trans.0.id, trans.0, (err) ~>
+                        trans.0.save (err) ~>
+                            if err then @error err
+                User.find "_id": user, (err, u) ~>
+                    if err then 
+                        @error err
+                        res.status "501" .end "There was a problem finding the user to associate the payment. Please contact and administrator, and provide him with the following number: #{user}"
+                    else if u.length isnt 1 
+                        @error "Wrong number of users"
+                        res.status "501" .end "There was a problem finding the user to associate the payment. Please contact and administrator, and provide him with the following number: #{user}"
+                    else
+                        (new Seq!).next "user", (err, number) ~>
+                            if err then 
+                                @error err
+                                res.status "501" .end "There has been a problem activating your account. Please notify one of the admins, and give them the following number: #{user}"
+                            else
+                                u.0.activated = "true"
+                                u.0.account_number = number
+                                u.0.save (err) ~>
+                                    if err then 
+                                        @error err
+                                        res.status "501" .end "There has been a problem activating your account. Please notify one of the admins, and give them the following number: #{user}"
+                                    else 
+                                        mailer = require "./Mailer"
+                                        mailer.send "sabin@lytic.co.uk", u.0.email, "Your account has been activated!", null, templates.compile "activated-account", name: u.0.name, email: u.0.email
+                                        mailer.send "sabin@lytic.co.uk", u.0.email, "New ISR Member", null, templates.compile "card-email", name: u.0.name, account_number: number
+                                        res.status "200" .end "Success! Your account has been activated!"
+
+            else if code is "17" 
+                root = if process.comp_args.compile then Transaction.config.urls.test else Transaction.config.urls.production
+                res.set "Content-Type": "text/html" .status "403" .end "It seems that you have cancelled the payment. If you wish, you can get in touch with ISR and pay directly, or try using the following address to begin the online payment process again : <a href='#{root}api/transaction/#{user}'>#{root}api/transaction/#{user}</a>"
+            else
+                root = if process.comp_args.compile then Transaction.config.urls.test else Transaction.config.urls.production 
+                res.set "Content-Type": "text/html" .status "501" .end "There's been some problem on the bank's side. Please, check with the bank first, to make sure funds were not substracted. Afterwards, you can get in touch with ISR and pay directly, or try using the following address to begin the online payment process again : <a href='#{root}api/transaction/#{user}'>#{root}api/transaction/#{user}</a>"
+
+        "/api/payment/response": (req, res) ~> 
+            code = (req.body.Data.split "|" .map (-> it.split "=") .filter (-> if it[0] is "responseCode" then it[1] else undefined ) )[0][1]
+            user = (req.body.Data.split "|" .map (-> it.split "=") .filter (-> if it[0] is "orderId" then it[1] else undefined ) )[0][1]
+            if code is "00" 
+                @model.find "id": user, (err, trans) ~>
+                    if err then @error err
+                    else 
+                        trans.0.status = "completed"
+                        trans.0.save (err) ~> 
                             if err then @error err
                 User.find "_id": user, (err, u) ~>
                     if err then 
@@ -119,7 +141,10 @@ class Transaction extends require "./BaseModel"
                             if err then 
                                 @error err
                                 res.status "501" .end "There has been a problem activating your account. Please notify one of the admins, and give them the following number: #{user}"
-                            else res.status "200" .end "Success! Your account has been activated!"
+                            else 
+                                mailer = require "./Mailer"
+                                mailer.send "sabin@lytic.co.uk", u.email, "Your account has been activated!", templates.compile "activated-account", name: u.name, email: u.email
+                                res.status "200" .end "Success! Your account has been activated!"
 
             else if code is "17" 
                 root = if process.comp_args.compile then Transaction.config.urls.test else Transaction.config.urls.production
@@ -127,7 +152,9 @@ class Transaction extends require "./BaseModel"
             else
                 root = if process.comp_args.compile then Transaction.config.urls.test else Transaction.config.urls.production 
                 res.set "Content-Type": "text/html" .status "501" .end "There's been some problem on the bank's side. Please, check with the bank first, to make sure funds were not substracted. Afterwards, you can get in touch with ISR and pay directly, or try using the following address to begin the online payment process again : <a href='#{root}api/transaction/#{user}'>#{root}api/transaction/#{user}</a>"
-        "/api/payment/response": (req, res) ~> @log "response" req.body
+
+
+        "/*": (req, res) ~> @log "GOT SOMETHING", req.url
 
     @staticapi = 
         "/api/transaction/:id": (req, res) ~> 

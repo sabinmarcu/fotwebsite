@@ -70,6 +70,13 @@ class Event extends require "./BaseModel"
                     res.end b, \binary
 
     @api = 
+        "adminGetAllEvents": (sock, router, connection) ~>
+            @log "Getting all events"
+            @model.find (err, data) ~>
+                @log "Got all events", err
+                if err then sock.emit "admin:event:all", err
+                else sock.emit "admin:event:all", null, data
+
         "getEvents": (sock, router, connection, it) ~>
             @log "Getting events from #it"
 
@@ -92,22 +99,22 @@ class Event extends require "./BaseModel"
                 if err then throw new Error err
                 else
                     if data.length isnt 0
-                        for org in data
-                            @log "Getting events for #{org.facebook}"
-                            [ "/#{org.facebook}/events",  "/pages/#{org.facebook}/events" ].map (endpoint) ~> 
+                        for org in data then let o = org
+                            @log "Getting events for #{o.facebook}"
+                            [ "/#{o.facebook}/events",  "/pages/#{o.facebook}/events" ].map (endpoint) ~> 
                                 fb.api endpoint, fields: "id, cover, name, location, start_time, end_time", ~> 
                                     if it.data?
-                                        for item in it.data 
-                                            @log "Checking if event #{item.id} (#{item.title}) exists"
-                                            Event.model.find "id", item.id, (err, data) ~>
+                                        for item in it.data then let i = item
+                                            @log "Checking if event #{i.id} (#{i.title}) exists"
+                                            Event.model.find "id" : i.id, (err, data) ~>
                                                 if err then throw new Error err
                                                 else 
                                                     if data.length is 0 
-                                                        @log "Event #{item.id} does not exist."
-                                                        (new Event.model!).add!resolve item, org.name
+                                                        @log "Event #{i.id} does not exist."
+                                                        (new Event.model!).add!resolve i, o.name
                                                     else
-                                                        @log "Event #{item.id} exists." 
-                                                        Event.model.update "id": item.id, item, (err, data) ->
+                                                        @log "Event #{i.id} exists."
+                                                        Event.model.update "id": i.id, i, (err, data) ->
                                                             if err then throw new Error err
                                     delete it.data
         catch e

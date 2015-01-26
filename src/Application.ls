@@ -48,7 +48,8 @@ class Application extends IS.Object
             @LifeCycle.resolve!
         document.head.append-child styles
     loadPayload: ~> 
-        DepMan.ext-script "/js/#{AppInfo.name}.payload.js", ~> @LifeCycle.resolve!
+        DepMan.ext-script "/js/#{AppInfo.name}.payload.js", 
+            DepMan.ext-script "/js/#{AppInfo.name}.config.js", ~> @LifeCycle.resolve!
 
     loadLibs: ~>
         window.jQuery = window.$ = DepMan.lib \jquery

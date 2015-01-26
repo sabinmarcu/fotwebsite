@@ -11,7 +11,14 @@ body
     overflow hidden
     font-family "Open Sans", Arial, Helvetica, sans-serif
     font-weight 300
-
+ 
+body .seoflier.inactive
+    @import "variables"
+    opacity 0
+    z-index -1
+    transform scale(0.5)
+    transition all 3s timing
+    
 body #wrapper > div, body #wrapper > div > section
     width 100%
     height 100%

@@ -67,10 +67,6 @@ class Server
             App.use (require "body-parser").json()
             App.use (require "body-parser").urlencoded()
 
-            App.use (req, res, next) =>
-                res.set "Cache-Control": "no-transform"
-                do next
-
             # Hook models API endpoints
             try
                 debug "Hooking Models to API endpoints"
@@ -92,12 +88,19 @@ class Server
                     else
                         res.set "Content-Type": "application/javascript" 
                         res.send source, 201
+                App.get "/js/#{info.name}.config.js", (req, res) => @compiler.compileConfig null, (err, source) =>
+                    if err then @err err
+                    else
+                        res.set "Content-Type": "application/javascript" 
+                        res.send source, 201
                 if !@bundle
                     App.get "/css/#{info.name}.css", (req, res) => @compiler.compileStyles null, (err, source) =>
                         if err then @err err
                         else
                             res.set "Content-Type": "text/css" 
                             res.send source, 201
+
+            new (require "./system/SEO")(App, @watch)
                 
             App.get "*", (req, res) =>
                 console.log "Requested", (require "path").resolve "#{__dirname}/../public#{req.url}"
@@ -105,7 +108,11 @@ class Server
                     if exists and req.url isnt "/" then res.sendfile ((require "path").resolve "#{__dirname}/../public#{req.url}")
                     else
                         content = (require "fs").readFileSync (require "path").resolve("#{__dirname}/../public/_index.html"), "utf-8"
-                        content = content.replace /\<\<appname\>\>/, info.name
+                        content = content.replace /\{\{appname\}\}/, info.name
+                        content = content.replace /\{\{displayname\}\}/, info.displayname or info.name
+                        if @watch then extra = "<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>"
+                        else extra = ""
+                        content = content.replace /\{\{extra\}\}/, extra
                         (require "fs").writeFileSync (require "path").resolve("#{__dirname}/../public/index.html"), content
                         res.send content, {"Content-Type": "text/html"}, 201
             # And if watch is enabled ...
@@ -130,15 +137,16 @@ class Server
         process.on "uncaughtException", (err) =>
             #notif.notify title: "Big System Error", message: err.message or err
             debug "Big Error", err.message or err
-            debug err.stack
+            debug.error err.stack or err or null
             process.exit 1
 
         @
 
     err: (err) ->
+        #notif.notify title: "Server Error", message: err.message or err
         debug "Server Error", err.message or err
-        debug "Stack : ", err.stack or err
-        if not process.comp_args.verbose then process.exit 1
+        debug.error err.stack or err or null
+        process.exit 1
 
 # Defining the ErrorReporting for the Server class
 class ServerErrorReporter extends IS.Object

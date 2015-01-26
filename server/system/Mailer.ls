@@ -10,9 +10,12 @@ class Mailer
     send: (from, to, subject, text, html) ~> 
 
         debug "Sending email to <#{to}>, from <#{from}>, with subject '#{subject}'"
-        switch text?
-        | true => @transport.sendMail from: from, to: to, subject: subject, text: text
-        | otherwise => @transport.sendMail from: from, to: to, subject: subject, html: html
+        if text? 
+            debug "Sending with text"
+            @transport.sendMail from: from, to: to, subject: subject, text: text
+        else 
+            debug "Sending with html"
+            @transport.sendMail from: from, to: to, subject: subject, html: html
 
 
 module.exports = new Mailer

@@ -150,9 +150,9 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.loadPayload = function(){
       var this$ = this;
-      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", function(){
+      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
         return this$.LifeCycle.resolve();
-      });
+      }));
     };
     prototype.loadLibs = function(){
       window.jQuery = window.$ = DepMan.lib('jquery');
@@ -90320,7 +90320,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Fri Oct 31 2014 04:00:20 GMT+0000 (GMT)
+@Date Compiled    : Wed Jan 21 2015 13:23:25 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
