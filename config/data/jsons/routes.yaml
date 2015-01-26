@@ -7,13 +7,13 @@
 "Partners": "/partners"
 "Projects": "/projects"
 order: [
-    "Home", "About", "Partners", "Projects", "Posts", "Events", "Members Benefits"
+    "Home", "About", "Members Benefits", "Events", "Projects", "Partners", "Posts"
 ]
 nocontroller: [
-    false, true, false, false, false, false, true
+    false, true, true, false, false, false, false
 ]
 isStaticPage: [
-    false, true, true, true, false, false, true
+    false, true, true, false, true, true, false
 ]
 implemented: [
 	true, true, true, true, true, true, true
