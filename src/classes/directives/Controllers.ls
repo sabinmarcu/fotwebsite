@@ -1,3 +1,5 @@
+debug = Debug("app:ControllerInitializer")
+
 angular.module AppInfo.displayname .directive "controllerFromString", ['$controller', (cont) ->
     {
         restrict: \A
@@ -12,7 +14,9 @@ angular.module AppInfo.displayname .directive "controllerFromString", ['$control
                 name = name[0].toUpperCase! + name.slice 1
 
             if routes.implemented[routes.order.indexOf scope.$eval attrs.controllerFromString]
+                debug "Controller Initializing", name
                 element.data '$Controller', cont name, locals
+            else debug "Controller will not be initialized", name
     }    
 ]
 angular.module AppInfo.displayname .directive "adminControllerFromString", ['$controller', (cont) ->

@@ -479,7 +479,7 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.toggle = bind$(this$, 'toggle', prototype);
       this$.goto = bind$(this$, 'goto', prototype);
       this$.loadImage = bind$(this$, 'loadImage', prototype);
-      this$.data = {
+      this$.scope.data = this$.data = {
         active: 0,
         width: window.innerWidth,
         asides: [
@@ -537,6 +537,8 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
         el.css("top", "");
         el.css("bottom", "");
         el.css("left", "");
+        item.brief = DepMan.render("pages/" + item.id + ".brief");
+        item.content = DepMan.render("pages/" + item.id + ".content");
       }
     } function ctor$(){} ctor$.prototype = prototype;
     prototype.loadImage = function(index){
@@ -2391,6 +2393,8 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
   ]);
 }).call(this);
 }, "classes/directives/Controllers": function(exports, require, module) {(function(){
+  var debug;
+  debug = Debug("app:ControllerInitializer");
   angular.module(AppInfo.displayname).directive("controllerFromString", [
     '$controller', function(cont){
       return {
@@ -2411,7 +2415,10 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
             name = name[0].toUpperCase() + name.slice(1);
           }
           if (routes.implemented[routes.order.indexOf(scope.$eval(attrs.controllerFromString))]) {
+            debug("Controller Initializing", name);
             return element.data('$Controller', cont(name, locals));
+          } else {
+            return debug("Controller will not be initialized", name);
           }
         }
       };
@@ -85776,7 +85783,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<div ng-class=\"{vertical: data.width &gt; 1000, horizontal: data.width &lt; 1000, active: data.active !== 0}\" class=\"grid nogrow\"><article id=\"event\" ng-class=\"{active: data.active == 'event'}\" class=\"post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"http://facebook.com/fishontoast\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{horizontal: data.width &gt; 1000, vertical: data.width &lt; 1000}\" class=\"grid row2\"><article ng-repeat=\"index in data.asides\" id=\"article-{{index.id}}\" ng-class=\"{active: data.active == index.id}\"><div ng-class=\"{active: data.active == index.id}\" class=\"wrapper\"><h1>Event {{index.title}}</h1><div class=\"brief\">Brief Content</div><div class=\"content\">Big Content</div><nav><material-button ng-click=\"goto(index.id)\" ng-if=\"data.active != index.id\" class=\"right\">Read More</material-button><material-button ng-click=\"goto()\" ng-if=\"data.active == index.id\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
+buf.push("<div ng-class=\"{vertical: data.width &gt; 1000, horizontal: data.width &lt; 1000, active: data.active !== 0}\" class=\"grid nogrow\"><article id=\"event\" ng-class=\"{active: data.active == 'event'}\" class=\"post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"http://facebook.com/fishontoast\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{horizontal: data.width &gt; 1000, vertical: data.width &lt; 1000}\" class=\"grid row2\"><article ng-repeat=\"index in data.asides\" id=\"article-{{index.id}}\" ng-class=\"{active: data.active == index.id}\"><div ng-class=\"{active: data.active == index.id}\" class=\"wrapper\"><h1>Event {{index.title}} ({{index.id}})</h1><div ng-bind-html=\"index.brief | toTrusted\" class=\"brief\"></div><div ng-bind-html=\"index.content | toTrusted\" class=\"content\"></div><nav><material-button ng-click=\"goto(index.id)\" ng-if=\"data.active != index.id\" class=\"right\">Read More</material-button><material-button ng-click=\"goto()\" ng-if=\"data.active == index.id\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
 }}, "data/views/panes/Posts": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90427,7 +90434,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Mon Jan 26 2015 15:56:12 GMT+0000 (GMT)
+@Date Compiled    : Mon Jan 26 2015 17:27:22 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

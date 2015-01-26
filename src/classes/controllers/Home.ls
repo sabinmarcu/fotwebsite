@@ -1,7 +1,7 @@
 class HomeController extends DepMan.controller "Base"
     (@scope, @location, @root, @comms, @dialog) ~>
 
-        @data = active: 0, width: window.innerWidth, asides:
+        @scope.data = @data = active: 0, width: window.innerWidth, asides:
             * title: "About Fish on Toast", id: "about"
             * title: "About Memberships", id: "membership"
 
@@ -13,6 +13,8 @@ class HomeController extends DepMan.controller "Base"
                 el.css "top", ""
                 el.css "bottom", ""
                 el.css "left", ""
+                item.brief = DepMan.render "pages/#{item.id}.brief"
+                item.content = DepMan.render "pages/#{item.id}.content"
 
         urlHandler = ~>
             @log "Checking #{@location.path!}"

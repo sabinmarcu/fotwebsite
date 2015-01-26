@@ -97,6 +97,9 @@
                 transition all 0.5s timing
                 max-width 1000px
                 margin 0 auto
+                opacity 0
+                &.brief
+                    opacity 1
                   
         &.post
             overflow hidden
@@ -159,3 +162,7 @@
             margin articlemargin
             opacity 1
             wfz1()
+            .content
+                opacity 1
+            .brief
+                opacity 0

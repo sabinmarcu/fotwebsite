@@ -859,6 +859,17 @@ body #wrapper > div > section.admin .main .grid article .wrapper .brief {
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   max-width: 1000px;
   margin: 0 auto;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body #wrapper > div > section.main .grid article .wrapper .content.brief,
+body #wrapper > div > section.admin .main .grid article .wrapper .content.brief,
+body #wrapper > div > section.main .grid article .wrapper .brief.brief,
+body #wrapper > div > section.admin .main .grid article .wrapper .brief.brief {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 body #wrapper > div > section.main .grid article.post,
 body #wrapper > div > section.admin .main .grid article.post {
@@ -958,6 +969,18 @@ body #wrapper > div > section.admin .main .grid.active article.active {
   filter: none;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+body #wrapper > div > section.main .grid.active article.active .content,
+body #wrapper > div > section.admin .main .grid.active article.active .content {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+body #wrapper > div > section.main .grid.active article.active .brief,
+body #wrapper > div > section.admin .main .grid.active article.active .brief {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 body #wrapper > div > section.main nav#sg,
 body #wrapper > div > section.admin .main nav#sg {
