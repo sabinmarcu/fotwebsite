@@ -29,7 +29,7 @@
             .grid.row2(ng-class="{horizontal: data.width > 1000, vertical: data.width < 1000}")
                 article(ng-repeat="index in data.asides" id="article-{{index.id}}" ng-class="{active: data.active == index.id}" )
                     .wrapper(ng-class="{active: data.active == index.id}")
-                        h1 Event {{index.title}}
+                        h1 {{index.title}}
                         .brief(ng-bind-html="index.brief | toTrusted")
                         .content(ng-bind-html="index.content | toTrusted")
 
