@@ -1,26 +1,8 @@
-//- article.main.post(ng-style="getHeight()" ng-class="{active: data.active === 0}" ng-wheel="wheel($event)" hm-swipe="swipe")
-//-     figure
-//-         .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
-//-             img(id='image-nextevent' src='https://scontent-b-lhr.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1960069_807696969282290_967487388133602141_n.jpg?oh=361f2a5b67d34e9ec97eaa8a898ebd6d&oe=55624706' ng-load="loadImage('nextevent')")
-//-     a(href="http://facebook.com/fishontoast" target="_blank")
-//-         figcaption
-//-             h1 Next Event
-
-//- article(ng-repeat="article in data.asides" id="{{article.id}}" ng-class="{active: data.active == article.id}" ng-style="getHeight()" ng-wheel="wheel($event)")
-//-     .wrapper
-//-         h1 {{article.title}}
-//-         .brief(load-content-for="article.id[0].toUpperCase() + article.id.substr(1) + 'Brief'" is-static is-implemented)
-//-         .content(load-content-for="article.id[0].toUpperCase() + article.id.substr(1)")
-
-//-         nav
-//-             material-button.right(ng-href="/{{article.id}}" ng-if="data.active === 0 || data.active !== article.id") Read More
-//-             material-button.right(ng-click="toggle(article.id)" ng-if="data.active !== 0 && data.active === article.id") Close
-
 .grid.nogrow(ng-class="{vertical: data.width > 1000, horizontal: data.width < 1000, active: data.active !== 0}")
     article.post(id="event" ng-class="{active: data.active == 'event'}")
         figure
             .focuspoint.home(id="fp-nextevent" data-focus-x="0" data-focus-y="-0.2")
-                img(id='image-nextevent' src='http://www.douglasstafford.com/blog/wp-content/uploads/2013/03/Peugeot-rally-event-2.jpg' ng-load="loadImage('nextevent')")
+                img(id='image-nextevent' src='https://scontent-b-lhr.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1960069_807696969282290_967487388133602141_n.jpg?oh=361f2a5b67d34e9ec97eaa8a898ebd6d&oe=55624706' ng-load="loadImage('nextevent')")
         a(href="http://facebook.com/fishontoast" target="_blank")
             figcaption
                 h1 Next Event
