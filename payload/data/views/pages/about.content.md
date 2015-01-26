@@ -10,11 +10,12 @@ Together we can learn the secrets for business success meet some awesome people 
 Benefit of getting involved...
 
 Getting involved with Fish on Toast will greatly enhance your University experience and give you the opportunity to:
-	*	Explore entrepreneurship as a career or business opportunity
-	*	Hear from entrepreneurs, who have successfully run their own businesses
-	*	Meet like-minded people, build a network and discuss ideas
-	*	Gain support for your student start-up
-	*	Develop hands-on business skills
-	*	Get access to great local and national enterprise competitions
-	*	Graduate passport points
-	*	Free Pizza!
+
+*	Explore entrepreneurship as a career or business opportunity
+*	Hear from entrepreneurs, who have successfully run their own businesses
+*	Meet like-minded people, build a network and discuss ideas
+*	Gain support for your student start-up
+*	Develop hands-on business skills
+*	Get access to great local and national enterprise competitions
+*	Graduate passport points
+*	Free Pizza!
