@@ -21,6 +21,7 @@ class PageController extends DepMan.controller "Base"
             #     @comms.meta.prevURL = @location.path!
             #     return @location.path "/membership/login"
             # if @location.path!match /\/membership\/?$/ or ((@location.path!match /\/membership\/login/) and @comms.user?) then @activateMenu!
+            $ "a" .toArray!filter (-> !it.href.match new RegExp window.location.host + "") .map -> it.target = "_blank"
             @data.isContentActive = false; @safeApply?!
 
         @root.$on "$locationChangeSuccess", urlHandler

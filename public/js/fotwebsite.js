@@ -976,6 +976,11 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
         return this$.scope.$emit("globalmenu:deactivated");
       });
       urlHandler = function(){
+        $("a").toArray().filter(function(it){
+          return !it.href.match(new RegExp(window.location.host + ""));
+        }).map(function(it){
+          return it.target = "_blank";
+        });
         this$.data.isContentActive = false;
         return typeof this$.safeApply === 'function' ? this$.safeApply() : void 8;
       };
@@ -90434,7 +90439,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Mon Jan 26 2015 20:50:25 GMT+0000 (GMT)
+@Date Compiled    : Mon Jan 26 2015 20:59:27 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
