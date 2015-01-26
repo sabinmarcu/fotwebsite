@@ -2,10 +2,14 @@ class Application extends IS.Object
     (@getStylesFunc) ~>
         document.title = AppInfo.displayname
         @LifeCycle = new IS.Promise!
-        @LifeCycle.then @fixMobile .then @loadDepMan .then @getStyles .then @loadPayload .then @loadLibs .then @loadEssentials .then @bootStrapAngular .then @renderPage .then @checkDevMode .then @completeLoad
+        @LifeCycle.then @fixMobile, (->), @progress .then @loadDepMan, (->), @progress .then @getStyles, (->), @progress .then @loadPayload .then @loadLibs, (->), @progress .then @loadEssentials, (->), @progress .then @bootStrapAngular, (->), @progress .then @renderPage, (->), @progress .then @checkDevMode, (->), @progress .then @completeLoad, (->), @progress
         window.Tester = new (require "classes/helpers/Tester")(~> @LifeCycle.resolve!)
 
+    progress: ~>
+        p = document.querySelector ".seoflier .percent"
+        if p? then p.innerHTML = it
     checkDevMode: ~>
+        @LifeCycle.progress 90
         if window.isDev?
             document.title = "Testing #{window.AppInfo.displayname}!"
             scr = document.createElement "script"
@@ -13,7 +17,10 @@ class Application extends IS.Object
             document.head.appendChild scr
             Debug.enable \app:*
         @LifeCycle.resolve!
-    loadDepMan: ~> window.DepMan = new (require "classes/helpers/DepMan"); @LifeCycle.resolve!
+    loadDepMan: ~> 
+        window.DepMan = new (require "classes/helpers/DepMan"); 
+        @LifeCycle.progress 20
+        @LifeCycle.resolve!
     fixMobile: ~>
         meta = document.createElement "meta"
         meta.setAttribute "name", "viewport"
@@ -31,14 +38,17 @@ class Application extends IS.Object
         meta.set-attribute \rel, \icon
         meta.set-attribute \href, \icon.ico
         document.head.appendChild meta
+        @LifeCycle.progress 10
         @LifeCycle.resolve!
     loadEssentials: ~>
+        @LifeCycle.progress 60
         base = document.createElement "base"
         base.setAttribute "href", "/"
         document.head.appendChild base
         window.DBStorage = new (DepMan.helper "Storage")(~> @LifeCycle.resolve!)
     getStyles: ~> 
         styles = @getStylesFunc!
+        @LifeCycle.progress 30
         styles.addEventListener "load", ~> 
             DepMan.stylesheet \fullcalendar
             DepMan.stylesheet \angular-material
@@ -48,10 +58,12 @@ class Application extends IS.Object
             @LifeCycle.resolve!
         document.head.append-child styles
     loadPayload: ~> 
+        @LifeCycle.progress 40
         DepMan.ext-script "/js/#{AppInfo.name}.payload.js", 
             DepMan.ext-script "/js/#{AppInfo.name}.config.js", ~> @LifeCycle.resolve!
 
     loadLibs: ~>
+        @LifeCycle.progress 50
         window.jQuery = window.$ = DepMan.lib \jquery
         window <<< DepMan.lib \fb
         window <<< DepMan.lib \angular
@@ -85,6 +97,7 @@ class Application extends IS.Object
         @LifeCycle.resolve!
 
     renderPage: ~>
+        @LifeCycle.progress 80
         wrapper = document.createElement "div"
         wrapper.setAttribute "id", "wrapper"
         wrapper.innerHTML = DepMan.render "index"
@@ -92,6 +105,7 @@ class Application extends IS.Object
         @LifeCycle.resolve!
 
     bootStrapAngular: ~>
+        @LifeCycle.progress 70
         app = angular.module AppInfo.displayname, ["ngRoute", "ngAnimate", "ngMaterial", "ui.calendar", "hmTouchEvents"] .config ["$locationProvider", (location) ->
             location.html5Mode true
         ]
@@ -103,6 +117,7 @@ class Application extends IS.Object
         @LifeCycle.resolve!
 
     completeLoad: ~>
+        @LifeCycle.progress 100
         window.FB.init appId: '353273218168906', xfbml: false, version: 'v2.1', status: true
         angular.bootstrap ($ '#wrapper' .0) , [AppInfo.displayname]
 

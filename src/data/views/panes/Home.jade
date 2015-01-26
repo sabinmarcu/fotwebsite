@@ -29,9 +29,9 @@
             .grid.row2(ng-class="{horizontal: data.width > 1000, vertical: data.width < 1000}")
                 article(ng-repeat="index in data.asides" id="article-{{index.id}}" ng-class="{active: data.active == index.id}" )
                     .wrapper(ng-class="{active: data.active == index.id}")
-                        h1 Event {{index.title}}
-                        .brief Brief Content
-                        .content Big Content
+                        h1 Event {{index.title}} ({{index.id}})
+                        .brief(ng-bind-html="index.brief | toTrusted")
+                        .content(ng-bind-html="index.content | toTrusted")
 
                         nav
                             material-button.right(ng-click="goto(index.id)" ng-if="data.active != index.id") Read More
