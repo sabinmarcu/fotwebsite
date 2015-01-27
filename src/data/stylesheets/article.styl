@@ -61,6 +61,7 @@
             tp=5px
             lp=10px
             padding tp lp
+            background-color black
             nav
                 transition all 0.5s timing
                 position absolute
@@ -84,6 +85,19 @@
                 right 0
                 background white
                 border-bottom solid 1px clightgray
+                z-index 2
+                
+            > a > img
+                position absolute
+                z-index 2
+                top asideheight
+                bottom asideheight
+                left 0
+                min-width 100%
+                unit=100%
+                hw=(asideheight * 2)px
+                height s('calc(%s - %s)', unit, hw)
+                opacity 0.8
 
             .content, .brief
                 position absolute
@@ -99,6 +113,7 @@
                 margin 0 auto
                 opacity 0
                 z-index -1
+                background white
                 &.brief
                     opacity 1
                     z-index 1
@@ -170,3 +185,20 @@
             .brief
                 opacity 0
                 z-index -1
+                
+article.event
+    .brief
+        z-index -1
+    &.active .wrapper 
+        toppercent=20%
+        > a > img
+            height auto
+            top auto
+            bottom (100% - toppercent)
+            width 100%
+            transition all 0.5s timing
+            z-index 1
+            left 0px
+            opacity 0.8
+        .content
+            top toppercent
