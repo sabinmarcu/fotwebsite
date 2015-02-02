@@ -39,21 +39,18 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
 
 .grid(ng-if="isMobile" ng-class="{active: data.active !== 0}")
     .grid.row2(ng-class="{'vertical': data.vertical == true}" ng-scroll="scroll($event)")
-        article.event(id="article-1" ng-class="{active: data.active == 1}")
-            .wrapper( style="background: #{{colors[0]}};")
-                h1 Event
-                .brief Brief Content
-                .content Big Content
+        article.event(ng-repeat="item in data.content track by $index" id="article-{{$index + 1}}" ng-class="{active: data.active == $index + 1}")
+            .wrapper(ng-class="{active: data.active == $index + 1}")
+                h1 {{item.name}}
+                a(ng-if="item.image | isDefined" ng-href="{{item.link}}")    
+                    img(ng-src="{{item.image}}")
+                .brief
+                    span(ng-if="item.brief | isDefined") {{item.brief}}
+                .content
+                    span(ng-if="item.content | isDefined") {{item.content}}
 
                 nav
-                    material-button.right(ng-click="toggleArticle(1)" ng-if="data.active != 1") Read More
-                    material-button.right(ng-click="toggleArticle(1)" ng-if="data.active == 1") Close
-        article.event(ng-repeat="index in data.content track by $index" id="article-{{index}}" ng-class="{active: data.active == index}" ng-if="$index > 1")
-            .wrapper(style="background: #{{colors[index]}};")
-                h1 Event {{index}}
-                .brief Brief Content
-                .content Big Content
-
-                nav
-                    material-button.right(ng-click="toggleArticle(index)" ng-if="data.active != index") Read More
-                    material-button.right(ng-click="toggleArticle(index)" ng-if="data.active == index") Close
+                    material-button.right(ng-click="toggleArticle($index + 1)" ng-if="data.active != $index + 1") 
+                        span(ng-if="item.content | isDefined") Read More
+                    material-button.right(ng-click="toggleArticle($index + 1)" ng-if="data.active == $index + 1") 
+                        span(ng-if="item.content | isDefined") Close

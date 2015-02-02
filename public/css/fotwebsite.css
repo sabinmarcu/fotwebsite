@@ -672,6 +672,7 @@ body #wrapper > div > section.admin .main section#Home .grid.nogrow.active artic
 }
 body #wrapper > div > section.main .eventsfab,
 body #wrapper > div > section.admin .main .eventsfab {
+  z-index: 9999;
   -webkit-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -804,7 +805,6 @@ body #wrapper > div > section.admin .main .grid article .wrapper {
   width: 100%;
   height: 100%;
   padding: 5px 10px;
-  background-color: #000;
 }
 body #wrapper > div > section.main .grid article .wrapper nav,
 body #wrapper > div > section.admin .main .grid article .wrapper nav {
@@ -842,6 +842,21 @@ body #wrapper > div > section.admin .main .grid article .wrapper h1 {
   border-bottom: solid 1px #eee;
   z-index: 2;
 }
+body #wrapper > div > section.main .grid article .wrapper > a,
+body #wrapper > div > section.admin .main .grid article .wrapper > a {
+  display: block;
+  position: relative;
+  margin: -5px -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 10px);
+  background: #000;
+  overflow: hidden;
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
 body #wrapper > div > section.main .grid article .wrapper > a > img,
 body #wrapper > div > section.admin .main .grid article .wrapper > a > img {
   position: absolute;
@@ -854,6 +869,17 @@ body #wrapper > div > section.admin .main .grid article .wrapper > a > img {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+body #wrapper > div > section.main .grid article .wrapper > a > img:hover,
+body #wrapper > div > section.admin .main .grid article .wrapper > a > img:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 body #wrapper > div > section.main .grid article .wrapper .content,
 body #wrapper > div > section.admin .main .grid article .wrapper .content,
@@ -1006,11 +1032,15 @@ body #wrapper > div > section.main article.event .brief,
 body #wrapper > div > section.admin .main article.event .brief {
   z-index: -1;
 }
+body #wrapper > div > section.main article.event.active .wrapper > a,
+body #wrapper > div > section.admin .main article.event.active .wrapper > a {
+  height: 20%;
+}
 body #wrapper > div > section.main article.event.active .wrapper > a > img,
 body #wrapper > div > section.admin .main article.event.active .wrapper > a > img {
   height: auto;
   top: auto;
-  bottom: 80%;
+  bottom: 0;
   width: 100%;
   -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -1019,9 +1049,9 @@ body #wrapper > div > section.admin .main article.event.active .wrapper > a > im
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   z-index: 1;
   left: 0px;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
 }
 body #wrapper > div > section.main article.event.active .wrapper .content,
 body #wrapper > div > section.admin .main article.event.active .wrapper .content {
