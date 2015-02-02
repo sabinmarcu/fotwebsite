@@ -43,14 +43,18 @@
         position relative
         transition all 1s timing
         overflow hidden
+        .content, .brief, a.img > img
+            border-right solid 1px clightgray
+            border-left solid 1px clightgray
         .content
             z-index -1
             opacity 0
-            border-right solid 1px clightgray
                 
-        h1, nav
+        .wrapper > h1, .wrapper > nav
             border-right solid 1px clightgray
+            border-left solid 1px clightgray
             border-bottom solid 1px clightgray
+            border-top solid 1px clightgray
             
         &:first-child
             border-top none

@@ -4,10 +4,9 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: #000;
 }
 body {
-  background: #fff;
   font-size: 10pt;
   overflow: hidden;
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -33,7 +32,9 @@ body #wrapper > div,
 body #wrapper > div > section {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+}
+body #wrapper section.primarysection.static {
+  padding: 0 25px 25px;
 }
 body #wrapper > div > section {
   position: fixed;
@@ -43,11 +44,11 @@ body #wrapper > div > section {
   -moz-perspective: 600;
   -ms-perspective: 600;
   perspective: 600;
-  -webkit-transition: -webkit-transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
-  -moz-transition: -moz-transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
-  -o-transition: -o-transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
-  -ms-transition: -ms-transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
-  transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: -moz-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: -o-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: -ms-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -406,39 +407,166 @@ body #wrapper > div > section.admin .main > aside {
   -ms-perspective: 600;
   perspective: 600;
   z-index: 9;
+  border-right: solid 1px #eee;
+  margin-left: -1px;
 }
-body #wrapper > div > section.main > aside nav,
-body #wrapper > div > section.admin .main > aside nav {
+body #wrapper > div > section.main > aside h1,
+body #wrapper > div > section.admin .main > aside h1 {
   position: absolute;
-  top: 45px;
-  height: 150px;
-  width: 45%;
-  left: calc(50% - 22.5%);
-  overflow: hidden;
-  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 45px;
+  heght: 45px;
   padding: 0;
-  -webkit-transform-origin: top center;
-  -moz-transform-origin: top center;
-  -o-transform-origin: top center;
-  -ms-transform-origin: top center;
-  transform-origin: top center;
+  margin: 0;
+  font-size: 18pt;
+  text-align: center;
+  font-family: "Open Sans Condensed", inherit;
+  font-weight: 100;
+  -webkit-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 3;
+  background: #00796b;
+  color: #fff;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+body #wrapper > div > section.main > aside h1 .menu,
+body #wrapper > div > section.admin .main > aside h1 .menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+body #wrapper > div > section.main > aside h1 .menu > *,
+body #wrapper > div > section.admin .main > aside h1 .menu > * {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  padding-left: 10px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
   -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -webkit-transform: rotateX(-50deg) translateY(-130%);
-  -moz-transform: rotateX(-50deg) translateY(-130%);
-  -o-transform: rotateX(-50deg) translateY(-130%);
-  -ms-transform: rotateX(-50deg) translateY(-130%);
-  transform: rotateX(-50deg) translateY(-130%);
+  cursor: pointer;
+}
+body #wrapper > div > section.main > aside h1 .menu:hover > *,
+body #wrapper > div > section.admin .main > aside h1 .menu:hover > * {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+body #wrapper > div > section.main > aside ~ *,
+body #wrapper > div > section.admin .main > aside ~ * {
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+body #wrapper > div > section.main.menuactive,
+body #wrapper > div > section.admin .main.menuactive {
+  -webkit-transform: translateX(250px);
+  -moz-transform: translateX(250px);
+  -o-transform: translateX(250px);
+  -ms-transform: translateX(250px);
+  transform: translateX(250px);
+}
+body #wrapper > div > section.main.menuactive > nav,
+body #wrapper > div > section.admin .main.menuactive > nav {
+  -webkit-transform: translateX(-250px);
+  -moz-transform: translateX(-250px);
+  -o-transform: translateX(-250px);
+  -ms-transform: translateX(-250px);
+  transform: translateX(-250px);
+}
+body #wrapper > div > section.main.menuactive > nav h1,
+body #wrapper > div > section.admin .main.menuactive > nav h1 {
+  -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+  background: #00897b;
+}
+body #wrapper > div > section.main > nav,
+body #wrapper > div > section.admin .main > nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 250px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transform: translateX(-250px);
+  -moz-transform: translateX(-250px);
+  -o-transform: translateX(-250px);
+  -ms-transform: translateX(-250px);
+  transform: translateX(-250px);
+  -webkit-transform: translateX(-250px) rotateY(-15deg);
+  -moz-transform: translateX(-250px) rotateY(-15deg);
+  -o-transform: translateX(-250px) rotateY(-15deg);
+  -ms-transform: translateX(-250px) rotateY(-15deg);
+  transform: translateX(-250px) rotateY(-15deg);
   z-index: 1;
   background: #fff;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
-body #wrapper > div > section.main > aside nav ul,
-body #wrapper > div > section.admin .main > aside nav ul {
+body #wrapper > div > section.main > nav img,
+body #wrapper > div > section.admin .main > nav img {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  width: 230px;
+  -webkit-transform: translateY(125px);
+  -moz-transform: translateY(125px);
+  -o-transform: translateY(125px);
+  -ms-transform: translateY(125px);
+  transform: translateY(125px);
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+body #wrapper > div > section.main > nav img:hover,
+body #wrapper > div > section.admin .main > nav img:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+body #wrapper > div > section.main > nav:hover img,
+body #wrapper > div > section.admin .main > nav:hover img {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+body #wrapper > div > section.main > nav ul,
+body #wrapper > div > section.admin .main > nav ul {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -482,15 +610,15 @@ body #wrapper > div > section.admin .main > aside nav ul {
   right: 25px;
   left: 25px;
 }
-body #wrapper > div > section.main > aside nav ul li,
-body #wrapper > div > section.admin .main > aside nav ul li {
+body #wrapper > div > section.main > nav ul li,
+body #wrapper > div > section.admin .main > nav ul li {
   display: inline-block;
   margin: 0;
   padding: 0;
   text-align: left;
 }
-body #wrapper > div > section.main > aside nav ul li material-button,
-body #wrapper > div > section.admin .main > aside nav ul li material-button {
+body #wrapper > div > section.main > nav ul li material-button,
+body #wrapper > div > section.admin .main > nav ul li material-button {
   text-align: left;
   width: 100%;
   padding: 5px 10px;
@@ -502,62 +630,10 @@ body #wrapper > div > section.admin .main > aside nav ul li material-button {
   -ms-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out;
 }
-body #wrapper > div > section.main > aside nav ul li material-button a,
-body #wrapper > div > section.admin .main > aside nav ul li material-button a {
+body #wrapper > div > section.main > nav ul li material-button a,
+body #wrapper > div > section.admin .main > nav ul li material-button a {
   text-transform: capitalize;
   text-decoration: none;
-}
-body #wrapper > div > section.main > aside h1,
-body #wrapper > div > section.admin .main > aside h1 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  line-height: 45px;
-  heght: 45px;
-  padding: 0;
-  margin: 0;
-  font-size: 18pt;
-  text-align: center;
-  font-family: "Open Sans Condensed", inherit;
-  font-weight: 100;
-  -webkit-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  z-index: 3;
-  background: #00796b;
-  color: #fff;
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-body #wrapper > div > section.main > aside ~ *,
-body #wrapper > div > section.admin .main > aside ~ * {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-body #wrapper > div > section.main > aside.active h1,
-body #wrapper > div > section.admin .main > aside.active h1,
-body #wrapper > div > section.main > aside:hover h1,
-body #wrapper > div > section.admin .main > aside:hover h1 {
-  -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
-  box-shadow: 0 8px 17px rgba(0,0,0,0.2);
-  background: #00897b;
-}
-body #wrapper > div > section.main > aside.active nav,
-body #wrapper > div > section.admin .main > aside.active nav,
-body #wrapper > div > section.main > aside:hover nav,
-body #wrapper > div > section.admin .main > aside:hover nav {
-  -webkit-transform: none;
-  -moz-transform: none;
-  -o-transform: none;
-  -ms-transform: none;
-  transform: none;
 }
 body #wrapper > div > section.main > .container > section,
 body #wrapper > div > section.admin .main > .container > section {
@@ -781,19 +857,29 @@ body #wrapper > div > section.admin .main .grid article {
   overflow: hidden;
 }
 body #wrapper > div > section.main .grid article .content,
+body #wrapper > div > section.admin .main .grid article .content,
+body #wrapper > div > section.main .grid article .brief,
+body #wrapper > div > section.admin .main .grid article .brief,
+body #wrapper > div > section.main .grid article a.img > img,
+body #wrapper > div > section.admin .main .grid article a.img > img {
+  border-right: solid 1px #eee;
+  border-left: solid 1px #eee;
+}
+body #wrapper > div > section.main .grid article .content,
 body #wrapper > div > section.admin .main .grid article .content {
   z-index: -1;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-  border-right: solid 1px #eee;
 }
-body #wrapper > div > section.main .grid article h1,
-body #wrapper > div > section.admin .main .grid article h1,
-body #wrapper > div > section.main .grid article nav,
-body #wrapper > div > section.admin .main .grid article nav {
+body #wrapper > div > section.main .grid article .wrapper > h1,
+body #wrapper > div > section.admin .main .grid article .wrapper > h1,
+body #wrapper > div > section.main .grid article .wrapper > nav,
+body #wrapper > div > section.admin .main .grid article .wrapper > nav {
   border-right: solid 1px #eee;
+  border-left: solid 1px #eee;
   border-bottom: solid 1px #eee;
+  border-top: solid 1px #eee;
 }
 body #wrapper > div > section.main .grid article:first-child,
 body #wrapper > div > section.admin .main .grid article:first-child {

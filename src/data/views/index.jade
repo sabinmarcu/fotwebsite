@@ -1,20 +1,27 @@
 div(ng-controller="Page" ng-class="{mobile: isMobile}" when-ready="isReady(); true")
-    section.main(ng-class="{active: location.path().match('/admin') === null}" ng-scroll="scroll($event)")
-        aside#sitemenu(ng-mouseover="hover('in', $event)" ng-mouseout="hover('out', $event)" ng-class="{active: data.isContentActive}")
-                nav(ng-style="getHeight()")
-                    ul
-                        li(ng-repeat='title in routes.order')
-                            material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
-                        li(ng-repeat='title in routes.order')
-                h1(ng-click="hover('toggle')")=AppInfo.displayname
+    section.main(ng-class="{active: location.path().match('/admin') === null, menuactive: data.isContentActive}" ng-scroll="scroll($event)" id="PageWrapper")
+        aside#sitemenu(ng-click="toggleMenu()")
+                h1
+                    != AppInfo.displayname
+                    .menu
+                        .icon 
+                            i.fa.fa-bars
+
+        nav(ng-style="getHeight()")
+            ul
+                li(ng-repeat='title in routes.order')
+                    material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}
+                li(ng-repeat='title in routes.order')
+            a(href="/about")
+                img(src=DepMan.image("logo"))
+
         .container
-            section(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
+            section.primarysection(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
                 nav.phonemenu  
                     li(ng-click="activateMenu()")
                         i.fa.fa-reorder
                 div(load-content-for="title")
         .shade
-            img(src=DepMan.image("logo"))
             .darkness
 
     //- section.admin(ng-class="{active: location.path().match('/admin') !== null}")

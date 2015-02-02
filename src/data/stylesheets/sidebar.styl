@@ -7,71 +7,9 @@
     perspective 600
 
     z-index 9
-
-    nav
-        position absolute
-        top asideheight
-        height asidenavheight
-        width asidenavwidth
-
-        unit=50%
-        hw=(asidenavwidth / 2)
-        left s('calc(%s - %s)', unit, hw)
-
-        overflow hidden
-        margin 0
-        padding 0
-
-        transform-origin top center
-        transition all 0.5s timing
-        transform rotateX(-50deg) translateY(-130%)
-        z-index 1
-
-        background white
-
-        wfz1()
-
-        ul 
-
-            display flex
-            flex-direction column
-            flex-wrap wrap
-            justify-content flex-center
-            align-items stretch
-            align-content stretch
-
-            overflow-x hidden
-            overflow-y hidden
-
-            margin 0
-            padding 0
-            
-            position absolute
-
-            mt=10px
-            ml=25px
-
-            top mt
-            bottom mt
-            right ml
-            left ml
-
-            li
-                display inline-block
-                // width 50%
-                margin 0
-                padding 0
-                text-align left
-
-                material-button
-                    text-align left
-                    width 100%
-                    padding 5px 10px
-                    border-radius 0
-                    transition background 0.2s ease-in-out
-                    a 
-                        text-transform capitalize
-                        text-decoration none
+    
+    border-right solid 1px clightgray
+    margin-left -1px
 
     h1
         position absolute
@@ -92,15 +30,108 @@
         background cfotgreen
         color white
         wfz1()
+        .menu
+            position absolute
+            top 0
+            bottom 0
+            > * 
+                display inline-block
+                float left
+                font-weight bold
+                padding-left 10px
+                text-transform uppercase 
+                opacity 0.8
+                transition all 0.5s timing 
+                cursor pointer
+            &:hover > *
+                opacity 1 
+                
+                
     ~ *
         transition all 0.5s timing
-
-    &.active, &:hover
+    
+&.menuactive
+    > nav 
+        transform translateX(0 - asidenavwidth)
         h1
             wfz2()
             background cfotgreenlight
-        nav
-            transform none
-        // ~ .shade
-        //     z-index 2
-        //     opacity 1
+    transform translateX(asidenavwidth)
+
+> nav
+    position fixed
+    top 0
+    left 0
+    bottom 0
+    height 100%
+    width asidenavwidth
+
+    overflow hidden
+    margin 0
+    padding 0
+
+    transform-origin top right
+    transition all 0.5s timing
+    transform translateX(0 - asidenavwidth)
+    transform translateX(0 - asidenavwidth) rotateY(-15deg)
+    z-index 1
+
+    background white
+
+    wfz1()
+
+    img
+        position absolute
+        bottom 10px
+        left 10px
+        opacity 0.4
+        width (asidenavwidth - 20)
+        transform translateY(asidenavwidth / 2)
+        transition all 0.5s timing
+        &:hover
+            opacity 1
+
+    &:hover img
+        transform none
+
+    ul 
+
+        display flex
+        flex-direction column
+        flex-wrap wrap
+        justify-content flex-center
+        align-items stretch
+        align-content stretch
+
+        overflow-x hidden
+        overflow-y hidden
+
+        margin 0
+        padding 0
+        
+        position absolute
+
+        mt=10px
+        ml=25px
+
+        top mt
+        bottom mt
+        right ml
+        left ml
+
+        li
+            display inline-block
+            // width 50%
+            margin 0
+            padding 0
+            text-align left
+
+            material-button
+                text-align left
+                width 100%
+                padding 5px 10px
+                border-radius 0
+                transition background 0.2s ease-in-out
+                a 
+                    text-transform capitalize
+                    text-decoration none
