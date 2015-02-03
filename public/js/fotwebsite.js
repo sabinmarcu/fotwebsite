@@ -377,6 +377,7 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.location = location;
       this$.root = root;
       this$.comms = comms;
+      this$.loadedImage = bind$(this$, 'loadedImage', prototype);
       this$.getRandomColor = bind$(this$, 'getRandomColor', prototype);
       this$.scroll = bind$(this$, 'scroll', prototype);
       this$.toggleArticle = bind$(this$, 'toggleArticle', prototype);
@@ -420,6 +421,7 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       return DBStorage.set("events.layout", this.data.vertical + "");
     };
     prototype.toggleArticle = function(id){
+      var this$ = this;
       if (this.data.active) {
         this.data.active = 0;
         (function(j){
@@ -435,7 +437,11 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
         this.data.scrollSave = angular.copy(this.data.scroll);
         this.data.active = id;
       }
-      this.safeApply();
+      this.safeApply(function(){
+        return setTimeout(function(){
+          return $(".focuspoint#fp-" + id).focusPoint();
+        }, 500);
+      });
     };
     prototype.scroll = function(e){
       this.data.scroll.top = e.originalEvent.target.scrollTop;
@@ -443,6 +449,10 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     };
     prototype.getRandomColor = function(){
       return typeof window.randColor === 'function' ? window.randColor() : void 8;
+    };
+    prototype.loadedImage = function(it){
+      this.log("Focuspointing image .focuspoint#fp-" + it);
+      $(".focuspoint#fp-" + it).focusPoint();
     };
     EventsController.hook(["$location", "$rootScope", "Comms"]);
     return EventsController;
@@ -41137,7 +41147,6 @@ __d("legacy:fb.versioned-sdk",["sdk.Runtime"],function(a,b,c,d,e,f,g){g.setIsVer
             var containerW = $(this).width();
             var containerH = $(this).height();
             var image = $(this).find('img').first();
-            var canvas = $('#canvas-' + image.attr('id').substr(6)).first();
             var imageW = $(this).data('imageW') || image.width();
             var imageH = $(this).data('imageH') || image.height();
             if (!(containerW > 0 && containerH > 0 && imageW > 0 && imageH > 0)) {
@@ -41202,10 +41211,6 @@ __d("legacy:fb.versioned-sdk",["sdk.Runtime"],function(a,b,c,d,e,f,g){g.setIsVer
             }
             image.css('left', hShift + 'px');
             image.css('top', vShift + 'px');
-            if (canvas.length > 0) {
-                canvas.css('left', hShift + 'px');
-                canvas.css('top', vShift + 'px');
-            }
         });
     };
 })(jQuery);}, "classes/libs/fullcalendar": function(exports, require, module) {/*!
@@ -85580,7 +85585,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<material-button ng-click=\"toggleLayout()\" ng-class=\"{hidden: data.active !== 0}\" class=\"material-button-fab material-button-fab-bottom-right right eventsfab\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div ng-if=\"!isMobile\" ng-class=\"{active: data.active == 1}\" class=\"grid nogrow vertical\"><article id=\"article-1\" ng-class=\"{active: data.active == 1, 'material-whiteframe-z1': data.scroll.top != 0 || data.scroll.left != 0}\" ng-if=\"data.content.length &gt; 0\" class=\"event\"><div ng-class=\"{active: data.active == 1}\" class=\"wrapper\"><h1>{{data.content[0].name}}</h1><a ng-if=\"data.content[0].image | isDefined\" ng-href=\"{{data.content[0].link}}\" class=\"img\"><img ng-src=\"{{data.content[0].image}}\"/></a><div class=\"brief\"><span ng-if=\"data.content[0].brief | isDefined\">{{data.content[0].brief}}</span></div><div class=\"content\"><span ng-if=\"data.content[0].content | isDefined\">{{data.content[0].content}}</span></div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\"><span ng-if=\"data.content[0].content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\"><span ng-if=\"data.content[0].content | isDefined\">Close</span></material-button></nav></div></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true, active: data.active !== 0}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"item in data.content\" id=\"article-{{$index + 1}}\" ng-class=\"{active: data.active == $index + 1}\" ng-if=\"$index &gt; 0\" class=\"event\"><div ng-class=\"{active: data.active == $index + 1}\" class=\"wrapper\"><h1>{{item.name}}</h1><a ng-if=\"item.image | isDefined\" ng-href=\"{{item.link}}\" class=\"img\">   <img ng-src=\"{{item.image}}\"/></a><div class=\"brief\"><span ng-if=\"item.brief | isDefined\">{{item.brief}}</span></div><div class=\"content\"><span ng-if=\"item.content | isDefined\">{{item.content}}</span></div><nav><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active != $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active == $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Close</span></material-button></nav></div></article></div></div></div></div><div ng-if=\"isMobile\" ng-class=\"{active: data.active !== 0}\" class=\"grid\"><div ng-class=\"{'vertical': data.vertical == true}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"item in data.content track by $index\" id=\"article-{{$index + 1}}\" ng-class=\"{active: data.active == $index + 1}\" class=\"event\"><div ng-class=\"{active: data.active == $index + 1}\" class=\"wrapper\"><h1>{{item.name}}</h1><a ng-if=\"item.image | isDefined\" ng-href=\"{{item.link}}\" class=\"img\">   <img ng-src=\"{{item.image}}\"/></a><div class=\"brief\"><span ng-if=\"item.brief | isDefined\">{{item.brief}}</span></div><div class=\"content\"><span ng-if=\"item.content | isDefined\">{{item.content}}</span></div><nav><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active != $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active == $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Close</span></material-button></nav></div></article></div></div>");;return buf.join("");
+buf.push("<material-button ng-click=\"toggleLayout()\" ng-class=\"{hidden: data.active !== 0}\" class=\"material-button-fab material-button-fab-bottom-right right eventsfab\"><i ng-class=\"{'fa-arrow-circle-down': data.vertical, 'fa-arrow-circle-right': !data.vertical}\" class=\"fa\"></i></material-button><div ng-if=\"!isMobile\" ng-class=\"{active: data.active == 1}\" class=\"grid nogrow vertical\"><article id=\"article-1\" ng-class=\"{active: data.active == 1, 'material-whiteframe-z1': data.scroll.top != 0 || data.scroll.left != 0}\" ng-if=\"data.content.length &gt; 0\" class=\"event\"><div ng-class=\"{active: data.active == 1}\" class=\"wrapper\"><h1>{{data.content[0].name}}</h1><a ng-if=\"data.content[0].image | isDefined\" ng-href=\"{{data.content[0].link}}\" data-focus-x=\"0\" data-focus-y=\"-0.2\" id=\"fp-1\" class=\"img focuspoint\"><img ng-src=\"{{data.content[0].image}}\" ng-load=\"loadedImage(1)\"/></a><div class=\"brief\"><span ng-if=\"data.content[0].brief | isDefined\">{{data.content[0].brief}}</span></div><div class=\"content\"><span ng-if=\"data.content[0].content | isDefined\">{{data.content[0].content}}</span></div><nav><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active != 1\" class=\"right\"><span ng-if=\"data.content[0].content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle(1)\" ng-if=\"data.active == 1\" class=\"right\"><span ng-if=\"data.content[0].content | isDefined\">Close</span></material-button></nav></div></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{'vertical': data.vertical == true, active: data.active !== 0}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"item in data.content\" id=\"article-{{$index + 1}}\" ng-class=\"{active: data.active == $index + 1}\" ng-if=\"$index &gt; 0\" class=\"event\"><div ng-class=\"{active: data.active == $index + 1}\" class=\"wrapper\"><h1>{{item.name}}</h1><a ng-if=\"item.image | isDefined\" ng-href=\"{{item.link}}\" data-focus-x=\"0\" data-focus-y=\"-0.2\" id=\"fp-{{$index + 1}}\" class=\"img focuspoint\">   <img ng-src=\"{{item.image}}\" ng-load=\"loadedImage($index + 1)\"/></a><div class=\"brief\"><span ng-if=\"item.brief | isDefined\">{{item.brief}}</span></div><div class=\"content\"><span ng-if=\"item.content | isDefined\">{{item.content}}</span></div><nav><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active != $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active == $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Close</span></material-button></nav></div></article></div></div></div></div><div ng-if=\"isMobile\" ng-class=\"{active: data.active !== 0}\" class=\"grid\"><div ng-class=\"{'vertical': data.vertical == true}\" ng-scroll=\"scroll($event)\" class=\"grid row2\"><article ng-repeat=\"item in data.content track by $index\" id=\"article-{{$index + 1}}\" ng-class=\"{active: data.active == $index + 1}\" class=\"event\"><div ng-class=\"{active: data.active == $index + 1}\" class=\"wrapper\"><h1>{{item.name}}</h1><a ng-if=\"item.image | isDefined\" ng-href=\"{{item.link}}\" data-focus-x=\"0\" data-focus-y=\"-0.2\" id=\"fp-{{$index + 1}}\" class=\"img focuspoint\">   <img ng-src=\"{{item.image}}\" ng-load=\"loadedImage($index + 1)\"/></a><div class=\"brief\"><span ng-if=\"item.brief | isDefined\">{{item.brief}}</span></div><div class=\"content\"><span ng-if=\"item.content | isDefined\">{{item.content}}</span></div><nav><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active != $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Read More</span></material-button><material-button ng-click=\"toggleArticle($index + 1)\" ng-if=\"data.active == $index + 1\" class=\"right\"><span ng-if=\"item.content | isDefined\">Close</span></material-button></nav></div></article></div></div>");;return buf.join("");
 }}, "data/views/panes/Home": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -85791,7 +85796,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<div ng-class=\"{vertical: data.width &gt; 1000, horizontal: data.width &lt; 1000, active: data.active !== 0}\" class=\"grid nogrow\"><article id=\"event\" ng-class=\"{active: data.active == 'event'}\" class=\"post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"https://scontent-b-lhr.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1960069_807696969282290_967487388133602141_n.jpg?oh=361f2a5b67d34e9ec97eaa8a898ebd6d&amp;oe=55624706\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"https://www.facebook.com/events/1536833423249499/?ref_newsfeed_story_type=regular\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{horizontal: data.width &gt; 1000, vertical: data.width &lt; 1000}\" class=\"grid row2\"><article ng-repeat=\"index in data.asides\" id=\"article-{{index.id}}\" ng-class=\"{active: data.active == index.id}\"><div ng-class=\"{active: data.active == index.id}\" class=\"wrapper\"><h1>{{index.title}}</h1><div ng-bind-html=\"index.brief | toTrusted\" class=\"brief\"></div><div ng-bind-html=\"index.content | toTrusted\" class=\"content\"></div><nav><material-button ng-click=\"goto(index.id)\" ng-if=\"data.active != index.id\" class=\"right\">Read More</material-button><material-button ng-click=\"goto()\" ng-if=\"data.active == index.id\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
+buf.push("<div ng-class=\"{vertical: data.width &gt; 1000, horizontal: data.width &lt; 1000, active: data.active !== 0}\" class=\"grid nogrow\"><article id=\"event\" ng-class=\"{active: data.active == 'event'}\" class=\"post\"><figure><div id=\"fp-nextevent\" data-focus-x=\"0\" data-focus-y=\"-0.2\" class=\"focuspoint home\"><img id=\"image-nextevent\" src=\"https://scontent-b-lhr.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1960069_807696969282290_967487388133602141_n.jpg?oh=361f2a5b67d34e9ec97eaa8a898ebd6d&amp;oe=55624706\" ng-load=\"loadImage('nextevent')\"/></div></figure><a href=\"https://www.facebook.com/events/1019507614729895/?notif_t=plan_edited\" target=\"_blank\"><figcaption><h1>Next Event</h1></figcaption></a></article><div class=\"next\"><div class=\"wrapper\"><div ng-class=\"{horizontal: data.width &gt; 1000, vertical: data.width &lt; 1000}\" class=\"grid row2\"><article ng-repeat=\"index in data.asides\" id=\"article-{{index.id}}\" ng-class=\"{active: data.active == index.id}\"><div ng-class=\"{active: data.active == index.id}\" class=\"wrapper\"><h1>{{index.title}}</h1><div ng-bind-html=\"index.brief | toTrusted\" class=\"brief\"></div><div ng-bind-html=\"index.content | toTrusted\" class=\"content\"></div><nav><material-button ng-click=\"goto(index.id)\" ng-if=\"data.active != index.id\" class=\"right\">Read More</material-button><material-button ng-click=\"goto()\" ng-if=\"data.active == index.id\" class=\"right\">Close</material-button></nav></div></article></div></div></div></div>");;return buf.join("");
 }}, "data/views/panes/Posts": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90442,7 +90447,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Mon Feb 02 2015 14:18:06 GMT+0000 (GMT)
+@Date Compiled    : Tue Feb 03 2015 17:20:23 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

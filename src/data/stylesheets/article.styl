@@ -94,9 +94,11 @@
             > a 
                 display block
                 position relative
-                margin -5px -10px
+                margin (asideheight - 5px) -10px
+                hoffset=(asideheight * 2 - 10px)px
+                hw=100%
+                height s('calc(%s - %s)', hw, hoffset)
                 width calc(100% + 20px)
-                height calc(100% + 10px)
                 background black
                 overflow hidden
                 transition all 0.5s timing

@@ -32,7 +32,6 @@
             var containerW = $(this).width();
             var containerH = $(this).height();
             var image = $(this).find('img').first();
-            var canvas = $('#canvas-' + image.attr('id').substr(6)).first();
             var imageW = $(this).data('imageW') || image.width();
             var imageH = $(this).data('imageH') || image.height();
             if (!(containerW > 0 && containerH > 0 && imageW > 0 && imageH > 0)) {
@@ -97,10 +96,6 @@
             }
             image.css('left', hShift + 'px');
             image.css('top', vShift + 'px');
-            if (canvas.length > 0) {
-                canvas.css('left', hShift + 'px');
-                canvas.css('top', vShift + 'px');
-            }
         });
     };
 })(jQuery);

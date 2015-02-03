@@ -40,13 +40,17 @@ class EventsController extends DepMan.controller "Base"
         else 
             @data.scrollSave = angular.copy @data.scroll
             @data.active = id
-        @safeApply!
+        @safeApply ~>
+            setTimeout (~> $ ".focuspoint\#fp-#{id}" .focusPoint!), 500
 
     scroll: (e) !~>
         @data.scroll.top = e.originalEvent.target.scrollTop
         @data.scroll.left = e.originalEvent.target.scrollLeft
 
     getRandomColor: ~> window.randColor?!
+    loadedImage: !~>
+        @log "Focuspointing image .focuspoint\#fp-#{it}"
+        $ ".focuspoint\#fp-#{it}" .focusPoint!
 
 
     @hook ["$location", "$rootScope", "Comms"]

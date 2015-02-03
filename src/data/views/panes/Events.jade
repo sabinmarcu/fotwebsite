@@ -5,8 +5,8 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
     article.event(id="article-1" ng-class="{active: data.active == 1, 'material-whiteframe-z1': data.scroll.top != 0 || data.scroll.left != 0}" ng-if="data.content.length > 0")
         .wrapper(ng-class="{active: data.active == 1}")
             h1 {{data.content[0].name}}
-            a.img(ng-if="data.content[0].image | isDefined" ng-href="{{data.content[0].link}}")
-                img(ng-src="{{data.content[0].image}}")
+            a.img(ng-if="data.content[0].image | isDefined" ng-href="{{data.content[0].link}}" data-focus-x="0" data-focus-y="-0.2" class="focuspoint" id="fp-1")
+                img(ng-src="{{data.content[0].image}}" ng-load="loadedImage(1)")
             .brief
                 span(ng-if="data.content[0].brief | isDefined") {{data.content[0].brief}}
             .content
@@ -24,8 +24,8 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
                 article.event(ng-repeat="item in data.content" id="article-{{$index + 1}}" ng-class="{active: data.active == $index + 1}" ng-if="$index > 0")
                     .wrapper(ng-class="{active: data.active == $index + 1}")
                         h1 {{item.name}}
-                        a.img(ng-if="item.image | isDefined" ng-href="{{item.link}}")    
-                            img(ng-src="{{item.image}}")
+                        a.img(ng-if="item.image | isDefined" ng-href="{{item.link}}" data-focus-x="0" data-focus-y="-0.2" class="focuspoint" id="fp-{{$index + 1}}")    
+                            img(ng-src="{{item.image}}" ng-load="loadedImage($index + 1)")
                         .brief
                             span(ng-if="item.brief | isDefined") {{item.brief}}
                         .content
@@ -42,8 +42,8 @@ material-button.material-button-fab.material-button-fab-bottom-right.right.event
         article.event(ng-repeat="item in data.content track by $index" id="article-{{$index + 1}}" ng-class="{active: data.active == $index + 1}")
             .wrapper(ng-class="{active: data.active == $index + 1}")
                 h1 {{item.name}}
-                a.img(ng-if="item.image | isDefined" ng-href="{{item.link}}")    
-                    img(ng-src="{{item.image}}")
+                a.img(ng-if="item.image | isDefined" ng-href="{{item.link}}" data-focus-x="0" data-focus-y="-0.2" class="focuspoint" id="fp-{{$index + 1}}")    
+                    img(ng-src="{{item.image}}" ng-load="loadedImage($index + 1)")
                 .brief
                     span(ng-if="item.brief | isDefined") {{item.brief}}
                 .content
