@@ -90436,7 +90436,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Feb 04 2015 02:04:35 GMT+0000 (GMT)
+@Date Compiled    : Wed Feb 04 2015 02:11:45 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
