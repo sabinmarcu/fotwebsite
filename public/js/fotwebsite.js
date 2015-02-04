@@ -164,9 +164,11 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     prototype.loadPayload = function(){
       var this$ = this;
       this.LifeCycle.progress(40);
-      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
-        return this$.LifeCycle.resolve();
-      }));
+      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", function(){
+        return DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
+          return this$.LifeCycle.resolve();
+        });
+      });
     };
     prototype.loadLibs = function(){
       this.LifeCycle.progress(50);
@@ -3402,7 +3404,7 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
   var DB_NAME, DB_STORE, DB_VERSION, IndexedDBDriver;
   DB_NAME = AppInfo.name;
   DB_STORE = "storage";
-  DB_VERSION = 3;
+  DB_VERSION = 6;
   IndexedDBDriver = (function(superclass){
     var prototype = extend$((import$(IndexedDBDriver, superclass).displayName = 'IndexedDBDriver', IndexedDBDriver), superclass).prototype, constructor = IndexedDBDriver;
     function IndexedDBDriver(loadedDatabase){
@@ -3481,10 +3483,11 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
     };
     prototype.openDatabase = function(){
       var req;
+      this.log("Opening Database " + DB_NAME + ", version " + DB_VERSION);
       req = indexedDB.open(DB_NAME, DB_VERSION);
       req.onsuccess = this.successEvent;
       req.onerror = this.errorEvent;
-      return req.onupgradeneeded = this.upgradeEvent;
+      req.onupgradeneeded = this.upgradeEvent;
     };
     prototype.init = function(){
       this.db = null;
@@ -3495,7 +3498,8 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
       return this.loadedDatabase();
     };
     prototype.errorEvent = function(it){
-      return this.log("Database Error : ", it);
+      this.log("Database Error : ", it);
+      return console.log(arguments);
     };
     prototype.upgradeEvent = function(it){
       var db, store;
@@ -90265,10 +90269,8 @@ window.AppInfo = {
   }
 }
 ;
-window.SrcInfo = {0: '',
-1: 'Application',
-'classes': {0: '',
-1: 'BaseAngularHook',
+window.SrcInfo = {0: 'Application',
+'classes': {0: 'BaseAngularHook',
 'controllers': {0: 'Base',
 1: 'Events',
 2: 'Home',
@@ -90336,12 +90338,10 @@ window.SrcInfo = {0: '',
  length: 25},
 'models': {0: 'JSONModel',
  length: 1},
+ length: 1},
+'data': {'images': {0: 'logo',
+1: 'ro',
  length: 2},
-'data': {0: '',
-'images': {0: '',
-1: 'logo',
-2: 'ro',
- length: 3},
 'jsons': {0: 'adminroutes',
  length: 1},
 'stylesheets': {'400': {0: 'admin',
@@ -90419,8 +90419,8 @@ window.SrcInfo = {0: '',
 6: 'register',
 7: 'toast',
  length: 8},
- length: 1},
- length: 2};/** COPYRIGHT
+ length: 0},
+ length: 1};/** COPYRIGHT
 Copyright (c) Sabin Marcu 2009-2013, Powered by the Arrowhead System (tm)
 You may not redistribute this software under any circumstance other than sharing the link to any online service supplied by myself, Sabin Marcu, or any market or application store it might be registered in without consulting with the author, or using the software in any commercial way.
 Other than that, feel free to enjoy the application!
@@ -90428,7 +90428,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Feb 04 2015 02:56:55 GMT+0000 (GMT)
+@Date Compiled    : Wed Feb 04 2015 11:37:37 GMT-0500 (EST)
 **/
 
     window.addEventListener('load', function(){ 
