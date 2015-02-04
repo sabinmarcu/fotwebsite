@@ -4,7 +4,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #000;
+  background: #fff;
 }
 body {
   font-size: 10pt;
@@ -40,10 +40,10 @@ body #wrapper > div > section {
   position: fixed;
   top: 0;
   left: 0;
-  -webkit-perspective: 600;
-  -moz-perspective: 600;
-  -ms-perspective: 600;
-  perspective: 600;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  -ms-perspective: 600px;
+  perspective: 600px;
   -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-transition: -moz-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: -o-transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -395,8 +395,28 @@ body #wrapper > div > section.admin .content section > div > section > div > sec
     width: auto;
   }
 }
-body #wrapper > div > section.main > aside,
-body #wrapper > div > section.admin .main > aside {
+body #wrapper > div > section.main .mainappcontent,
+body #wrapper > div > section.admin .main .mainappcontent {
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+body #wrapper > div > section.main .mainappcontent aside,
+body #wrapper > div > section.admin .main .mainappcontent aside {
   position: fixed;
   top: 0;
   left: 0;
@@ -410,8 +430,8 @@ body #wrapper > div > section.admin .main > aside {
   border-right: solid 1px #eee;
   margin-left: -1px;
 }
-body #wrapper > div > section.main > aside h1,
-body #wrapper > div > section.admin .main > aside h1 {
+body #wrapper > div > section.main .mainappcontent aside h1,
+body #wrapper > div > section.admin .main .mainappcontent aside h1 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -436,14 +456,14 @@ body #wrapper > div > section.admin .main > aside h1 {
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
-body #wrapper > div > section.main > aside h1 .menu,
-body #wrapper > div > section.admin .main > aside h1 .menu {
+body #wrapper > div > section.main .mainappcontent aside h1 .menu,
+body #wrapper > div > section.admin .main .mainappcontent aside h1 .menu {
   position: absolute;
   top: 0;
   bottom: 0;
 }
-body #wrapper > div > section.main > aside h1 .menu > *,
-body #wrapper > div > section.admin .main > aside h1 .menu > * {
+body #wrapper > div > section.main .mainappcontent aside h1 .menu > *,
+body #wrapper > div > section.admin .main .mainappcontent aside h1 .menu > * {
   display: inline-block;
   float: left;
   font-weight: bold;
@@ -459,41 +479,37 @@ body #wrapper > div > section.admin .main > aside h1 .menu > * {
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   cursor: pointer;
 }
-body #wrapper > div > section.main > aside h1 .menu:hover > *,
-body #wrapper > div > section.admin .main > aside h1 .menu:hover > * {
+body #wrapper > div > section.main .mainappcontent aside h1 .menu:hover > *,
+body #wrapper > div > section.admin .main .mainappcontent aside h1 .menu:hover > * {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-body #wrapper > div > section.main > aside ~ *,
-body #wrapper > div > section.admin .main > aside ~ * {
-  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-body #wrapper > div > section.main.menuactive,
-body #wrapper > div > section.admin .main.menuactive {
-  -webkit-transform: translateX(250px);
-  -moz-transform: translateX(250px);
-  -o-transform: translateX(250px);
-  -ms-transform: translateX(250px);
-  transform: translateX(250px);
-}
 body #wrapper > div > section.main.menuactive > nav,
 body #wrapper > div > section.admin .main.menuactive > nav {
-  -webkit-transform: translateX(-250px);
-  -moz-transform: translateX(-250px);
-  -o-transform: translateX(-250px);
-  -ms-transform: translateX(-250px);
-  transform: translateX(-250px);
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+  z-index: 3;
 }
 body #wrapper > div > section.main.menuactive > nav h1,
 body #wrapper > div > section.admin .main.menuactive > nav h1 {
   -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
   box-shadow: 0 8px 17px rgba(0,0,0,0.2);
   background: #00897b;
+}
+body #wrapper > div > section.main.menuactive .mainappcontent,
+body #wrapper > div > section.admin .main.menuactive .mainappcontent {
+  -webkit-transform: translateX(250px) rotateY(10deg);
+  -moz-transform: translateX(250px) rotateY(10deg);
+  -o-transform: translateX(250px) rotateY(10deg);
+  -ms-transform: translateX(250px) rotateY(10deg);
+  transform: translateX(250px) rotateY(10deg);
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
 }
 body #wrapper > div > section.main > nav,
 body #wrapper > div > section.admin .main > nav {
@@ -516,16 +532,11 @@ body #wrapper > div > section.admin .main > nav {
   -o-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   -ms-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  -webkit-transform: translateX(-250px);
-  -moz-transform: translateX(-250px);
-  -o-transform: translateX(-250px);
-  -ms-transform: translateX(-250px);
-  transform: translateX(-250px);
-  -webkit-transform: translateX(-250px) rotateY(-15deg);
-  -moz-transform: translateX(-250px) rotateY(-15deg);
-  -o-transform: translateX(-250px) rotateY(-15deg);
-  -ms-transform: translateX(-250px) rotateY(-15deg);
-  transform: translateX(-250px) rotateY(-15deg);
+  -webkit-transform: translateX(-250px) rotateY(-10deg);
+  -moz-transform: translateX(-250px) rotateY(-10deg);
+  -o-transform: translateX(-250px) rotateY(-10deg);
+  -ms-transform: translateX(-250px) rotateY(-10deg);
+  transform: translateX(-250px) rotateY(-10deg);
   z-index: 1;
   background: #fff;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
@@ -635,10 +646,18 @@ body #wrapper > div > section.admin .main > nav ul li material-button a {
   text-transform: capitalize;
   text-decoration: none;
 }
-body #wrapper > div > section.main > .container > section,
-body #wrapper > div > section.admin .main > .container > section {
-  position: fixed;
+body #wrapper > div > section.main .container,
+body #wrapper > div > section.admin .main .container {
+  position: absolute;
   top: 45px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+body #wrapper > div > section.main .container > section,
+body #wrapper > div > section.admin .main .container > section {
+  position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -663,13 +682,13 @@ body #wrapper > div > section.admin .main > .container > section {
   -ms-perspective: 600px;
   perspective: 600px;
 }
-body #wrapper > div > section.main > .container > section > *,
-body #wrapper > div > section.admin .main > .container > section > * {
+body #wrapper > div > section.main .container > section > *,
+body #wrapper > div > section.admin .main .container > section > * {
   text-align: left;
   z-index: 1;
 }
-body #wrapper > div > section.main > .container > section.active,
-body #wrapper > div > section.admin .main > .container > section.active {
+body #wrapper > div > section.main .container > section.active,
+body #wrapper > div > section.admin .main .container > section.active {
   -webkit-transform: none;
   -moz-transform: none;
   -o-transform: none;
@@ -680,8 +699,8 @@ body #wrapper > div > section.admin .main > .container > section.active {
   filter: none;
   z-index: 2;
 }
-body #wrapper > div > section.main > .container > section.active ~ section,
-body #wrapper > div > section.admin .main > .container > section.active ~ section {
+body #wrapper > div > section.main .container > section.active ~ section,
+body #wrapper > div > section.admin .main .container > section.active ~ section {
   -webkit-transform: scale(2);
   -moz-transform: scale(2);
   -o-transform: scale(2);
@@ -689,46 +708,14 @@ body #wrapper > div > section.admin .main > .container > section.active ~ sectio
   transform: scale(2);
   z-index: -1;
 }
-body #wrapper > div > section.main > .container > section nav.phonemenu,
-body #wrapper > div > section.admin .main > .container > section nav.phonemenu {
+body #wrapper > div > section.main .container > section nav.phonemenu,
+body #wrapper > div > section.admin .main .container > section nav.phonemenu {
   display: none;
 }
-body #wrapper > div > section.main > .container > section > div,
-body #wrapper > div > section.admin .main > .container > section > div {
+body #wrapper > div > section.main .container > section > div,
+body #wrapper > div > section.admin .main .container > section > div {
   width: 100%;
   height: 100%;
-}
-body #wrapper > div > section.main > .shade,
-body #wrapper > div > section.admin .main > .shade {
-  position: fixed;
-  top: 45px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  z-index: -1;
-}
-body #wrapper > div > section.main > .shade img,
-body #wrapper > div > section.admin .main > .shade img {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-  z-index: 2;
-}
-body #wrapper > div > section.main > .shade .darkness,
-body #wrapper > div > section.admin .main > .shade .darkness {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  opacity: 0.7;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-  filter: alpha(opacity=70);
-  z-index: 1;
 }
 body #wrapper > div > section.main section#Home .grid.nogrow > article.post,
 body #wrapper > div > section.admin .main section#Home .grid.nogrow > article.post {
@@ -772,6 +759,9 @@ body #wrapper > div > section.admin .main .grid {
   display: flex;
   height: 100%;
   width: 100%;
+  -ms-flex-line-pack: start;
+  -webkit-align-content: flex-start;
+  align-content: flex-start;
 }
 body #wrapper > div > section.main .grid,
 body #wrapper > div > section.admin .main .grid,

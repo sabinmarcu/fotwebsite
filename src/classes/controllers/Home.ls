@@ -30,12 +30,12 @@ class HomeController extends DepMan.controller "Base"
         @root.$on "$locationChangeSuccess", urlHandler
         urlHandler!
 
-        setTimeout ~>
-            @log "Hooking Hammer"
-            h = new Hammer ($ "\#Home" .0)
-            h.on "swiperight", ~> @switchContent -1
-            h.on "swipeleft", ~> @switchContent 1
-        , 1000
+        # setTimeout ~>
+        #     @log "Hooking Hammer"
+        #     h = new Hammer ($ "\#Home" .0)
+        #     h.on "swiperight", ~> @switchContent -1
+        #     h.on "swipeleft", ~> @switchContent 1
+        # , 1000
 
         window.addEventListener "resize", ~> @data.width = window.innerWidth; @scope.safeApply!
 

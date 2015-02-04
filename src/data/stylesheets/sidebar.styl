@@ -1,62 +1,74 @@
-> aside
-    position fixed
+.mainappcontent 
+    transition all asidecontenttransitionduration timing
+    transform-origin top left
+    background white
+    position absolute
     top 0
+    bottom 0
     left 0
     right 0
-    height asideheight
-    perspective 600
-
-    z-index 9
-    
-    border-right solid 1px clightgray
-    margin-left -1px
-
-    h1
-        position absolute
+    z-index 2
+    aside
+        position fixed
         top 0
-        bottom 0
         left 0
         right 0
-        line-height asideheight
-        heght asideheight
-        padding 0
-        margin 0
-        font-size 18pt
-        text-align center
-        font-family "Open Sans Condensed", inherit
-        font-weight 100
-        transition all 0.2s timing
-        z-index 3
-        background cfotgreen
-        color white
-        wfz1()
-        .menu
+        height asideheight
+        perspective 600
+
+        z-index 9
+        
+        border-right solid 1px clightgray
+        margin-left -1px
+
+        h1
             position absolute
             top 0
             bottom 0
-            > * 
-                display inline-block
-                float left
-                font-weight bold
-                padding-left 10px
-                text-transform uppercase 
-                opacity 0.8
-                transition all 0.5s timing 
-                cursor pointer
-            &:hover > *
-                opacity 1 
+            left 0
+            right 0
+            line-height asideheight
+            heght asideheight
+            padding 0
+            margin 0
+            font-size 18pt
+            text-align center
+            font-family "Open Sans Condensed", inherit
+            font-weight 100
+            transition all 0.2s timing
+            z-index 3
+            background cfotgreen
+            color white
+            wfz1()
+            .menu
+                position absolute
+                top 0
+                bottom 0
+                > * 
+                    display inline-block
+                    float left
+                    font-weight bold
+                    padding-left 10px
+                    text-transform uppercase 
+                    opacity 0.8
+                    transition all 0.5s timing 
+                    cursor pointer
+                &:hover > *
+                    opacity 1 
                 
-                
-    ~ *
-        transition all 0.5s timing
     
 &.menuactive
     > nav 
-        transform translateX(0 - asidenavwidth)
+        transform none
+        z-index 3
         h1
             wfz2()
             background cfotgreenlight
-    transform translateX(asidenavwidth)
+    .mainappcontent
+        transform translateX(asidenavwidth) rotateY(asideangle)
+        opacity 0.6
+        // filter blur(1px)
+        // -webkit-filter blur(1px)
 
 > nav
     position fixed
@@ -71,9 +83,8 @@
     padding 0
 
     transform-origin top right
-    transition all 0.5s timing
-    transform translateX(0 - asidenavwidth)
-    transform translateX(0 - asidenavwidth) rotateY(-15deg)
+    transition all asidecontenttransitionduration timing
+    transform translateX(0 - asidenavwidth) rotateY(0 - asideangle)
     z-index 1
 
     background white

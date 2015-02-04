@@ -12,8 +12,8 @@ class PageController extends DepMan.controller "Base"
 
         hammertime = new Hammer document.body
 
-        hammertime.on "swipedown", ~> @scope.$emit "globalmenu:activated"
-        hammertime.on "swipeup", ~> @scope.$emit "globalmenu:deactivated"
+        hammertime.on "swiperight", ~> @scope.$emit "globalmenu:activated"
+        hammertime.on "swipeleft", ~> @scope.$emit "globalmenu:deactivated"
 
         urlHandler = ~> 
             # if not @comms.user? and @location.path!.match  /\/membership.*/ then @comms.checkLogin!

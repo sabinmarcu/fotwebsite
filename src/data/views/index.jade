@@ -1,11 +1,5 @@
 div(ng-controller="Page" ng-class="{mobile: isMobile}" when-ready="isReady(); true")
     section.main(ng-class="{active: location.path().match('/admin') === null, menuactive: data.isContentActive}" ng-scroll="scroll($event)" id="PageWrapper")
-        aside#sitemenu(ng-click="toggleMenu()")
-                h1
-                    != AppInfo.displayname
-                    .menu
-                        .icon 
-                            i.fa.fa-bars
 
         nav(ng-style="getHeight()")
             ul
@@ -15,14 +9,21 @@ div(ng-controller="Page" ng-class="{mobile: isMobile}" when-ready="isReady(); tr
             a(href="/about")
                 img(src=DepMan.image("logo"))
 
-        .container
-            section.primarysection(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
-                nav.phonemenu  
-                    li(ng-click="activateMenu()")
-                        i.fa.fa-reorder
-                div(load-content-for="title")
-        .shade
-            .darkness
+        .mainappcontent
+
+            aside#sitemenu(ng-click="toggleMenu()")
+                    h1
+                        != AppInfo.displayname
+                        .menu
+                            .icon 
+                                i.fa.fa-bars
+
+            .container
+                section.primarysection(ng-repeat="title in routes.order" ng-if="!routes.nocontroller[$index]" controller-from-string='title' ng-class="{active: isActive(title), static: isStatic(title)}" id="{{title | fix}}" ng-style="getRootStyles()" ng-scroll="scrollFunc($event)")
+                    nav.phonemenu  
+                        li(ng-click="activateMenu()")
+                            i.fa.fa-reorder
+                    div(load-content-for="title")
 
     //- section.admin(ng-class="{active: location.path().match('/admin') !== null}")
     //-     nav
