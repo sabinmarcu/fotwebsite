@@ -55,7 +55,6 @@ class PageController extends DepMan.controller "Base"
 
     isStatic: (title) ~> if @routes.isStaticPage[@routes.order.indexOf title] then true else false
 
-    getHeight: ~> if window.innerWidth < 700 then height: window.innerHeight - 45
     toggleMenu: ~> @data.isContentActive = !@data.isContentActive; @safeApply!
     hover: (type, ev) ~>
         if type is \in then 

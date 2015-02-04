@@ -1,7 +1,7 @@
 div(ng-controller="Page" ng-class="{mobile: isMobile}" when-ready="isReady(); true")
     section.main(ng-class="{active: location.path().match('/admin') === null, menuactive: data.isContentActive}" ng-scroll="scroll($event)" id="PageWrapper")
 
-        nav(ng-style="getHeight()")
+        nav
             ul
                 li(ng-repeat='title in routes.order')
                     material-button(href='{{routes[title].substr ? routes[title] : routes[title][0]}}' ng-class="{active: isActive(title)}" ng-click="data.isContentActive = true") {{title}}

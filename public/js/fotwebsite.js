@@ -945,7 +945,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
       this$.isReady = bind$(this$, 'isReady', prototype);
       this$.hover = bind$(this$, 'hover', prototype);
       this$.toggleMenu = bind$(this$, 'toggleMenu', prototype);
-      this$.getHeight = bind$(this$, 'getHeight', prototype);
       this$.isStatic = bind$(this$, 'isStatic', prototype);
       this$.adminIsActive = bind$(this$, 'adminIsActive', prototype);
       this$.isActive = bind$(this$, 'isActive', prototype);
@@ -967,10 +966,10 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
         return this$.safeApply();
       });
       hammertime = new Hammer(document.body);
-      hammertime.on("swiperight", function(){
+      hammertime.on("swipeleft", function(){
         return this$.scope.$emit("globalmenu:activated");
       });
-      hammertime.on("swipeleft", function(){
+      hammertime.on("swiperight", function(){
         return this$.scope.$emit("globalmenu:deactivated");
       });
       urlHandler = function(){
@@ -1036,13 +1035,6 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
         return true;
       } else {
         return false;
-      }
-    };
-    prototype.getHeight = function(){
-      if (window.innerWidth < 700) {
-        return {
-          height: window.innerHeight - 45
-        };
       }
     };
     prototype.toggleMenu = function(){
@@ -84730,7 +84722,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (DepMan, AppInfo) {
-buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\" when-ready=\"isReady(); true\"><section ng-class=\"{active: location.path().match('/admin') === null, menuactive: data.isContentActive}\" ng-scroll=\"scroll($event)\" id=\"PageWrapper\" class=\"main\"><nav ng-style=\"getHeight()\"><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"></li></ul><a href=\"/about\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/></a></nav><div class=\"mainappcontent\"><aside id=\"sitemenu\" ng-click=\"toggleMenu()\"><h1>" + (null == (jade_interp = AppInfo.displayname) ? "" : jade_interp) + "<div class=\"menu\"><div class=\"icon\"><i class=\"fa fa-bars\"></i></div></div></h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\" class=\"primarysection\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div></div></section></div>");}.call(this,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined));;return buf.join("");
+buf.push("<div ng-controller=\"Page\" ng-class=\"{mobile: isMobile}\" when-ready=\"isReady(); true\"><section ng-class=\"{active: location.path().match('/admin') === null, menuactive: data.isContentActive}\" ng-scroll=\"scroll($event)\" id=\"PageWrapper\" class=\"main\"><nav><ul><li ng-repeat=\"title in routes.order\"><material-button href=\"{{routes[title].substr ? routes[title] : routes[title][0]}}\" ng-class=\"{active: isActive(title)}\" ng-click=\"data.isContentActive = true\">{{title}}</material-button></li><li ng-repeat=\"title in routes.order\"></li></ul><a href=\"/about\"><img" + (jade.attr("src", DepMan.image("logo"), true, false)) + "/></a></nav><div class=\"mainappcontent\"><aside id=\"sitemenu\" ng-click=\"toggleMenu()\"><h1>" + (null == (jade_interp = AppInfo.displayname) ? "" : jade_interp) + "<div class=\"menu\"><div class=\"icon\"><i class=\"fa fa-bars\"></i></div></div></h1></aside><div class=\"container\"><section ng-repeat=\"title in routes.order\" ng-if=\"!routes.nocontroller[$index]\" controller-from-string=\"title\" ng-class=\"{active: isActive(title), static: isStatic(title)}\" id=\"{{title | fix}}\" ng-style=\"getRootStyles()\" ng-scroll=\"scrollFunc($event)\" class=\"primarysection\"><nav class=\"phonemenu\"> <li ng-click=\"activateMenu()\"><i class=\"fa fa-reorder\"></i></li></nav><div load-content-for=\"title\"></div></section></div></div></section></div>");}.call(this,"DepMan" in locals_for_with?locals_for_with.DepMan:typeof DepMan!=="undefined"?DepMan:undefined,"AppInfo" in locals_for_with?locals_for_with.AppInfo:typeof AppInfo!=="undefined"?AppInfo:undefined));;return buf.join("");
 }}, "data/views/input": function(exports, require, module) {
 
 var jade={}; (function(exports) {'use strict';
@@ -90436,7 +90428,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Wed Feb 04 2015 02:11:45 GMT+0000 (GMT)
+@Date Compiled    : Wed Feb 04 2015 02:56:55 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 
