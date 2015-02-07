@@ -33,8 +33,72 @@ body #wrapper > div > section {
   width: 100%;
   height: 100%;
 }
+body #wrapper section.primarysection {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
 body #wrapper section.primarysection.static {
-  padding: 0 25px 25px;
+  padding: 0;
+}
+body #wrapper section.primarysection.static > div {
+  margin: 0 auto;
+  padding: 25px;
+  max-width: 975px;
+  border-left: solid 1px #eee;
+  border-right: solid 1px #eee;
+  -webkit-box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 17px rgba(0,0,0,0.2);
+  height: 100%;
+  overflow: auto;
+}
+body #wrapper section.primarysection.static > div > h1.title:first-child {
+  margin-top: -25px;
+}
+body #wrapper section.primarysection.static > div h1,
+body #wrapper section.primarysection.static > div h2,
+body #wrapper section.primarysection.static > div h3,
+body #wrapper section.primarysection.static > div h4,
+body #wrapper section.primarysection.static > div h5,
+body #wrapper section.primarysection.static > div h6 {
+  margin: 0;
+  padding: 0 0 10px 0;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+}
+body #wrapper section.primarysection.static > div h1.title,
+body #wrapper section.primarysection.static > div h2.title,
+body #wrapper section.primarysection.static > div h3.title,
+body #wrapper section.primarysection.static > div h4.title,
+body #wrapper section.primarysection.static > div h5.title,
+body #wrapper section.primarysection.static > div h6.title {
+  background: #444;
+  color: #fff;
+  padding: 10px 10px 20px 25px;
+  margin: 0 -25px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+body #wrapper section.primarysection.static > div h1 {
+  font-size: 3em;
+  font-weight: bold;
+}
+body #wrapper section.primarysection.static > div h2 {
+  font-size: 2.5em;
+  font-style: italic;
+}
+body #wrapper section.primarysection.static > div h3 {
+  font-size: 2em;
+  font-weight: bold;
+}
+body #wrapper section.primarysection.static > div h4 {
+  font-size: 2em;
+  font-style: italic;
+}
+body #wrapper section.primarysection.static > div h5 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+body #wrapper section.primarysection.static > div h6 {
+  font-size: 1.5em;
+  font-style: italic;
 }
 body #wrapper > div > section {
   position: fixed;

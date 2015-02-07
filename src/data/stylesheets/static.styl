@@ -1,0 +1,42 @@
+&.static
+    padding 0
+    > div
+        pad=25px
+        margin 0 auto
+        padding pad
+        max-width (1000px - pad)
+        border-left solid 1px clightgray
+        border-right solid 1px clightgray
+        wfz2()
+        height 100%
+        overflow auto
+        > h1.title:first-child 
+            margin-top -25px
+        h1, h2, h3, h4, h5, h6
+            margin 0
+            padding 0 0 10px 0
+            text-shadow 0 1px 1px rgba(255, 255, 255, 0.2)
+            &.title
+                background #444
+                color white
+                padding 10px 10px 20px 25px
+                margin 0 -25px
+                text-shadow 0 1px 1px rgba(0, 0, 0, 0.2)
+        h1
+            font-size 3em
+            font-weight bold
+        h2
+            font-size 2.5em
+            font-style italic
+        h3
+            font-size 2em
+            font-weight bold
+        h4
+            font-size 2em  
+            font-style italic  
+        h5
+            font-size 1.5em
+            font-weight bold
+        h6
+            font-size 1.5em
+            font-style italic
