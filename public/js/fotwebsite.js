@@ -90430,7 +90430,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Thu Feb 05 2015 19:10:47 GMT+0000 (GMT)
+@Date Compiled    : Tue Feb 10 2015 17:33:31 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

@@ -100,6 +100,32 @@ body #wrapper section.primarysection.static > div h6 {
   font-size: 1.5em;
   font-style: italic;
 }
+body #wrapper section.primarysection.static > div img {
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+}
+body #wrapper section.primarysection.static > div .img {
+  width: 40%;
+}
+body #wrapper section.primarysection.static > div .img img {
+  max-width: 100%;
+  width: 100%;
+}
+body #wrapper section.primarysection.static > div .big img {
+  max-width: 100%;
+  width: 100%;
+}
+body #wrapper section.primarysection.static > div p {
+  margin: 0;
+  padding: 15px 0 10px;
+}
+body #wrapper section.primarysection.static > div p.left {
+  padding-right: 15px;
+}
+body #wrapper section.primarysection.static > div p.right {
+  padding-left: 15px;
+}
 body #wrapper > div > section {
   position: fixed;
   top: 0;
@@ -1725,6 +1751,12 @@ body #wrapper material-toast.success {
 body #wrapper material-toast.info {
   background: rgba(86,119,252,0.9);
 }
+body #wrapper .left,
+body #wrapper .right {
+  overflow: hidden;
+  clear: both;
+  display: inline;
+}
 body #wrapper .left {
   float: left;
 }
@@ -1763,24 +1795,6 @@ body #wrapper h4,
 body #wrapper h5,
 body #wrapper h6 {
   font-family: "Open Sans Condensed", "Open Sans", Arial, Helvetica, sans;
-}
-body #wrapper h1 {
-  font-weight: 300;
-}
-body #wrapper h2 {
-  font-weight: 100;
-}
-body #wrapper h3 {
-  font-weight: 100;
-}
-body #wrapper h4 {
-  font-weight: 300;
-}
-body #wrapper h5 {
-  font-weight: 100;
-}
-body #wrapper h6 {
-  font-weight: 100;
 }
 body #wrapper .material-button-fab {
   background: #fff;
