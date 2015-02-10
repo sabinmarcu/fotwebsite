@@ -164,9 +164,11 @@ if(!_isArray(tasks)){var err=new Error("First argument to waterfall must be an a
     prototype.loadPayload = function(){
       var this$ = this;
       this.LifeCycle.progress(40);
-      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
-        return this$.LifeCycle.resolve();
-      }));
+      return DepMan.extScript("/js/" + AppInfo.name + ".payload.js", function(){
+        return DepMan.extScript("/js/" + AppInfo.name + ".config.js", function(){
+          return this$.LifeCycle.resolve();
+        });
+      });
     };
     prototype.loadLibs = function(){
       this.LifeCycle.progress(50);
@@ -3402,7 +3404,7 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
   var DB_NAME, DB_STORE, DB_VERSION, IndexedDBDriver;
   DB_NAME = AppInfo.name;
   DB_STORE = "storage";
-  DB_VERSION = 3;
+  DB_VERSION = 6;
   IndexedDBDriver = (function(superclass){
     var prototype = extend$((import$(IndexedDBDriver, superclass).displayName = 'IndexedDBDriver', IndexedDBDriver), superclass).prototype, constructor = IndexedDBDriver;
     function IndexedDBDriver(loadedDatabase){
@@ -3481,10 +3483,11 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
     };
     prototype.openDatabase = function(){
       var req;
+      this.log("Opening Database " + DB_NAME + ", version " + DB_VERSION);
       req = indexedDB.open(DB_NAME, DB_VERSION);
       req.onsuccess = this.successEvent;
       req.onerror = this.errorEvent;
-      return req.onupgradeneeded = this.upgradeEvent;
+      req.onupgradeneeded = this.upgradeEvent;
     };
     prototype.init = function(){
       this.db = null;
@@ -3495,7 +3498,8 @@ angular.module(AppInfo.displayname).directive('whenReady', ['$interpolate', func
       return this.loadedDatabase();
     };
     prototype.errorEvent = function(it){
-      return this.log("Database Error : ", it);
+      this.log("Database Error : ", it);
+      return console.log(arguments);
     };
     prototype.upgradeEvent = function(it){
       var db, store;
@@ -90430,7 +90434,7 @@ Other than that, feel free to enjoy the application!
 @Application Name : Fish on Toast
 @Author           : Sabin Marcu <sabinmarcu@gmail.com>
 @Version          : 0.0.1
-@Date Compiled    : Tue Feb 10 2015 17:33:31 GMT+0000 (GMT)
+@Date Compiled    : Tue Feb 10 2015 17:35:25 GMT+0000 (GMT)
 **/
 
     window.addEventListener('load', function(){ 

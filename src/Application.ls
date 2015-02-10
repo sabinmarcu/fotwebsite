@@ -59,7 +59,7 @@ class Application extends IS.Object
         document.head.append-child styles
     loadPayload: ~> 
         @LifeCycle.progress 40
-        DepMan.ext-script "/js/#{AppInfo.name}.payload.js", 
+        DepMan.ext-script "/js/#{AppInfo.name}.payload.js", ~>
             DepMan.ext-script "/js/#{AppInfo.name}.config.js", ~> @LifeCycle.resolve!
 
     loadLibs: ~>
